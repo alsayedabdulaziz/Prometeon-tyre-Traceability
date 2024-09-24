@@ -10,13 +10,20 @@ class RFIDScanningModel extends FlutterFlowModel<RFIDScanningWidget> {
 
   String readingstatus = 'Scanning Stopped';
 
+  List<String> tagid = [];
+  void addToTagid(String item) => tagid.add(item);
+  void removeFromTagid(String item) => tagid.remove(item);
+  void removeAtIndexFromTagid(int index) => tagid.removeAt(index);
+  void insertAtIndexInTagid(int index, String item) =>
+      tagid.insert(index, item);
+  void updateTagidAtIndex(int index, Function(String) updateFn) =>
+      tagid[index] = updateFn(tagid[index]);
+
   ///  State fields for stateful widgets in this page.
 
   InstantTimer? instantTimer;
   // Stores action output result for [Custom Action - readtagcount] action in ScanButton widget.
   List<RFIDTagsdataStruct>? readTagCountResponse;
-  // Stores action output result for [Custom Action - tagsListToList] action in ScanButton widget.
-  List<String>? listOfTags;
   // Stores action output result for [Backend Call - API (GetTagsData)] action in ScanButton widget.
   ApiCallResponse? getTagsDataResponse;
 

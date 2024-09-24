@@ -73,7 +73,7 @@ class GetTagsDataCall {
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
       apiUrl:
-          'https://5741-154-183-242-201.ngrok-free.app /v1/GetTagsData/GetTagsData',
+          'https://8f53-154-183-242-201.ngrok-free.app/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -147,6 +147,70 @@ class GetTagsDataCall {
         r'''$[:].Color''',
         true,
       ) as List?;
+  static List<String>? sku(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].SKU''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? maxWashCount(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].MaxWashCount''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? washOverDue(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].WashOverDue''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? status(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].Status''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? daysRemaining(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].DaysRemaining''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? alarms(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].Alarms''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? remainingDaysInService(dynamic response) =>
+      (getJsonField(
+        response,
+        r'''$[:].RemainingDaysInService''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class SendTagsListCall {
