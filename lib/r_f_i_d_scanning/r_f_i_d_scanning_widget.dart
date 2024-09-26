@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'r_f_i_d_scanning_model.dart';
@@ -145,34 +146,36 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               safeSetState(() {});
                               await actions.rFIDConnectAction();
                               _model.instantTimer = InstantTimer.periodic(
-                                duration: const Duration(milliseconds: 1000),
+                                duration: const Duration(milliseconds: 300),
                                 callback: (timer) async {
                                   _model.readTagCountResponse =
                                       await actions.readtagcount(
                                     false,
                                   );
-                                  _model.listOfTags =
-                                      await actions.tagsListToList(
-                                    _model.readTagCountResponse!.toList(),
-                                  );
+                                  FFAppState().RFIDTagsList = _model
+                                      .readTagCountResponse!
+                                      .toList()
+                                      .cast<RFIDTagsdataStruct>();
+                                  safeSetState(() {});
+                                  _model.tagid = functions
+                                      .tagsListToList(
+                                          FFAppState().RFIDTagsList.toList())
+                                      .toList()
+                                      .cast<String>();
+                                  safeSetState(() {});
                                   _model.getTagsDataResponse =
                                       await GetTagsDataCall.call(
-                                    tagsListList: _model.listOfTags,
+                                    tagsListList: _model.tagid,
                                   );
 
                                   if ((_model.getTagsDataResponse?.succeeded ??
                                       true)) {
-                                    FFAppState().QueriedTagDataList = ((_model
-                                                        .getTagsDataResponse
-                                                        ?.jsonBody ??
-                                                    '')
-                                                .toList()
-                                                .map<QueriedTagDataStruct?>(
-                                                    QueriedTagDataStruct
-                                                        .maybeFromMap)
-                                                .toList()
-                                            as Iterable<QueriedTagDataStruct?>)
-                                        .withoutNulls
+                                    FFAppState().QueriedTagDataList = functions
+                                        .buildTagsDataList(GetTagsDataCall.id(
+                                          (_model.getTagsDataResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList())!
                                         .toList()
                                         .cast<QueriedTagDataStruct>();
                                     safeSetState(() {});
@@ -192,8 +195,8 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                           },
                           text: 'Scan',
                           options: FFButtonOptions(
-                            width: 90.0,
-                            height: 100.0,
+                            width: 70.0,
+                            height: 70.0,
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             iconPadding: const EdgeInsetsDirectional.fromSTEB(
@@ -225,8 +228,8 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                   ),
                         ),
                         Container(
-                          width: 100.0,
-                          height: 100.0,
+                          width: 70.0,
+                          height: 70.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -258,8 +261,8 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                   ),
                         ),
                         Container(
-                          width: 100.0,
-                          height: 100.0,
+                          width: 70.0,
+                          height: 70.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -281,7 +284,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                     ),
                     Expanded(
                       child: Column(
-                        mainAxisSize: MainAxisSize.max,
+                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           FFButtonWidget(
@@ -310,8 +313,12 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                             ),
                           ),
                           FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              FFAppState().QueriedTagDataList = [];
+                              safeSetState(() {});
+                              await actions.readtagcount(
+                                true,
+                              );
                             },
                             text: 'Clear',
                             options: FFButtonOptions(
