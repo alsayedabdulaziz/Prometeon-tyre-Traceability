@@ -27,6 +27,8 @@ class RFIDScanningModel extends FlutterFlowModel<RFIDScanningWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Custom Action - getstatus] action in RFIDScanning widget.
+  String? getstatusresponse2;
   // Stores action output result for [Custom Action - getstatus] action in ScanButton widget.
   String? getstatusResponse;
   InstantTimer? instantTimer;
