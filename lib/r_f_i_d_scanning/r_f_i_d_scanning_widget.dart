@@ -8,6 +8,7 @@ import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'r_f_i_d_scanning_model.dart';
 export 'r_f_i_d_scanning_model.dart';
@@ -28,6 +29,14 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RFIDScanningModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await actions.rFIDConnectAction();
+      _model.getstatusresponse2 = await actions.getstatus();
+      _model.readerstatus = _model.getstatusresponse2!;
+      safeSetState(() {});
+    });
   }
 
   @override
@@ -143,7 +152,6 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                           onPressed: () async {
                             _model.getstatusResponse =
                                 await actions.getstatus();
-                            await actions.rFIDConnectAction();
                             if (_model.getstatusResponse == 'Connected') {
                               if (_model.readingstatus == 'Scanning Stopped') {
                                 _model.readingstatus = 'Scanning Started';
