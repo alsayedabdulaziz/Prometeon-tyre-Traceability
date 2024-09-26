@@ -143,6 +143,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                           onPressed: () async {
                             _model.getstatusResponse =
                                 await actions.getstatus();
+                            await actions.rFIDConnectAction();
                             if (_model.getstatusResponse == 'Connected') {
                               if (_model.readingstatus == 'Scanning Stopped') {
                                 _model.readingstatus = 'Scanning Started';
