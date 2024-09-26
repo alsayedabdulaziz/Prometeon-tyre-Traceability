@@ -189,6 +189,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               await actions.dissconnect(
                                 context,
                               );
+                              _model.instantTimer?.cancel();
                             }
 
                             safeSetState(() {});
