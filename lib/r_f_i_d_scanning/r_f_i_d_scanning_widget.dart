@@ -159,31 +159,47 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                         .toList()
                                         .cast<RFIDTagsdataStruct>();
                                     safeSetState(() {});
-                                    _model.tagid = functions
-                                        .tagsListToList(
-                                            FFAppState().RFIDTagsList.toList())
-                                        .toList()
-                                        .cast<String>();
-                                    safeSetState(() {});
-                                    _model.getTagsDataResponse =
-                                        await GetTagsDataCall.call(
-                                      tagsListList: _model.tagid,
-                                    );
-
-                                    if ((_model
-                                            .getTagsDataResponse?.succeeded ??
-                                        true)) {
-                                      FFAppState().QueriedTagDataList =
+                                    if (functions.isTagsListNotEmpty(
+                                        FFAppState().RFIDTagsList.toList())) {
+                                      if (_model.listsize !=
                                           functions
-                                              .buildTagsDataList(
-                                                  GetTagsDataCall.id(
-                                                (_model.getTagsDataResponse
-                                                        ?.jsonBody ??
-                                                    ''),
-                                              )?.toList())!
-                                              .toList()
-                                              .cast<QueriedTagDataStruct>();
-                                      safeSetState(() {});
+                                              .tagsListToList(FFAppState()
+                                                  .RFIDTagsList
+                                                  .toList())
+                                              .length) {
+                                        _model.tagid = functions
+                                            .tagsListToList(FFAppState()
+                                                .RFIDTagsList
+                                                .toList())
+                                            .toList()
+                                            .cast<String>();
+                                        _model.listsize = functions
+                                            .tagsListToList(FFAppState()
+                                                .RFIDTagsList
+                                                .toList())
+                                            .length;
+                                        safeSetState(() {});
+                                        _model.getTagsDataResponse =
+                                            await GetTagsDataCall.call(
+                                          tagsListList: _model.tagid,
+                                        );
+
+                                        if ((_model.getTagsDataResponse
+                                                ?.succeeded ??
+                                            true)) {
+                                          FFAppState().QueriedTagDataList =
+                                              functions
+                                                  .buildTagsDataList(
+                                                      GetTagsDataCall.id(
+                                                    (_model.getTagsDataResponse
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  )?.toList())!
+                                                  .toList()
+                                                  .cast<QueriedTagDataStruct>();
+                                          safeSetState(() {});
+                                        }
+                                      }
                                     }
                                   },
                                   startImmediately: true,
@@ -276,7 +292,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                           child: Align(
                             alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Text(
-                              'Hello World',
+                              FFAppState().QueriedTagDataList.length.toString(),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -451,8 +467,11 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                             listOfData[listOfDataIndex];
                                         return Row(
                                           mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
                                             Container(
+                                              width: 20.0,
                                               decoration: const BoxDecoration(),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -472,24 +491,34 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                               ),
                                             ),
                                             Expanded(
-                                              child: Container(
-                                                decoration: const BoxDecoration(),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      listOfDataItem.tagID,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          15.0, 0.0, 0.0, 0.0),
+                                                  child: Container(
+                                                    decoration: const BoxDecoration(),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          listOfDataItem.tagID,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
