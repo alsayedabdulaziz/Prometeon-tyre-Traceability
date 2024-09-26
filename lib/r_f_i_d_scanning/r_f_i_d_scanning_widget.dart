@@ -292,7 +292,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                           child: Align(
                             alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Text(
-                              'Hello World',
+                              FFAppState().QueriedTagDataList.length.toString(),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
