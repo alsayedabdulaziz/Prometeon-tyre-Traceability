@@ -186,9 +186,6 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                             } else {
                               _model.readingstatus = 'Scanning Stopped';
                               safeSetState(() {});
-                              await actions.dissconnect(
-                                context,
-                              );
                               _model.instantTimer?.cancel();
                             }
 
