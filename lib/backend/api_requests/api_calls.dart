@@ -90,7 +90,7 @@ class GetTagsDataCall {
 
   static List<String>? id(dynamic response) => (getJsonField(
         response,
-        r'''$[:].ID''',
+        r'''$.TagsList''',
         true,
       ) as List?)
           ?.withoutNulls
