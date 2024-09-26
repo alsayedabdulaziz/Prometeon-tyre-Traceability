@@ -313,8 +313,8 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           FFButtonWidget(
-                            onPressed: () async {
-                              await actions.onRead();
+                            onPressed: () {
+                              print('Button pressed ...');
                             },
                             text: 'Excel',
                             options: FFButtonOptions(
