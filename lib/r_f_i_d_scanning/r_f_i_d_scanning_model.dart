@@ -23,6 +23,8 @@ class RFIDScanningModel extends FlutterFlowModel<RFIDScanningWidget> {
 
   int listsize = 0;
 
+  int duplicates = 0;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getstatus] action in ScanButton widget.

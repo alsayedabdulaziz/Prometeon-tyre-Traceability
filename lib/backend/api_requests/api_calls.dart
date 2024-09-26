@@ -97,6 +97,10 @@ class GetTagsDataCall {
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
+  static int? duplicates(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.Duplicates''',
+      ));
 }
 
 class SendTagsListCall {
