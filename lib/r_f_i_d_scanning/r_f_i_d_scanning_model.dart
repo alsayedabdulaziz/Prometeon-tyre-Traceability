@@ -19,8 +19,12 @@ class RFIDScanningModel extends FlutterFlowModel<RFIDScanningWidget> {
   void updateTagidAtIndex(int index, Function(String) updateFn) =>
       tagid[index] = updateFn(tagid[index]);
 
+  String readerstatus = 'Not Connected';
+
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Custom Action - getstatus] action in ScanButton widget.
+  String? getstatusResponse;
   InstantTimer? instantTimer;
   // Stores action output result for [Custom Action - readtagcount] action in ScanButton widget.
   List<RFIDTagsdataStruct>? readTagCountResponse;
