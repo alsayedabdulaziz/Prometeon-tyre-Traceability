@@ -70,11 +70,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const LoginWidget(),
         ),
         FFRoute(
-          name: 'NewReading',
-          path: '/newReading',
-          builder: (context, params) => const NewReadingWidget(),
-        ),
-        FFRoute(
           name: 'RFIDMenu',
           path: '/rFIDMenu',
           builder: (context, params) => const RFIDMenuWidget(),

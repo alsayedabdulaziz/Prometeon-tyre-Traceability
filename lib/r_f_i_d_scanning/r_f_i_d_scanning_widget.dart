@@ -158,7 +158,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                       .cast<RFIDTagsdataStruct>();
                                   safeSetState(() {});
                                   _model.tagid = functions
-                                      .tgagsListToList(
+                                      .tagsListToList(
                                           FFAppState().RFIDTagsList.toList())
                                       .toList()
                                       .cast<String>();
@@ -170,17 +170,12 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
 
                                   if ((_model.getTagsDataResponse?.succeeded ??
                                       true)) {
-                                    FFAppState().QueriedTagDataList = ((_model
-                                                        .getTagsDataResponse
-                                                        ?.jsonBody ??
-                                                    '')
-                                                .toList()
-                                                .map<QueriedTagDataStruct?>(
-                                                    QueriedTagDataStruct
-                                                        .maybeFromMap)
-                                                .toList()
-                                            as Iterable<QueriedTagDataStruct?>)
-                                        .withoutNulls
+                                    FFAppState().QueriedTagDataList = functions
+                                        .buildTagsDataList(GetTagsDataCall.id(
+                                          (_model.getTagsDataResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )?.toList())!
                                         .toList()
                                         .cast<QueriedTagDataStruct>();
                                     safeSetState(() {});
