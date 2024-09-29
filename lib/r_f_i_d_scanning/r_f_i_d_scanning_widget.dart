@@ -413,6 +413,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                 true,
                               );
                               await actions.stopRead();
+                              _model.instantTimer1?.cancel();
                             },
                             text: 'Clear',
                             options: FFButtonOptions(
