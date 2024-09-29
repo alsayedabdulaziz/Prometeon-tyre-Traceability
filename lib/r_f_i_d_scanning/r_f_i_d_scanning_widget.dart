@@ -157,7 +157,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                 _model.readingstatus = 'Scanning Started';
                                 safeSetState(() {});
                                 _model.instantTimer = InstantTimer.periodic(
-                                  duration: const Duration(milliseconds: 1000),
+                                  duration: const Duration(milliseconds: 250),
                                   callback: (timer) async {
                                     _model.readTagCountResponse =
                                         await actions.readtagcount(
