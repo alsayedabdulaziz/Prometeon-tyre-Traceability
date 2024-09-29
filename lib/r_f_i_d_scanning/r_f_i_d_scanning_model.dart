@@ -36,11 +36,6 @@ class RFIDScanningModel extends FlutterFlowModel<RFIDScanningWidget> {
   List<RFIDTagsdataStruct>? readTagCountResponse;
   // Stores action output result for [Backend Call - API (GetTagsData)] action in ScanButton widget.
   ApiCallResponse? getTagsDataResponse;
-  InstantTimer? instantTimer1;
-  // Stores action output result for [Custom Action - readtagcount] action in Button widget.
-  List<RFIDTagsdataStruct>? readTagCountResponse3;
-  // Stores action output result for [Backend Call - API (GetTagsData)] action in Button widget.
-  ApiCallResponse? getTagsDataResponse2;
 
   @override
   void initState(BuildContext context) {}
@@ -48,6 +43,5 @@ class RFIDScanningModel extends FlutterFlowModel<RFIDScanningWidget> {
   @override
   void dispose() {
     instantTimer?.cancel();
-    instantTimer1?.cancel();
   }
 }
