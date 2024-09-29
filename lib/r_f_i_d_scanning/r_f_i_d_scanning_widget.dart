@@ -333,6 +333,8 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               await actions.readtagcount(
                                 true,
                               );
+                              _model.listsize = 0;
+                              safeSetState(() {});
                             },
                             text: 'Clear',
                             options: FFButtonOptions(
