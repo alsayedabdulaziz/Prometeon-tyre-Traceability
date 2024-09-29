@@ -156,7 +156,6 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               if (_model.readingstatus == 'Scanning Stopped') {
                                 _model.readingstatus = 'Scanning Started';
                                 safeSetState(() {});
-                                await actions.onRead();
                                 _model.instantTimer = InstantTimer.periodic(
                                   duration: const Duration(milliseconds: 1000),
                                   callback: (timer) async {
@@ -222,7 +221,6 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               } else {
                                 _model.readingstatus = 'Scanning Stopped';
                                 safeSetState(() {});
-                                await actions.stopRead();
                                 _model.instantTimer?.cancel();
                               }
                             } else {
