@@ -412,6 +412,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               await actions.readtagcount(
                                 true,
                               );
+                              await actions.stopRead();
                             },
                             text: 'Clear',
                             options: FFButtonOptions(
