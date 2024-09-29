@@ -200,11 +200,16 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                           FFAppState().QueriedTagDataList =
                                               functions
                                                   .buildTagsDataList(
-                                                      GetTagsDataCall.id(
-                                                    (_model.getTagsDataResponse
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  )?.toList())!
+                                                      GetTagsDataCall.epc(
+                                                        (_model.getTagsDataResponse
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                      )?.toList(),
+                                                      GetTagsDataCall.barcode(
+                                                        (_model.getTagsDataResponse
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                      )?.toList())!
                                                   .toList()
                                                   .cast<QueriedTagDataStruct>();
                                           safeSetState(() {});
@@ -324,31 +329,6 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'Excel',
-                            options: FFButtonOptions(
-                              width: 90.0,
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).alternate,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 0.0,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                          FFButtonWidget(
                             onPressed: () async {
                               FFAppState().QueriedTagDataList = [];
                               safeSetState(() {});
@@ -358,8 +338,8 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                             },
                             text: 'Clear',
                             options: FFButtonOptions(
-                              width: 90.0,
-                              height: 40.0,
+                              width: 70.0,
+                              height: 70.0,
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
@@ -451,6 +431,19 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                   ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        100.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Barcode',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -533,6 +526,32 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                                       ],
                                                     ),
                                                   ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                ),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      listOfDataItem.barCode,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),
