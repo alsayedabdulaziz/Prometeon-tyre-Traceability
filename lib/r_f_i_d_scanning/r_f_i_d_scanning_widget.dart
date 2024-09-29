@@ -324,6 +324,65 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                           FFButtonWidget(
                             onPressed: () async {
                               await actions.onRead();
+                              _model.instantTimer1 = InstantTimer.periodic(
+                                duration: const Duration(milliseconds: 1000),
+                                callback: (timer) async {
+                                  _model.readTagCountResponse3 =
+                                      await actions.readtagcount(
+                                    false,
+                                  );
+                                  FFAppState().RFIDTagsList = _model
+                                      .readTagCountResponse3!
+                                      .toList()
+                                      .cast<RFIDTagsdataStruct>();
+                                  safeSetState(() {});
+                                  if (functions.isTagsListNotEmpty(
+                                      FFAppState().RFIDTagsList.toList())) {
+                                    if (_model.listsize !=
+                                        functions
+                                            .tagsListToList(FFAppState()
+                                                .RFIDTagsList
+                                                .toList())
+                                            .length) {
+                                      _model.tagid = functions
+                                          .tagsListToList(FFAppState()
+                                              .RFIDTagsList
+                                              .toList())
+                                          .toList()
+                                          .cast<String>();
+                                      _model.listsize = functions
+                                          .tagsListToList(FFAppState()
+                                              .RFIDTagsList
+                                              .toList())
+                                          .length;
+                                      safeSetState(() {});
+                                      _model.getTagsDataResponse2 =
+                                          await GetTagsDataCall.call(
+                                        tagsListList: _model.tagid,
+                                      );
+
+                                      if ((_model.getTagsDataResponse2
+                                              ?.succeeded ??
+                                          true)) {
+                                        FFAppState().QueriedTagDataList =
+                                            functions
+                                                .buildTagsDataList(
+                                                    GetTagsDataCall.id(
+                                                  (_model.getTagsDataResponse
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                )?.toList())!
+                                                .toList()
+                                                .cast<QueriedTagDataStruct>();
+                                        safeSetState(() {});
+                                      }
+                                    }
+                                  }
+                                },
+                                startImmediately: true,
+                              );
+
+                              safeSetState(() {});
                             },
                             text: 'Excel',
                             options: FFButtonOptions(
