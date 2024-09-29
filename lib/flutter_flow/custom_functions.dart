@@ -37,14 +37,16 @@ List<String> tagsListToList(List<RFIDTagsdataStruct> data) {
   return result;
 }
 
-List<QueriedTagDataStruct>? buildTagsDataList(List<String>? id) {
+List<QueriedTagDataStruct>? buildTagsDataList(
+  List<String>? id,
+  List<String>? barcode,
+) {
   List<QueriedTagDataStruct> result = [];
-  if (id == null) {
+  if (id == null || barcode == null) {
   } else {
     for (int i = 0; i < id.length; i++) {
-      QueriedTagDataStruct element = QueriedTagDataStruct(
-        tagID: id[i],
-      );
+      QueriedTagDataStruct element =
+          QueriedTagDataStruct(tagID: id[i], barCode: barcode[i]);
       result.add(element);
     }
   }

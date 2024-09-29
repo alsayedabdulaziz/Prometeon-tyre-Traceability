@@ -88,19 +88,24 @@ class GetTagsDataCall {
     );
   }
 
-  static List<String>? id(dynamic response) => (getJsonField(
+  static List<String>? epc(dynamic response) => (getJsonField(
         response,
-        r'''$.TagsList''',
+        r'''$[:].EPC''',
         true,
       ) as List?)
           ?.withoutNulls
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
-  static int? duplicates(dynamic response) => castToType<int>(getJsonField(
+  static List<String>? barcode(dynamic response) => (getJsonField(
         response,
-        r'''$.Duplicates''',
-      ));
+        r'''$[:].Barcode''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class SendTagsListCall {

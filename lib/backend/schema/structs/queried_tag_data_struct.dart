@@ -8,7 +8,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 class QueriedTagDataStruct extends BaseStruct {
   QueriedTagDataStruct({
     String? tagID,
-  }) : _tagID = tagID;
+    String? barCode,
+  })  : _tagID = tagID,
+        _barCode = barCode;
 
   // "TagID" field.
   String? _tagID;
@@ -17,9 +19,17 @@ class QueriedTagDataStruct extends BaseStruct {
 
   bool hasTagID() => _tagID != null;
 
+  // "BarCode" field.
+  String? _barCode;
+  String get barCode => _barCode ?? '\"\"';
+  set barCode(String? val) => _barCode = val;
+
+  bool hasBarCode() => _barCode != null;
+
   static QueriedTagDataStruct fromMap(Map<String, dynamic> data) =>
       QueriedTagDataStruct(
         tagID: data['TagID'] as String?,
+        barCode: data['BarCode'] as String?,
       );
 
   static QueriedTagDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -28,12 +38,17 @@ class QueriedTagDataStruct extends BaseStruct {
 
   Map<String, dynamic> toMap() => {
         'TagID': _tagID,
+        'BarCode': _barCode,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
         'TagID': serializeParam(
           _tagID,
+          ParamType.String,
+        ),
+        'BarCode': serializeParam(
+          _barCode,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -45,6 +60,11 @@ class QueriedTagDataStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        barCode: deserializeParam(
+          data['BarCode'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -52,16 +72,20 @@ class QueriedTagDataStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is QueriedTagDataStruct && tagID == other.tagID;
+    return other is QueriedTagDataStruct &&
+        tagID == other.tagID &&
+        barCode == other.barCode;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([tagID]);
+  int get hashCode => const ListEquality().hash([tagID, barCode]);
 }
 
 QueriedTagDataStruct createQueriedTagDataStruct({
   String? tagID,
+  String? barCode,
 }) =>
     QueriedTagDataStruct(
       tagID: tagID,
+      barCode: barCode,
     );
