@@ -156,6 +156,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               if (_model.readingstatus == 'Scanning Stopped') {
                                 _model.readingstatus = 'Scanning Started';
                                 safeSetState(() {});
+                                await actions.onRead();
                                 _model.instantTimer = InstantTimer.periodic(
                                   duration: const Duration(milliseconds: 1000),
                                   callback: (timer) async {
@@ -216,6 +217,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               } else {
                                 _model.readingstatus = 'Scanning Stopped';
                                 safeSetState(() {});
+                                await actions.stopRead();
                                 _model.instantTimer?.cancel();
                               }
                             } else {
@@ -322,67 +324,8 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           FFButtonWidget(
-                            onPressed: () async {
-                              await actions.onRead();
-                              _model.instantTimer1 = InstantTimer.periodic(
-                                duration: const Duration(milliseconds: 1000),
-                                callback: (timer) async {
-                                  _model.readTagCountResponse3 =
-                                      await actions.readtagcount(
-                                    false,
-                                  );
-                                  FFAppState().RFIDTagsList = _model
-                                      .readTagCountResponse3!
-                                      .toList()
-                                      .cast<RFIDTagsdataStruct>();
-                                  safeSetState(() {});
-                                  if (functions.isTagsListNotEmpty(
-                                      FFAppState().RFIDTagsList.toList())) {
-                                    if (_model.listsize !=
-                                        functions
-                                            .tagsListToList(FFAppState()
-                                                .RFIDTagsList
-                                                .toList())
-                                            .length) {
-                                      _model.tagid = functions
-                                          .tagsListToList(FFAppState()
-                                              .RFIDTagsList
-                                              .toList())
-                                          .toList()
-                                          .cast<String>();
-                                      _model.listsize = functions
-                                          .tagsListToList(FFAppState()
-                                              .RFIDTagsList
-                                              .toList())
-                                          .length;
-                                      safeSetState(() {});
-                                      _model.getTagsDataResponse2 =
-                                          await GetTagsDataCall.call(
-                                        tagsListList: _model.tagid,
-                                      );
-
-                                      if ((_model.getTagsDataResponse2
-                                              ?.succeeded ??
-                                          true)) {
-                                        FFAppState().QueriedTagDataList =
-                                            functions
-                                                .buildTagsDataList(
-                                                    GetTagsDataCall.id(
-                                                  (_model.getTagsDataResponse
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                )?.toList())!
-                                                .toList()
-                                                .cast<QueriedTagDataStruct>();
-                                        safeSetState(() {});
-                                      }
-                                    }
-                                  }
-                                },
-                                startImmediately: true,
-                              );
-
-                              safeSetState(() {});
+                            onPressed: () {
+                              print('Button pressed ...');
                             },
                             text: 'Excel',
                             options: FFButtonOptions(
@@ -412,8 +355,6 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               await actions.readtagcount(
                                 true,
                               );
-                              await actions.stopRead();
-                              _model.instantTimer1?.cancel();
                             },
                             text: 'Clear',
                             options: FFButtonOptions(
