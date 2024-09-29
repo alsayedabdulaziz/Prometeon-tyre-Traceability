@@ -431,7 +431,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        100.0, 0.0, 0.0, 0.0),
+                                        130.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Barcode',
                                       style: FlutterFlowTheme.of(context)
@@ -462,11 +462,13 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                         .QueriedTagDataList
                                         .toList();
 
-                                    return ListView.builder(
+                                    return ListView.separated(
                                       padding: EdgeInsets.zero,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       itemCount: listOfData.length,
+                                      separatorBuilder: (_, __) =>
+                                          const SizedBox(height: 5.0),
                                       itemBuilder: (context, listOfDataIndex) {
                                         final listOfDataItem =
                                             listOfData[listOfDataIndex];
