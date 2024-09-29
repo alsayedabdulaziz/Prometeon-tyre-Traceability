@@ -493,6 +493,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 10.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -521,6 +522,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Readex Pro',
+                                                                fontSize: 10.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -550,6 +552,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Readex Pro',
+                                                            fontSize: 10.0,
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
