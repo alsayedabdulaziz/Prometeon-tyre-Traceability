@@ -14,6 +14,6 @@ import 'package:zebra123/zebra123.dart';
 Zebra123? zebra123;
 Future testAction() async {
   // Add your function code here!
-  zebra123.startScanning();
-  zebra123.stopScanning();
+  zebra123?.startScanning();
+  zebra123?.stopScanning();
 }
