@@ -5,25 +5,25 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'r_f_i_d_writing_model.dart';
-export 'r_f_i_d_writing_model.dart';
+import 'r_f_i_d_transaction_model.dart';
+export 'r_f_i_d_transaction_model.dart';
 
-class RFIDWritingWidget extends StatefulWidget {
-  const RFIDWritingWidget({super.key});
+class RFIDTransactionWidget extends StatefulWidget {
+  const RFIDTransactionWidget({super.key});
 
   @override
-  State<RFIDWritingWidget> createState() => _RFIDWritingWidgetState();
+  State<RFIDTransactionWidget> createState() => _RFIDTransactionWidgetState();
 }
 
-class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
-  late RFIDWritingModel _model;
+class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
+  late RFIDTransactionModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RFIDWritingModel());
+    _model = createModel(context, () => RFIDTransactionModel());
 
     _model.scanthebarcodeTextController ??= TextEditingController();
     _model.scanthebarcodeFocusNode ??= FocusNode();
@@ -569,7 +569,6 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',
                                 color: Colors.white,
-                                fontSize: 28.0,
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,

@@ -1,12 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
 import '/index.dart';
+import '/main.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -44,7 +51,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : const RFIDScanningWidget(),
+          : RFIDScanningWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -62,27 +69,37 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : const RFIDScanningWidget(),
+              : RFIDScanningWidget(),
         ),
         FFRoute(
           name: 'Login',
           path: '/login',
-          builder: (context, params) => const LoginWidget(),
+          builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
           name: 'RFIDMenu',
           path: '/rFIDMenu',
-          builder: (context, params) => const RFIDMenuWidget(),
+          builder: (context, params) => RFIDMenuWidget(),
         ),
         FFRoute(
           name: 'RFIDWriting',
           path: '/rFIDWriting',
-          builder: (context, params) => const RFIDWritingWidget(),
+          builder: (context, params) => RFIDWritingWidget(),
         ),
         FFRoute(
           name: 'RFIDScanning',
           path: '/rFIDScanning',
-          builder: (context, params) => const RFIDScanningWidget(),
+          builder: (context, params) => RFIDScanningWidget(),
+        ),
+        FFRoute(
+          name: 'RFIDTransaction',
+          path: '/rFIDTransaction',
+          builder: (context, params) => RFIDTransactionWidget(),
+        ),
+        FFRoute(
+          name: 'RAndD',
+          path: '/rAndD',
+          builder: (context, params) => RAndDWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -248,7 +265,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

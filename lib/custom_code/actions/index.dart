@@ -4,3 +4,4 @@ export 'getstatus.dart' show getstatus;
 export 'dissconnect.dart' show dissconnect;
 export 'on_read.dart' show onRead;
 export 'stop_read.dart' show stopRead;
+export 'test_action.dart' show testAction;
