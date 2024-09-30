@@ -5,25 +5,25 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'r_f_i_d_menu_model.dart';
-export 'r_f_i_d_menu_model.dart';
+import 'r_and_d_model.dart';
+export 'r_and_d_model.dart';
 
-class RFIDMenuWidget extends StatefulWidget {
-  const RFIDMenuWidget({super.key});
+class RAndDWidget extends StatefulWidget {
+  const RAndDWidget({super.key});
 
   @override
-  State<RFIDMenuWidget> createState() => _RFIDMenuWidgetState();
+  State<RAndDWidget> createState() => _RAndDWidgetState();
 }
 
-class _RFIDMenuWidgetState extends State<RFIDMenuWidget> {
-  late RFIDMenuModel _model;
+class _RAndDWidgetState extends State<RAndDWidget> {
+  late RAndDModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RFIDMenuModel());
+    _model = createModel(context, () => RAndDModel());
   }
 
   @override
@@ -100,7 +100,7 @@ class _RFIDMenuWidgetState extends State<RFIDMenuWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        'RFID Menu',
+                        'R&D Menu ',
                         style: FlutterFlowTheme.of(context)
                             .headlineMedium
                             .override(
@@ -133,7 +133,7 @@ class _RFIDMenuWidgetState extends State<RFIDMenuWidget> {
                     onPressed: () async {
                       context.pushNamed('RFIDWriting');
                     },
-                    text: 'RFID Write',
+                    text: 'RFID Transactions',
                     options: FFButtonOptions(
                       width: 300.0,
                       height: 75.0,
@@ -165,7 +165,7 @@ class _RFIDMenuWidgetState extends State<RFIDMenuWidget> {
                     onPressed: () {
                       print('searchRFID pressed ...');
                     },
-                    text: 'Rfid Location Detection',
+                    text: 'Rfid Destruction',
                     options: FFButtonOptions(
                       width: 300.0,
                       height: 75.0,
@@ -197,71 +197,7 @@ class _RFIDMenuWidgetState extends State<RFIDMenuWidget> {
                     onPressed: () async {
                       context.pushNamed('RFIDScanning');
                     },
-                    text: 'RFID Scanning',
-                    options: FFButtonOptions(
-                      width: 300.0,
-                      height: 75.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF21196B),
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      context.pushNamed('RAndD');
-                    },
-                    text: 'R&D',
-                    options: FFButtonOptions(
-                      width: 300.0,
-                      height: 75.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF21196B),
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      context.goNamed('Login');
-                    },
-                    text: 'Exit',
+                    text: 'RFID Write',
                     options: FFButtonOptions(
                       width: 300.0,
                       height: 75.0,

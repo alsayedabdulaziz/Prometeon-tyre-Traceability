@@ -9,6 +9,7 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'r_f_i_d_scanning_model.dart';
 export 'r_f_i_d_scanning_model.dart';
@@ -54,16 +55,16 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: const Color(0xFFFBFBFB),
+        backgroundColor: Color(0xFFFBFBFB),
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100.0),
+          preferredSize: Size.fromHeight(100.0),
           child: AppBar(
-            backgroundColor: const Color(0xFF21196B),
+            backgroundColor: Color(0xFF21196B),
             automaticallyImplyLeading: false,
-            actions: const [],
+            actions: [],
             flexibleSpace: FlexibleSpaceBar(
               title: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -71,19 +72,19 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 0.0),
                             child: FlutterFlowIconButton(
                               borderColor: Colors.transparent,
                               borderRadius: 30.0,
                               borderWidth: 1.0,
                               buttonSize: 50.0,
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.arrow_back_rounded,
                                 color: Colors.white,
                                 size: 30.0,
@@ -94,7 +95,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 4.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Back',
@@ -113,7 +114,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'RFID Scanning',
                         style: FlutterFlowTheme.of(context)
@@ -141,7 +142,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -157,7 +158,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                 _model.readingstatus = 'Scanning Started';
                                 safeSetState(() {});
                                 _model.instantTimer = InstantTimer.periodic(
-                                  duration: const Duration(milliseconds: 250),
+                                  duration: Duration(milliseconds: 250),
                                   callback: (timer) async {
                                     _model.readTagCountResponse =
                                         await actions.readtagcount(
@@ -233,9 +234,9 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                           options: FFButtonOptions(
                             width: 70.0,
                             height: 70.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).alternate,
                             textStyle: FlutterFlowTheme.of(context)
@@ -271,7 +272,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                 .secondaryBackground,
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               valueOrDefault<String>(
                                 '',
@@ -307,7 +308,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                 .secondaryBackground,
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               FFAppState().QueriedTagDataList.length.toString(),
                               style: FlutterFlowTheme.of(context)
@@ -340,9 +341,9 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                             options: FFButtonOptions(
                               width: 70.0,
                               height: 70.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).alternate,
                               textStyle: FlutterFlowTheme.of(context)
@@ -358,11 +359,11 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                             ),
                           ),
                         ]
-                            .divide(const SizedBox(height: 10.0))
-                            .around(const SizedBox(height: 10.0)),
+                            .divide(SizedBox(height: 10.0))
+                            .around(SizedBox(height: 10.0)),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 5.0)),
+                  ].divide(SizedBox(width: 5.0)),
                 ),
               ),
               Row(
@@ -391,13 +392,13 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   5.0, 0.0, 5.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 15.0, 0.0),
                                     child: Text(
                                       '#',
@@ -410,7 +411,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 15.0, 0.0),
                                     child: Text(
                                       'ADET',
@@ -432,7 +433,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         130.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Barcode',
@@ -456,7 +457,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                     .secondaryBackground,
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     5.0, 0.0, 5.0, 0.0),
                                 child: Builder(
                                   builder: (context) {
@@ -470,7 +471,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                       scrollDirection: Axis.vertical,
                                       itemCount: listOfData.length,
                                       separatorBuilder: (_, __) =>
-                                          const SizedBox(height: 5.0),
+                                          SizedBox(height: 5.0),
                                       itemBuilder: (context, listOfDataIndex) {
                                         final listOfDataItem =
                                             listOfData[listOfDataIndex];
@@ -481,7 +482,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                           children: [
                                             Container(
                                               width: 20.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -502,14 +503,14 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                             ),
                                             Expanded(
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           15.0, 0.0, 0.0, 0.0),
                                                   child: Container(
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,

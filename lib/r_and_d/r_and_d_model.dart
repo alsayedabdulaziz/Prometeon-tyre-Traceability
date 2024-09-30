@@ -2,12 +2,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'r_f_i_d_menu_widget.dart' show RFIDMenuWidget;
+import 'r_and_d_widget.dart' show RAndDWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class RFIDMenuModel extends FlutterFlowModel<RFIDMenuWidget> {
+class RAndDModel extends FlutterFlowModel<RAndDWidget> {
   @override
   void initState(BuildContext context) {}
 

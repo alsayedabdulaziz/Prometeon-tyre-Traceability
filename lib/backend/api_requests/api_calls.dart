@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:typed_data';
+import '../schema/structs/index.dart';
 
 import 'package:flutter/foundation.dart';
 
@@ -68,7 +70,7 @@ class GetTagsDataCall {
 
     final ffApiRequestBody = '''
 {
-  "TagList": $tagsList
+  "TagList": ${tagsList}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
@@ -116,7 +118,7 @@ class SendTagsListCall {
 
     final ffApiRequestBody = '''
 {
-  "TagList": $tagsList
+  "TagList": ${tagsList}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'SendTagsList',
