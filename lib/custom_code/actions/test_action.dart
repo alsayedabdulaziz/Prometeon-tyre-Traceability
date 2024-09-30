@@ -10,9 +10,10 @@ import 'package:flutter/material.dart';
 
 import 'package:zebra123/zebra123.dart';
 
-Zebra123? zebra123;
+AppState appState = AppState();
+
 Future testAction() async {
   // Add your function code here!
-  zebra123?.startScanning();
-  zebra123?.stopScanning();
+  appState.startScan();
+  appState.stopScan();
 }
