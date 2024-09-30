@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '/backend/schema/structs/index.dart';
-import '/backend/schema/enums/enums.dart';
 import 'backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
@@ -94,53 +93,5 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInQueriedTagDataList(
       int index, QueriedTagDataStruct value) {
     QueriedTagDataList.insert(index, value);
-  }
-
-  ZebraInterfaces? _interface = ZebraInterfaces.unknown;
-  ZebraInterfaces? get interface => _interface;
-  set interface(ZebraInterfaces? value) {
-    _interface = value;
-  }
-
-  ZebraConnectionStatus? _ZebraconnectionStatus =
-      ZebraConnectionStatus.disconnected;
-  ZebraConnectionStatus? get ZebraconnectionStatus => _ZebraconnectionStatus;
-  set ZebraconnectionStatus(ZebraConnectionStatus? value) {
-    _ZebraconnectionStatus = value;
-  }
-
-  List<BarcodeDataStruct> _BarcodeList = [];
-  List<BarcodeDataStruct> get BarcodeList => _BarcodeList;
-  set BarcodeList(List<BarcodeDataStruct> value) {
-    _BarcodeList = value;
-  }
-
-  void addToBarcodeList(BarcodeDataStruct value) {
-    BarcodeList.add(value);
-  }
-
-  void removeFromBarcodeList(BarcodeDataStruct value) {
-    BarcodeList.remove(value);
-  }
-
-  void removeAtIndexFromBarcodeList(int index) {
-    BarcodeList.removeAt(index);
-  }
-
-  void updateBarcodeListAtIndex(
-    int index,
-    BarcodeDataStruct Function(BarcodeDataStruct) updateFn,
-  ) {
-    BarcodeList[index] = updateFn(_BarcodeList[index]);
-  }
-
-  void insertAtIndexInBarcodeList(int index, BarcodeDataStruct value) {
-    BarcodeList.insert(index, value);
-  }
-
-  bool _scanning = false;
-  bool get scanning => _scanning;
-  set scanning(bool value) {
-    _scanning = value;
   }
 }

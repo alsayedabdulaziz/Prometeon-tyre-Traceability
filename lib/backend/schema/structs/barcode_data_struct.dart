@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_getters_setters
 
 import '/backend/schema/util/schema_util.dart';
-import '/backend/schema/enums/enums.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -11,11 +10,9 @@ class BarcodeDataStruct extends BaseStruct {
     String? barcode,
     String? format,
     String? seen,
-    ZebraInterfaces? interface,
   })  : _barcode = barcode,
         _format = format,
-        _seen = seen,
-        _interface = interface;
+        _seen = seen;
 
   // "barcode" field.
   String? _barcode;
@@ -38,19 +35,11 @@ class BarcodeDataStruct extends BaseStruct {
 
   bool hasSeen() => _seen != null;
 
-  // "interface" field.
-  ZebraInterfaces? _interface;
-  ZebraInterfaces? get interface => _interface;
-  set interface(ZebraInterfaces? val) => _interface = val;
-
-  bool hasInterface() => _interface != null;
-
   static BarcodeDataStruct fromMap(Map<String, dynamic> data) =>
       BarcodeDataStruct(
         barcode: data['barcode'] as String?,
         format: data['format'] as String?,
         seen: data['seen'] as String?,
-        interface: deserializeEnum<ZebraInterfaces>(data['interface']),
       );
 
   static BarcodeDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -61,7 +50,6 @@ class BarcodeDataStruct extends BaseStruct {
         'barcode': _barcode,
         'format': _format,
         'seen': _seen,
-        'interface': _interface?.serialize(),
       }.withoutNulls;
 
   @override
@@ -77,10 +65,6 @@ class BarcodeDataStruct extends BaseStruct {
         'seen': serializeParam(
           _seen,
           ParamType.String,
-        ),
-        'interface': serializeParam(
-          _interface,
-          ParamType.Enum,
         ),
       }.withoutNulls;
 
@@ -101,11 +85,6 @@ class BarcodeDataStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        interface: deserializeParam<ZebraInterfaces>(
-          data['interface'],
-          ParamType.Enum,
-          false,
-        ),
       );
 
   @override
@@ -116,24 +95,20 @@ class BarcodeDataStruct extends BaseStruct {
     return other is BarcodeDataStruct &&
         barcode == other.barcode &&
         format == other.format &&
-        seen == other.seen &&
-        interface == other.interface;
+        seen == other.seen;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([barcode, format, seen, interface]);
+  int get hashCode => const ListEquality().hash([barcode, format, seen]);
 }
 
 BarcodeDataStruct createBarcodeDataStruct({
   String? barcode,
   String? format,
   String? seen,
-  ZebraInterfaces? interface,
 }) =>
     BarcodeDataStruct(
       barcode: barcode,
       format: format,
       seen: seen,
-      interface: interface,
     );

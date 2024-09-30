@@ -9,7 +9,6 @@ import 'lat_lng.dart';
 import 'place.dart';
 import 'uploaded_file.dart';
 import '/backend/schema/structs/index.dart';
-import '/backend/schema/enums/enums.dart';
 
 bool isNull(String? dropDown) {
   if (dropDown == null || dropDown.isEmpty) {
