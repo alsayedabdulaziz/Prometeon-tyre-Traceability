@@ -201,8 +201,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
-                              fontSize: 16.0,
+                              fontSize: 12.0,
                               letterSpacing: 0.0,
+                              fontWeight: FontWeight.w300,
                             ),
                         validator: _model.scanthebarcodeTextControllerValidator
                             .asValidator(context),
