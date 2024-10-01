@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'package:zebra123/zebra123.dart';
+import 'package:prometeon_tyres_r_f_i_d/init_state.dart';
 
 AppState appState = AppState();
 List<RfidTag> tags = [];
@@ -16,20 +17,20 @@ List<RFIDDateStruct> result = [];
 Future<List<RFIDDateStruct>> testAction() async {
   // Add your function code here!
   appState.startScan();
-  await Future.delayed(Duration(seconds: 2));
+  await Future.delayed(Duration(seconds: 1));
   appState.stopScan();
-  await Future.delayed(Duration(seconds: 2));
+  await Future.delayed(Duration(seconds: 1));
   tags = appState.tags;
   for (int i = 0; i < tags.length; i++) {
     result.add(RFIDDateStruct(
-      epc: tags.values.elemntAt(i).epc,
-      antenna: tags.values.elemntAt(i).antenna,
-      rssi: tags.values.elemntAt(i).rssi,
-      distance: tags.values.elemntAt(i).distance,
-      memoryBankData: tags.values.elemntAt(i).memoryBankData,
-      lockData: tags.values.elemntAt(i).lockData,
-      size: tags.values.elemntAt(i).size,
-      seen: tags.values.elemntAt(i).seen,
+      epc: tags[i].epc,
+      antenna: tags[i].antenna,
+      rssi: tags[i].rssi,
+      distance: tags[i].distance,
+      memoryBankData: tags[i].memoryBankData,
+      lockData: tags[i].lockData,
+      size: tags[i].size,
+      seen: tags[i].seen,
     ));
   }
   return result;
