@@ -513,8 +513,8 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Container(
-                  width: 400.0,
-                  height: 75.0,
+                  width: 350.0,
+                  height: 50.0,
                   decoration: BoxDecoration(
                     color: Color(0xFF21196B),
                   ),
@@ -532,6 +532,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                               .override(
                                 fontFamily: 'Outfit',
                                 color: FlutterFlowTheme.of(context).alternate,
+                                fontSize: 30.0,
                                 letterSpacing: 0.0,
                               ),
                         ),
@@ -541,7 +542,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     await actions.writeTag(
@@ -551,7 +552,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   text: 'RFID Write',
                   options: FFButtonOptions(
                     width: 300.0,
-                    height: 70.0,
+                    height: 50.0,
                     padding:
                         EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
