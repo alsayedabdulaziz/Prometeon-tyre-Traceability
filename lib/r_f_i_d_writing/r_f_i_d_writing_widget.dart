@@ -96,7 +96,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         alignment: AlignmentDirectional(1.0, 0.0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              170.0, 0.0, 0.0, 0.0),
+                              150.0, 0.0, 0.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
                             borderRadius: 30.0,
@@ -244,8 +244,8 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                 ],
               ),
               Container(
-                width: 400.0,
-                height: 100.0,
+                width: 340.0,
+                height: 80.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryText,
                 ),
@@ -261,9 +261,10 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
                             'assets/images/barcode.png',
-                            width: 60.0,
-                            height: 60.0,
+                            width: 30.0,
+                            height: 40.0,
                             fit: BoxFit.cover,
+                            alignment: Alignment(0.0, -1.0),
                           ),
                         ),
                       ),
@@ -292,7 +293,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                             fontFamily: 'Outfit',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
+                                            fontSize: 14.0,
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w300,
                                           ),
                                     ),
                                   ),
@@ -337,7 +340,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryBackground,
+                                                fontSize: 14.0,
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w300,
                                               ),
                                         ),
                                       ),
@@ -375,8 +380,8 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: Container(
-                  width: 400.0,
-                  height: 120.0,
+                  width: 340.0,
+                  height: 80.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryText,
                   ),
@@ -398,9 +403,10 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Image.asset(
                                   'assets/images/rfid-chip_(1).png',
-                                  width: 50.0,
-                                  height: 50.0,
+                                  width: 30.0,
+                                  height: 30.0,
                                   fit: BoxFit.cover,
+                                  alignment: Alignment(0.0, -1.0),
                                 ),
                               ),
                             ),
@@ -415,8 +421,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                       fontFamily: 'Outfit',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
-                                      fontSize: 30.0,
+                                      fontSize: 18.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w300,
                                     ),
                               ),
                             ),
@@ -428,7 +435,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                             EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
@@ -442,7 +449,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                       fontFamily: 'Outfit',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w300,
                                     ),
                               ),
                             ),
@@ -456,6 +465,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                       fontFamily: 'Outfit',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -468,8 +478,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                     fontFamily: 'Outfit',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
-                                    fontSize: 15.0,
+                                    fontSize: 12.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w300,
                                   ),
                             ),
                             Align(
@@ -485,7 +496,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                         fontFamily: 'Outfit',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
+                                        fontSize: 14.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w300,
                                       ),
                                 ),
                               ),
