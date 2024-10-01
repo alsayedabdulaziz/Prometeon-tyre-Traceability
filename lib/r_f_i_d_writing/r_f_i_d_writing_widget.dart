@@ -511,7 +511,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: Container(
                   width: 350.0,
                   height: 50.0,
