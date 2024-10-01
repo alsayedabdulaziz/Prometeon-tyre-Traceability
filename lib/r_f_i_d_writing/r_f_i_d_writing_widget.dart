@@ -96,7 +96,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         alignment: AlignmentDirectional(1.0, 0.0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              170.0, 0.0, 0.0, 0.0),
+                              150.0, 0.0, 0.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
                             borderRadius: 30.0,
