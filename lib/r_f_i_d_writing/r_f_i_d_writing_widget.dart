@@ -105,7 +105,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                             icon: Icon(
                               Icons.settings_suggest,
                               color: Colors.white,
-                              size: 50.0,
+                              size: 45.0,
                             ),
                             onPressed: () async {
                               context.pop();
@@ -215,9 +215,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        await actions.writeTag(
-                          _model.scanthebarcodeTextController.text,
-                        );
+                        await actions.testAction();
                       },
                       text: 'Clear',
                       options: FFButtonOptions(
