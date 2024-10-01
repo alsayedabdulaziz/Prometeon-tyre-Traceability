@@ -145,6 +145,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       mainAxisSize: MainAxisSize.max,
@@ -322,46 +323,44 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                         ),
                       ],
                     ),
-                    Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              FFAppState().QueriedTagDataList = [];
-                              safeSetState(() {});
-                              await actions.readtagcount(
-                                true,
-                              );
-                              _model.listsize = 0;
-                              safeSetState(() {});
-                            },
-                            text: 'Clear',
-                            options: FFButtonOptions(
-                              width: 70.0,
-                              height: 70.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).alternate,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 0.0,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        FFButtonWidget(
+                          onPressed: () async {
+                            FFAppState().QueriedTagDataList = [];
+                            safeSetState(() {});
+                            await actions.readtagcount(
+                              true,
+                            );
+                            _model.listsize = 0;
+                            safeSetState(() {});
+                          },
+                          text: 'Clear',
+                          options: FFButtonOptions(
+                            width: 70.0,
+                            height: 70.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).alternate,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  letterSpacing: 0.0,
+                                ),
+                            elevation: 0.0,
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                        ]
-                            .divide(SizedBox(height: 10.0))
-                            .around(SizedBox(height: 10.0)),
-                      ),
+                        ),
+                      ]
+                          .divide(SizedBox(height: 10.0))
+                          .around(SizedBox(height: 10.0)),
                     ),
                   ].divide(SizedBox(width: 5.0)),
                 ),
@@ -432,17 +431,20 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        130.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Barcode',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            letterSpacing: 0.0,
-                                          ),
+                                  Align(
+                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          130.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Barcode',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                 ],

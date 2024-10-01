@@ -139,172 +139,211 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.0, 5.0, 10.0, 5.0),
-                        child: TextFormField(
-                          controller: _model.scanthebarcodeTextController,
-                          focusNode: _model.scanthebarcodeFocusNode,
-                          autofocus: true,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'scan the barcode',
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            filled: true,
-                            prefixIcon: Icon(
-                              Icons.barcode_reader,
-                            ),
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                      child: TextFormField(
+                        controller: _model.scanthebarcodeTextController,
+                        focusNode: _model.scanthebarcodeFocusNode,
+                        autofocus: true,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'scan the barcode',
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
-                                    fontSize: 16.0,
                                     letterSpacing: 0.0,
                                   ),
-                          validator: _model
-                              .scanthebarcodeTextControllerValidator
-                              .asValidator(context),
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          filled: true,
+                          prefixIcon: Icon(
+                            Icons.barcode_reader,
+                          ),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              fontSize: 16.0,
+                              letterSpacing: 0.0,
+                            ),
+                        validator: _model.scanthebarcodeTextControllerValidator
+                            .asValidator(context),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await actions.writeTag(
+                          _model.scanthebarcodeTextController.text,
+                        );
+                      },
+                      text: 'Clear',
+                      options: FFButtonOptions(
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Color(0xFF21196B),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 3.0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                width: 400.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            'assets/images/barcode.png',
+                            width: 60.0,
+                            height: 60.0,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          await actions.writeTag(
-                            _model.scanthebarcodeTextController.text,
-                          );
-                        },
-                        text: 'Clear',
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFF21196B),
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
+                          EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 5.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Barcode',
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineMedium
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
                                   ),
-                          elevation: 3.0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  width: 400.0,
-                  height: 100.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              15.0, 0.0, 0.0, 0.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.asset(
-                              'assets/images/barcode.png',
-                              width: 60.0,
-                              height: 60.0,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
-                                        'Barcode',
+                                        '-',
                                         style: FlutterFlowTheme.of(context)
                                             .headlineMedium
                                             .override(
                                               fontFamily: 'Outfit',
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                      .primaryBackground,
                                               letterSpacing: 0.0,
                                             ),
                                       ),
                                     ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    50.0, 0.0, 0.0, 0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
                                     Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 5.0, 0.0, 0.0),
+                                        child: Text(
+                                          'IP Code',
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineMedium
+                                              .override(
+                                                fontFamily: 'Outfit',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
@@ -324,141 +363,120 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                     ),
                                   ],
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      50.0, 0.0, 0.0, 0.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 5.0, 0.0, 0.0),
-                                          child: Text(
-                                            'IP Code',
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineMedium
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryBackground,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 5.0, 0.0, 0.0),
-                                          child: Text(
-                                            '-',
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineMedium
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryBackground,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                child: Container(
+                  width: 400.0,
+                  height: 120.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            15.0, 5.0, 25.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 0.0, 0.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/images/rfid-chip_(1).png',
+                                  width: 50.0,
+                                  height: 50.0,
+                                  fit: BoxFit.cover,
                                 ),
-                              ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                '0',
+                                style: FlutterFlowTheme.of(context)
+                                    .displayMedium
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      fontSize: 30.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                  child: Container(
-                    width: 400.0,
-                    height: 120.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              15.0, 5.0, 25.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 0.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.asset(
-                                    'assets/images/rfid-chip_(1).png',
-                                    width: 50.0,
-                                    height: 50.0,
-                                    fit: BoxFit.cover,
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                'RFID will be written',
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              child: Text(
+                                '-',
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                            Text(
+                              'RFID Read',
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineMedium
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    fontSize: 15.0,
+                                    letterSpacing: 0.0,
                                   ),
-                                ),
-                              ),
-                              Padding(
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
-                                child: Text(
-                                  '0',
-                                  style: FlutterFlowTheme.of(context)
-                                      .displayMedium
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        fontSize: 30.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              30.0, 0.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 5.0, 0.0, 0.0),
-                                child: Text(
-                                  'RFID will be written',
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineMedium
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   '-',
                                   style: FlutterFlowTheme.of(context)
@@ -471,117 +489,73 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                       ),
                                 ),
                               ),
-                              Text(
-                                'RFID Read',
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineMedium
-                                    .override(
-                                      fontFamily: 'Outfit',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      fontSize: 15.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 5.0, 0.0, 0.0),
-                                  child: Text(
-                                    '-',
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineMedium
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                  child: Container(
-                    width: 400.0,
-                    height: 75.0,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF21196B),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              30.0, 0.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 5.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Scan Barcode',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .displayMedium
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                child: Container(
+                  width: 400.0,
+                  height: 75.0,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF21196B),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                  child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
-                    },
-                    text: 'RFID Write',
-                    options: FFButtonOptions(
-                      width: 300.0,
-                      height: 70.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF21196B),
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                                fontSize: 28.0,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: Text(
+                          'Scan Barcode',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .displayMedium
+                              .override(
+                                fontFamily: 'Outfit',
+                                color: FlutterFlowTheme.of(context).alternate,
                                 letterSpacing: 0.0,
                               ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    await actions.writeTag(
+                      _model.scanthebarcodeTextController.text,
+                    );
+                  },
+                  text: 'RFID Write',
+                  options: FFButtonOptions(
+                    width: 300.0,
+                    height: 70.0,
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    iconPadding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: Color(0xFF21196B),
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Readex Pro',
+                          color: Colors.white,
+                          fontSize: 28.0,
+                          letterSpacing: 0.0,
+                        ),
+                    elevation: 0.0,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
