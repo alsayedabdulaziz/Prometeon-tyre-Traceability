@@ -520,33 +520,18 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              30.0, 0.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 5.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Scan Barcode',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .displayMedium
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
+                        Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            'Scan Barcode',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context)
+                                .displayMedium
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  letterSpacing: 0.0,
                                 ),
-                              ),
-                            ],
                           ),
                         ),
                       ],
@@ -556,8 +541,10 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      await actions.writeTag(
+                        _model.scanthebarcodeTextController.text,
+                      );
                     },
                     text: 'RFID Write',
                     options: FFButtonOptions(
