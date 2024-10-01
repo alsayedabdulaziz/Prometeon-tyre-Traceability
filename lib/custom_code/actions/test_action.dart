@@ -16,6 +16,7 @@ List<RfidTag> tags = [];
 List<RFIDDateStruct> result = [];
 Future<List<RFIDDateStruct>> testAction() async {
   // Add your function code here!
+  result.clear();
   appState.startScan();
   await Future.delayed(Duration(seconds: 1));
   appState.stopScan();
