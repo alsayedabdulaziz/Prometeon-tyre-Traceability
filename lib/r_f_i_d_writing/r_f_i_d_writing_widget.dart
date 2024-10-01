@@ -561,8 +561,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
                           color: Colors.white,
-                          fontSize: 28.0,
+                          fontSize: 24.0,
                           letterSpacing: 0.0,
+                          fontWeight: FontWeight.normal,
                         ),
                     elevation: 0.0,
                     borderRadius: BorderRadius.circular(8.0),
