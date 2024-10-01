@@ -11,9 +11,26 @@ import 'package:flutter/material.dart';
 import 'package:zebra123/zebra123.dart';
 
 AppState appState = AppState();
-
-Future testAction() async {
+List<RfidTag> tags = [];
+List<RFIDDateStruct> result = [];
+Future<List<RFIDDateStruct>> testAction() async {
   // Add your function code here!
   appState.startScan();
+  await Future.delayed(Duration(seconds: 2));
   appState.stopScan();
+  await Future.delayed(Duration(seconds: 2));
+  tags = appState.tags;
+  for (int i = 0; i < tags.length; i++) {
+    result.add(RFIDDateStruct(
+      epc: tags.values.elemntAt(i).epc,
+      antenna: tags.values.elemntAt(i).antenna,
+      rssi: tags.values.elemntAt(i).rssi,
+      distance: tags.values.elemntAt(i).distance,
+      memoryBankData: tags.values.elemntAt(i).memoryBankData,
+      lockData: tags.values.elemntAt(i).lockData,
+      size: tags.values.elemntAt(i).size,
+      seen: tags.values.elemntAt(i).seen,
+    ));
+  }
+  return result;
 }

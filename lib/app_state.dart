@@ -94,4 +94,33 @@ class FFAppState extends ChangeNotifier {
       int index, QueriedTagDataStruct value) {
     QueriedTagDataList.insert(index, value);
   }
+
+  List<RFIDDateStruct> _RFIDDataList = [];
+  List<RFIDDateStruct> get RFIDDataList => _RFIDDataList;
+  set RFIDDataList(List<RFIDDateStruct> value) {
+    _RFIDDataList = value;
+  }
+
+  void addToRFIDDataList(RFIDDateStruct value) {
+    RFIDDataList.add(value);
+  }
+
+  void removeFromRFIDDataList(RFIDDateStruct value) {
+    RFIDDataList.remove(value);
+  }
+
+  void removeAtIndexFromRFIDDataList(int index) {
+    RFIDDataList.removeAt(index);
+  }
+
+  void updateRFIDDataListAtIndex(
+    int index,
+    RFIDDateStruct Function(RFIDDateStruct) updateFn,
+  ) {
+    RFIDDataList[index] = updateFn(_RFIDDataList[index]);
+  }
+
+  void insertAtIndexInRFIDDataList(int index, RFIDDateStruct value) {
+    RFIDDataList.insert(index, value);
+  }
 }
