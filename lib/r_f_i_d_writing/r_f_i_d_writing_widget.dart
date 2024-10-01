@@ -219,7 +219,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          await actions.testAction();
+                          await actions.writeTag(
+                            _model.scanthebarcodeTextController.text,
+                          );
                         },
                         text: 'Clear',
                         options: FFButtonOptions(
