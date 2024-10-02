@@ -59,7 +59,7 @@ dependencies:
   url_launcher_ios: 6.3.1
   url_launcher_platform_interface: 2.3.2
   xml: 6.5.0
-  zebra123: ^2.0.2
+  zebra123: ^3.0.2
   zebra_rfid_sdk_plugin: ^0.0.3
 
   # The following adds the Cupertino Icons font to your application.
