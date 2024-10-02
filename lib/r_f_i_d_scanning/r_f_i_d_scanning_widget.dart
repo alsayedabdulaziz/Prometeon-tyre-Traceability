@@ -159,7 +159,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                 _model.readingstatus = 'Scanning Started';
                                 safeSetState(() {});
                                 _model.instantTimer = InstantTimer.periodic(
-                                  duration: Duration(milliseconds: 250),
+                                  duration: Duration(milliseconds: 1000),
                                   callback: (timer) async {
                                     _model.readTagCountResponse =
                                         await actions.readtagcount();
@@ -212,6 +212,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                                   .toList()
                                                   .cast<QueriedTagDataStruct>();
                                           safeSetState(() {});
+                                          await actions.clearAppState();
                                         }
                                       }
                                     }
