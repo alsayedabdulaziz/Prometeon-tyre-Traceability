@@ -329,7 +329,6 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                           onPressed: () async {
                             FFAppState().QueriedTagDataList = [];
                             safeSetState(() {});
-                            await actions.readtagcount();
                             _model.listsize = 0;
                             safeSetState(() {});
                           },
