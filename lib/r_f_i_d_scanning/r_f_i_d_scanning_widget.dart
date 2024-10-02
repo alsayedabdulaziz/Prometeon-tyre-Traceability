@@ -329,7 +329,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             FFAppState().QueriedTagDataList = [];
-
+                            FFAppState().RFIDTagsList = [];
                             safeSetState(() {});
                             _model.listsize = 0;
                             safeSetState(() {});
