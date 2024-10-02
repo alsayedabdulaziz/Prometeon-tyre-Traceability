@@ -8,13 +8,19 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
 import 'dart:ffi';
 
-import 'package:zebra_rfid_sdk_plugin/zebra_event_handler.dart';
-import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
+import 'package:zebra123/zebra123.dart';
+import 'package:zebra123/bridge.dart';
+import 'package:zebra123/classes.dart';
+import 'package:zebra123/enums.dart';
+import 'package:zebra123/helpers.dart';
+import 'package:prometeon_tyres_r_f_i_d/init_state.dart';
 
+AppState appState = AppState();
 Future rFIDConnectAction() async {
-  ZebraRfidSdkPlugin.connect();
-  // return connectionStatus.index;
+  appState.connect();
   // Add your function code here!
 }

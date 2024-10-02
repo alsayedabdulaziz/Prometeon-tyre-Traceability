@@ -29,10 +29,10 @@ bool greaterOrEqual(
   }
 }
 
-List<String> tagsListToList(List<RFIDTagsdataStruct> data) {
+List<String> tagsListToList(List<RFIDDateStruct> data) {
   List<String> result = [];
   for (var item in data) {
-    result.add(item.tagID);
+    result.add(item.epc);
   }
   return result;
 }
@@ -54,7 +54,7 @@ List<QueriedTagDataStruct>? buildTagsDataList(
   return result;
 }
 
-bool isTagsListNotEmpty(List<RFIDTagsdataStruct> listOfRFIDData) {
+bool isTagsListNotEmpty(List<RFIDDateStruct> listOfRFIDData) {
   if (listOfRFIDData.isEmpty || listOfRFIDData == null) {
     return false;
   } else {
