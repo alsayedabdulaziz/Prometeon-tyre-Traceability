@@ -51,7 +51,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : RFIDWritingWidget(),
+          : RFIDMenuWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -69,7 +69,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : RFIDWritingWidget(),
+              : RFIDMenuWidget(),
         ),
         FFRoute(
           name: 'Login',
