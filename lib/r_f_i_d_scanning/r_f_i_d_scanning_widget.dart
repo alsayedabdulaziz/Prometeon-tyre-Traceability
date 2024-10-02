@@ -159,7 +159,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                 _model.readingstatus = 'Scanning Started';
                                 safeSetState(() {});
                                 _model.instantTimer = InstantTimer.periodic(
-                                  duration: Duration(milliseconds: 1000),
+                                  duration: Duration(milliseconds: 500),
                                   callback: (timer) async {
                                     _model.readTagCountResponse =
                                         await actions.readtagcount();
@@ -329,6 +329,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             FFAppState().QueriedTagDataList = [];
+
                             safeSetState(() {});
                             _model.listsize = 0;
                             safeSetState(() {});
