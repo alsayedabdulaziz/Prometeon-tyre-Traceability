@@ -24,23 +24,17 @@ class FFAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool _RFIDReaderStatus = false;
-  bool get RFIDReaderStatus => _RFIDReaderStatus;
-  set RFIDReaderStatus(bool value) {
-    _RFIDReaderStatus = value;
-  }
-
-  List<RFIDTagsdataStruct> _RFIDTagsList = [];
-  List<RFIDTagsdataStruct> get RFIDTagsList => _RFIDTagsList;
-  set RFIDTagsList(List<RFIDTagsdataStruct> value) {
+  List<RFIDDateStruct> _RFIDTagsList = [];
+  List<RFIDDateStruct> get RFIDTagsList => _RFIDTagsList;
+  set RFIDTagsList(List<RFIDDateStruct> value) {
     _RFIDTagsList = value;
   }
 
-  void addToRFIDTagsList(RFIDTagsdataStruct value) {
+  void addToRFIDTagsList(RFIDDateStruct value) {
     RFIDTagsList.add(value);
   }
 
-  void removeFromRFIDTagsList(RFIDTagsdataStruct value) {
+  void removeFromRFIDTagsList(RFIDDateStruct value) {
     RFIDTagsList.remove(value);
   }
 
@@ -50,13 +44,19 @@ class FFAppState extends ChangeNotifier {
 
   void updateRFIDTagsListAtIndex(
     int index,
-    RFIDTagsdataStruct Function(RFIDTagsdataStruct) updateFn,
+    RFIDDateStruct Function(RFIDDateStruct) updateFn,
   ) {
     RFIDTagsList[index] = updateFn(_RFIDTagsList[index]);
   }
 
-  void insertAtIndexInRFIDTagsList(int index, RFIDTagsdataStruct value) {
+  void insertAtIndexInRFIDTagsList(int index, RFIDDateStruct value) {
     RFIDTagsList.insert(index, value);
+  }
+
+  bool _RFIDReaderStatus = false;
+  bool get RFIDReaderStatus => _RFIDReaderStatus;
+  set RFIDReaderStatus(bool value) {
+    _RFIDReaderStatus = value;
   }
 
   String _ConnectionStatus = '';

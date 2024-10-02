@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
 import 'package:zebra123/zebra123.dart';
 import 'package:zebra123/bridge.dart';
 import 'package:zebra123/classes.dart';
@@ -21,9 +23,9 @@ List<RFIDDateStruct> result = [];
 Future<List<RFIDDateStruct>> testAction() async {
   // Add your function code here!
   result.clear();
-  appState.startScan();
+  appState.startScanning();
   await Future.delayed(Duration(seconds: 1));
-  appState.stopScan();
+  appState.stopScanning();
   await Future.delayed(Duration(seconds: 1));
   tags = appState.tags;
   for (int i = 0; i < tags.length; i++) {
