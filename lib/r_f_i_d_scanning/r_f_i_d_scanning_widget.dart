@@ -233,7 +233,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                           },
                           text: 'Scan',
                           options: FFButtonOptions(
-                            width: 70.0,
+                            width: 75.0,
                             height: 70.0,
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
@@ -339,7 +339,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                           },
                           text: 'Clear',
                           options: FFButtonOptions(
-                            width: 70.0,
+                            width: 75.0,
                             height: 70.0,
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
