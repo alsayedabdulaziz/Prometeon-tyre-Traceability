@@ -7,3 +7,4 @@ export 'stop_read.dart' show stopRead;
 export 'test_action.dart' show testAction;
 export 'write_tag.dart' show writeTag;
 export 'clear_app_state.dart' show clearAppState;
+export 'periodic.dart' show periodic;
