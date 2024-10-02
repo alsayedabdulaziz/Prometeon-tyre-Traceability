@@ -161,72 +161,61 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                 _model.instantTimer = InstantTimer.periodic(
                                   duration: Duration(milliseconds: 1000),
                                   callback: (timer) async {
-                                    await Future.wait([
-                                      Future(() async {
-                                        _model.readTagCountResponse =
-                                            await actions.readtagcount();
-                                        FFAppState().RFIDTagsList = _model
-                                            .readTagCountResponse!
-                                            .toList()
-                                            .cast<RFIDDateStruct>();
-                                        safeSetState(() {});
-                                        if (functions.isTagsListNotEmpty(
-                                            FFAppState()
+                                    _model.readTagCountResponse =
+                                        await actions.readtagcount();
+                                    FFAppState().RFIDTagsList = _model
+                                        .readTagCountResponse!
+                                        .toList()
+                                        .cast<RFIDDateStruct>();
+                                    safeSetState(() {});
+                                    if (functions.isTagsListNotEmpty(
+                                        FFAppState().RFIDTagsList.toList())) {
+                                      if (_model.listsize !=
+                                          functions
+                                              .tagsListToList(FFAppState()
+                                                  .RFIDTagsList
+                                                  .toList())
+                                              .length) {
+                                        _model.tagid = functions
+                                            .tagsListToList(FFAppState()
                                                 .RFIDTagsList
-                                                .toList())) {
-                                          if (_model.listsize !=
-                                              functions
-                                                  .tagsListToList(FFAppState()
-                                                      .RFIDTagsList
-                                                      .toList())
-                                                  .length) {
-                                            _model.tagid = functions
-                                                .tagsListToList(FFAppState()
-                                                    .RFIDTagsList
-                                                    .toList())
-                                                .toList()
-                                                .cast<String>();
-                                            _model.listsize = functions
-                                                .tagsListToList(FFAppState()
-                                                    .RFIDTagsList
-                                                    .toList())
-                                                .length;
-                                            safeSetState(() {});
-                                            _model.getTagsDataResponse =
-                                                await GetTagsDataCall.call(
-                                              tagsListList: _model.tagid,
-                                            );
+                                                .toList())
+                                            .toList()
+                                            .cast<String>();
+                                        _model.listsize = functions
+                                            .tagsListToList(FFAppState()
+                                                .RFIDTagsList
+                                                .toList())
+                                            .length;
+                                        safeSetState(() {});
+                                        _model.getTagsDataResponse =
+                                            await GetTagsDataCall.call(
+                                          tagsListList: _model.tagid,
+                                        );
 
-                                            if ((_model.getTagsDataResponse
-                                                    ?.succeeded ??
-                                                true)) {
-                                              FFAppState().QueriedTagDataList =
-                                                  functions
-                                                      .buildTagsDataList(
-                                                          GetTagsDataCall.epc(
-                                                            (_model.getTagsDataResponse
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                          )?.toList(),
-                                                          GetTagsDataCall
-                                                              .barcode(
-                                                            (_model.getTagsDataResponse
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                          )?.toList())!
-                                                      .toList()
-                                                      .cast<
-                                                          QueriedTagDataStruct>();
-                                              safeSetState(() {});
-                                              await actions.clearAppState();
-                                            }
-                                          }
+                                        if ((_model.getTagsDataResponse
+                                                ?.succeeded ??
+                                            true)) {
+                                          FFAppState().QueriedTagDataList =
+                                              functions
+                                                  .buildTagsDataList(
+                                                      GetTagsDataCall.epc(
+                                                        (_model.getTagsDataResponse
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                      )?.toList(),
+                                                      GetTagsDataCall.barcode(
+                                                        (_model.getTagsDataResponse
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                      )?.toList())!
+                                                  .toList()
+                                                  .cast<QueriedTagDataStruct>();
+                                          safeSetState(() {});
+                                          await actions.clearAppState();
                                         }
-                                      }),
-                                      Future(() async {
-                                        await actions.periodic();
-                                      }),
-                                    ]);
+                                      }
+                                    }
                                   },
                                   startImmediately: true,
                                 );
