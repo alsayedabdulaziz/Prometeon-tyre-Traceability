@@ -162,11 +162,13 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                   duration: Duration(milliseconds: 500),
                                   callback: (timer) async {
                                     _model.readTagCountResponse =
-                                        await actions.readtagcount();
-                                    FFAppState().RFIDTagsList = _model
+                                        await actions.readtagcount(
+                                      false,
+                                    );
+                                    FFAppState().RFIDTagsList2 = _model
                                         .readTagCountResponse!
                                         .toList()
-                                        .cast<RFIDDateStruct>();
+                                        .cast<RFIDTagsDataStruct>();
                                     safeSetState(() {});
                                     if (functions.isTagsListNotEmpty(
                                         FFAppState().RFIDTagsList.toList())) {

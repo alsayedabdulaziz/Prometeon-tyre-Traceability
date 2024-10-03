@@ -41,7 +41,7 @@ class RFIDScanningModel extends FlutterFlowModel<RFIDScanningWidget> {
   String? getstatusResponse;
   InstantTimer? instantTimer;
   // Stores action output result for [Custom Action - readtagcount] action in ScanButton widget.
-  List<RFIDDateStruct>? readTagCountResponse;
+  List<RFIDTagsDataStruct>? readTagCountResponse;
   // Stores action output result for [Backend Call - API (GetTagsData)] action in ScanButton widget.
   ApiCallResponse? getTagsDataResponse;
 
