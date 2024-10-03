@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/components/setting_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -380,86 +379,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                var _shouldSetState = false;
-                                if ((_model.usernameTextController.text !=
-                                            null &&
-                                        _model.usernameTextController.text !=
-                                            '') &&
-                                    (_model.passwordTextController.text !=
-                                            null &&
-                                        _model.passwordTextController.text !=
-                                            '')) {
-                                  await LoginDataCall.call(
-                                    username:
-                                        _model.usernameTextController.text,
-                                    password:
-                                        _model.passwordTextController.text,
-                                  );
-
-                                  _model.logInRequestresponse =
-                                      await LogInRequestCall.call();
-
-                                  _shouldSetState = true;
-                                  _model.loginstatus =
-                                      LogInRequestCall.logInStatus(
-                                    (_model.logInRequestresponse?.jsonBody ??
-                                        ''),
-                                  ).toString();
-                                  safeSetState(() {});
-                                  if (_model.loginstatus == 'true') {
-                                    context.goNamed(
-                                      'RFIDMenu',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.bottomToTop,
-                                          duration: Duration(milliseconds: 300),
-                                        ),
-                                      },
-                                    );
-                                  } else {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: Text('Faild to login'),
-                                          content: Text(
-                                              'Invalid username or Password'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  }
-                                } else {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: Text('Filed To Login'),
-                                        content:
-                                            Text('Empty username or password'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                  if (_shouldSetState) safeSetState(() {});
-                                  return;
-                                }
-
-                                if (_shouldSetState) safeSetState(() {});
+                                context.goNamed('RFIDMenu');
                               },
                               text: 'Login',
                               icon: Icon(

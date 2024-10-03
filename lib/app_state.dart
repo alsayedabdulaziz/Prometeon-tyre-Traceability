@@ -17,12 +17,19 @@ class FFAppState extends ChangeNotifier {
     _instance = FFAppState._internal();
   }
 
-  Future initializePersistedState() async {}
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      _IPConfig = prefs.getString('ff_IPConfig') ?? _IPConfig;
+    });
+  }
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
+
+  late SharedPreferences prefs;
 
   List<RFIDDateStruct> _RFIDTagsList = [];
   List<RFIDDateStruct> get RFIDTagsList => _RFIDTagsList;
@@ -123,4 +130,23 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInRFIDTagsList2(int index, RFIDTagsDataStruct value) {
     RFIDTagsList2.insert(index, value);
   }
+
+  String _IPConfig = '';
+  String get IPConfig => _IPConfig;
+  set IPConfig(String value) {
+    _IPConfig = value;
+    prefs.setString('ff_IPConfig', value);
+  }
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
 }

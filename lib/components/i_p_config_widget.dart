@@ -1,22 +1,21 @@
-import '/components/i_p_config_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'setting_model.dart';
-export 'setting_model.dart';
+import 'i_p_config_model.dart';
+export 'i_p_config_model.dart';
 
-class SettingWidget extends StatefulWidget {
-  const SettingWidget({super.key});
+class IPConfigWidget extends StatefulWidget {
+  const IPConfigWidget({super.key});
 
   @override
-  State<SettingWidget> createState() => _SettingWidgetState();
+  State<IPConfigWidget> createState() => _IPConfigWidgetState();
 }
 
-class _SettingWidgetState extends State<SettingWidget> {
-  late SettingModel _model;
+class _IPConfigWidgetState extends State<IPConfigWidget> {
+  late IPConfigModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,7 +26,7 @@ class _SettingWidgetState extends State<SettingWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SettingModel());
+    _model = createModel(context, () => IPConfigModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -57,7 +56,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                   autofocus: true,
                   obscureText: !_model.passwordVisibility,
                   decoration: InputDecoration(
-                    labelText: 'Enter vendor  password',
+                    labelText: 'Enter Host IP',
                     labelStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
                               fontFamily: 'Readex Pro',
@@ -128,37 +127,40 @@ class _SettingWidgetState extends State<SettingWidget> {
             onPressed: () async {
               if (_model.textController.text != null &&
                   _model.textController.text != '') {
-                if (_model.textController.text == 'Manex@dmin010') {
-                  Navigator.pop(context);
-                  await showModalBottomSheet(
-                    isScrollControlled: true,
-                    backgroundColor: FlutterFlowTheme.of(context).alternate,
-                    enableDrag: false,
-                    context: context,
-                    builder: (context) {
-                      return Padding(
-                        padding: MediaQuery.viewInsetsOf(context),
-                        child: IPConfigWidget(),
-                      );
-                    },
-                  ).then((value) => safeSetState(() {}));
-                } else {
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: Text('Error'),
-                        content: Text('Wrong Password'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: Text('Ok'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                }
+                FFAppState().IPConfig = _model.textController.text;
+                safeSetState(() {});
+                await showDialog(
+                  context: context,
+                  builder: (alertDialogContext) {
+                    return AlertDialog(
+                      title: Text('Success'),
+                      content: Text('IP updated Successfully'),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(alertDialogContext),
+                          child: Text('Ok'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+                Navigator.pop(context);
+              } else {
+                await showDialog(
+                  context: context,
+                  builder: (alertDialogContext) {
+                    return AlertDialog(
+                      title: Text('Error'),
+                      content: Text('Please Enter An IP'),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(alertDialogContext),
+                          child: Text('Ok'),
+                        ),
+                      ],
+                    );
+                  },
+                );
               }
             },
             text: 'submit',
