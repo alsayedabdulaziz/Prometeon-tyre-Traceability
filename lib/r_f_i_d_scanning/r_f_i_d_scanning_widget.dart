@@ -171,22 +171,22 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                         .cast<RFIDTagsDataStruct>();
                                     safeSetState(() {});
                                     if (functions.isTagsListNotEmpty(
-                                        FFAppState().RFIDTagsList.toList())) {
+                                        FFAppState().RFIDTagsList2.toList())) {
                                       if (_model.listsize !=
                                           functions
                                               .tagsListToList(FFAppState()
-                                                  .RFIDTagsList
+                                                  .RFIDTagsList2
                                                   .toList())
                                               .length) {
                                         _model.tagid = functions
                                             .tagsListToList(FFAppState()
-                                                .RFIDTagsList
+                                                .RFIDTagsList2
                                                 .toList())
                                             .toList()
                                             .cast<String>();
                                         _model.listsize = functions
                                             .tagsListToList(FFAppState()
-                                                .RFIDTagsList
+                                                .RFIDTagsList2
                                                 .toList())
                                             .length;
                                         safeSetState(() {});
