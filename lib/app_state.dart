@@ -17,12 +17,19 @@ class FFAppState extends ChangeNotifier {
     _instance = FFAppState._internal();
   }
 
-  Future initializePersistedState() async {}
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      _IPConfig = prefs.getString('ff_IPConfig') ?? _IPConfig;
+    });
+  }
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
+
+  late SharedPreferences prefs;
 
   List<RFIDDateStruct> _RFIDTagsList = [];
   List<RFIDDateStruct> get RFIDTagsList => _RFIDTagsList;
@@ -94,4 +101,52 @@ class FFAppState extends ChangeNotifier {
       int index, QueriedTagDataStruct value) {
     QueriedTagDataList.insert(index, value);
   }
+
+  List<RFIDTagsDataStruct> _RFIDTagsList2 = [];
+  List<RFIDTagsDataStruct> get RFIDTagsList2 => _RFIDTagsList2;
+  set RFIDTagsList2(List<RFIDTagsDataStruct> value) {
+    _RFIDTagsList2 = value;
+  }
+
+  void addToRFIDTagsList2(RFIDTagsDataStruct value) {
+    RFIDTagsList2.add(value);
+  }
+
+  void removeFromRFIDTagsList2(RFIDTagsDataStruct value) {
+    RFIDTagsList2.remove(value);
+  }
+
+  void removeAtIndexFromRFIDTagsList2(int index) {
+    RFIDTagsList2.removeAt(index);
+  }
+
+  void updateRFIDTagsList2AtIndex(
+    int index,
+    RFIDTagsDataStruct Function(RFIDTagsDataStruct) updateFn,
+  ) {
+    RFIDTagsList2[index] = updateFn(_RFIDTagsList2[index]);
+  }
+
+  void insertAtIndexInRFIDTagsList2(int index, RFIDTagsDataStruct value) {
+    RFIDTagsList2.insert(index, value);
+  }
+
+  String _IPConfig = '';
+  String get IPConfig => _IPConfig;
+  set IPConfig(String value) {
+    _IPConfig = value;
+    prefs.setString('ff_IPConfig', value);
+  }
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
 }

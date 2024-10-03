@@ -74,8 +74,7 @@ class GetTagsDataCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
-      apiUrl:
-          'https://2270-154-183-236-52.ngrok-free.app/v1/GetTagsData/GetTagsData',
+      apiUrl: 'http:/\${FFAppState().IPConfig}:8001/v1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

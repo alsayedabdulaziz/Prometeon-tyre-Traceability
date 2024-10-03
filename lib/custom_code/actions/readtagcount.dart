@@ -8,36 +8,52 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart'; // Imports other custom actions
-
-import 'index.dart'; // Imports other custom actions
-
 import 'package:flutter/services.dart';
-import 'package:zebra123/zebra123.dart';
-import 'package:zebra123/bridge.dart';
-import 'package:zebra123/classes.dart';
-import 'package:zebra123/enums.dart';
-import 'package:zebra123/helpers.dart';
-import 'package:prometeon_tyres_r_f_i_d/init_state.dart';
+import 'package:zebra_rfid_sdk_plugin/zebra_event_handler.dart';
+import 'package:zebra_rfid_sdk_plugin/zebra_rfid_sdk_plugin.dart';
 
-AppState appState = AppState();
-List<RfidTag> tags = [];
-List<RFIDDateStruct> result = [];
+Map<String?, RfidData> rfidDatas = {};
+ReaderConnectionStatus connectionStatus = ReaderConnectionStatus.UnConnection;
 
-Future<List<RFIDDateStruct>> readtagcount() async {
+Future<List<RFIDTagsDataStruct>> readtagcount(bool? clear) async {
   // Add your function code here!
-  tags = appState.tags;
-  for (int i = 0; i < tags.length; i++) {
-    result.add(RFIDDateStruct(
-      epc: tags[i].epc,
-      antenna: tags[i].antenna,
-      rssi: tags[i].rssi,
-      distance: tags[i].distance,
-      memoryBankData: tags[i].memoryBankData,
-      lockData: tags[i].lockData,
-      size: tags[i].size,
-      seen: tags[i].seen,
-    ));
+  List<RFIDTagsdataStruct> frfid = [];
+
+  if (clear == true) rfidDatas = {};
+
+  addDatas(List<RfidData> datas) async {
+    for (var item in datas) {
+      var data = rfidDatas[item.tagID];
+      if (data != null) {
+        if (data.count == null) data.count = 0;
+        data.count = data.count + 1;
+        data.peakRSSI = item.peakRSSI;
+        data.relativeDistance = item.relativeDistance;
+      } else
+        rfidDatas.addAll({item.tagID: item});
+    }
   }
-  return result;
+
+  ZebraRfidSdkPlugin.setEventHandler(ZebraEngineEventHandler(
+    readRfidCallback: (datas) async {
+      addDatas(datas);
+    },
+    errorCallback: (err) {
+      ZebraRfidSdkPlugin.toast(err.errorMessage);
+    },
+    connectionStatusCallback: (status) {
+      //   connectionStatus = status;
+    },
+  ));
+
+  for (int i = 0; i < rfidDatas.length; i++) {
+    //if (rfidDatas.values.elementAt(i).peakRSSI >= distancelimit.toInt()) {
+    frfid.add(RFIDTagsdataStruct(
+      tagID: rfidDatas.values.elementAt(i).tagID,
+      peakRSSI: rfidDatas.values.elementAt(i).peakRSSI,
+    ));
+    //}
+  }
+
+  return frfid;
 }
