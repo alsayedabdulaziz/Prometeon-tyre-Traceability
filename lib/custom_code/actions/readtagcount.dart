@@ -17,7 +17,7 @@ ReaderConnectionStatus connectionStatus = ReaderConnectionStatus.UnConnection;
 
 Future<List<RFIDTagsDataStruct>> readtagcount(bool? clear) async {
   // Add your function code here!
-  List<RFIDTagsdataStruct> frfid = [];
+  List<RFIDTagsDataStruct> frfid = [];
 
   if (clear == true) rfidDatas = {};
 
