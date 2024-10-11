@@ -8,3 +8,4 @@ export 'test_action.dart' show testAction;
 export 'write_tag.dart' show writeTag;
 export 'clear_app_state.dart' show clearAppState;
 export 'new_read_action.dart' show newReadAction;
+export 'track_action.dart' show trackAction;
