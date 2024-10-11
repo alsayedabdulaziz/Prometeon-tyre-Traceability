@@ -333,11 +333,10 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 70.0, 10.0, 0.0),
                             child: LinearPercentIndicator(
-                              percent: FFAppState()
-                                  .RFIDTagsList
-                                  .first
-                                  .rssi
-                                  .toDouble(),
+                              percent: valueOrDefault<double>(
+                                FFAppState().RFIDTagsList.first.rssi.toDouble(),
+                                0.0,
+                              ),
                               width: 300.0,
                               lineHeight: 30.0,
                               animation: true,
