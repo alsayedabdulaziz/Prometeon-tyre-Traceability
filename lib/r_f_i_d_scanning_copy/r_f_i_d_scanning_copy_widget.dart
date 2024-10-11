@@ -162,9 +162,7 @@ class _RFIDScanningCopyWidgetState extends State<RFIDScanningCopyWidget> {
                                   duration: Duration(milliseconds: 500),
                                   callback: (timer) async {
                                     _model.readTagCountResponse =
-                                        await actions.readtagcount(
-                                      false,
-                                    );
+                                        await actions.newReadAction();
                                     FFAppState().RFIDTagsList = _model
                                         .readTagCountResponse!
                                         .toList()
