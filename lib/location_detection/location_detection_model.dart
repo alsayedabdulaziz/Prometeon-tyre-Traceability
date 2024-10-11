@@ -19,6 +19,8 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
 
   String readerstatus = 'Not Connected';
 
+  double rssi = 0.0;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getstatus] action in LocationDetection widget.
