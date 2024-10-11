@@ -83,9 +83,9 @@ class _LoginWidgetState extends State<LoginWidget> {
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 30.0, 15.0, 30.0),
+                      EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 0.0),
                   child: Container(
-                    height: 500.0,
+                    height: 320.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: BorderRadius.circular(5.0),
@@ -102,7 +102,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 10.0),
+                                0.0, 5.0, 0.0, 10.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -116,11 +116,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       text: 'Server Active',
                                       icon: Icon(
                                         Icons.refresh_sharp,
-                                        size: 50.0,
+                                        size: 30.0,
                                       ),
                                       options: FFButtonOptions(
                                         width: 280.0,
-                                        height: 50.0,
+                                        height: 30.0,
                                         padding: EdgeInsets.all(0.0),
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
@@ -133,7 +133,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               color: Colors.white,
                                               letterSpacing: 0.0,
                                             ),
-                                        elevation: 5.0,
+                                        elevation: 3.0,
                                         borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
@@ -152,7 +152,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 10.0),
+                                0.0, 0.0, 0.0, 5.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -166,11 +166,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       text: 'RFID Active',
                                       icon: Icon(
                                         Icons.refresh_sharp,
-                                        size: 50.0,
+                                        size: 30.0,
                                       ),
                                       options: FFButtonOptions(
                                         width: 280.0,
-                                        height: 50.0,
+                                        height: 30.0,
                                         padding: EdgeInsets.all(0.0),
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
@@ -204,7 +204,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                             Expanded(
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    40.0, 20.0, 40.0, 20.0),
+                                    40.0, 10.0, 40.0, 15.0),
                                 child: TextFormField(
                                   controller: _model.usernameTextController,
                                   focusNode: _model.usernameFocusNode,
@@ -283,7 +283,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      40.0, 0.0, 40.0, 20.0),
+                                      40.0, 0.0, 40.0, 15.0),
                                   child: TextFormField(
                                     controller: _model.passwordTextController,
                                     focusNode: _model.passwordFocusNode,
@@ -412,17 +412,17 @@ class _LoginWidgetState extends State<LoginWidget> {
                           ],
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.0, 1.0),
+                          alignment: AlignmentDirectional(1.0, 1.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(0.0, 1.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 20.0, 0.0, 0.0),
+                                      0.0, 5.0, 0.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderRadius: 20.0,
                                     borderWidth: 1.0,
