@@ -23,11 +23,6 @@ List<RFIDDateStruct> _result = [];
 Future<List<RFIDDateStruct>> newReadAction() async {
   _zebra123 ??= Zebra123(callback: _callback);
 
-  // Connect if not connected
-  if (_zebra123?.connectionStatus != Status.connected) {
-    await _zebra123?.connect();
-  }
-
   // Start scanning
   //_zebra123?.startScanning();
 
