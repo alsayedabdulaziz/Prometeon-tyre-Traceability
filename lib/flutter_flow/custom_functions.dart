@@ -61,3 +61,7 @@ bool isTagsListNotEmpty(List<RFIDDateStruct> listOfRFIDData) {
     return true;
   }
 }
+
+double progressBarCalculator(int rssi) {
+  return rssi / -62;
+}
