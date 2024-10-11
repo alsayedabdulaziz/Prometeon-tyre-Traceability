@@ -6,3 +6,5 @@ export '/r_f_i_d_scanning/r_f_i_d_scanning_widget.dart' show RFIDScanningWidget;
 export '/r_f_i_d_transaction/r_f_i_d_transaction_widget.dart'
     show RFIDTransactionWidget;
 export '/r_and_d/r_and_d_widget.dart' show RAndDWidget;
+export '/r_f_i_d_scanning_copy/r_f_i_d_scanning_copy_widget.dart'
+    show RFIDScanningCopyWidget;

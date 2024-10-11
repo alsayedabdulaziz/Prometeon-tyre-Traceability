@@ -51,7 +51,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : RFIDMenuWidget(),
+          : RFIDScanningCopyWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -69,7 +69,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : RFIDMenuWidget(),
+              : RFIDScanningCopyWidget(),
         ),
         FFRoute(
           name: 'Login',
@@ -100,6 +100,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'RAndD',
           path: '/rAndD',
           builder: (context, params) => RAndDWidget(),
+        ),
+        FFRoute(
+          name: 'RFIDScanningCopy',
+          path: '/rFIDScanningCopy',
+          builder: (context, params) => RFIDScanningCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
