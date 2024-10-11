@@ -157,7 +157,8 @@ class _RFIDScanningCopyWidgetState extends State<RFIDScanningCopyWidget> {
                               if (_model.readingstatus == 'Scanning Stopped') {
                                 _model.readingstatus = 'Scanning Started';
                                 safeSetState(() {});
-                                while (FFAppState().RFIDTagsList.isNotEmpty) {
+                                while (
+                                    _model.readingstatus == 'Scanning Sopped') {
                                   _model.newReadingResponse =
                                       await actions.newReadAction();
                                 }

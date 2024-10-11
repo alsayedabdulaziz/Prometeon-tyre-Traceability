@@ -17,28 +17,22 @@ import 'package:zebra123/helpers.dart';
 import 'package:prometeon_tyres_r_f_i_d/init_state.dart';
 
 Zebra123? _zebra123;
-Timer? _scanTimer;
 List<RfidTag> _latestTags = [];
+List<RFIDDateStruct> _result = [];
 
 Future<List<RFIDDateStruct>> newReadAction() async {
   _zebra123 ??= Zebra123(callback: _callback);
 
-  // Connect if not connected
-  if (_zebra123?.connectionStatus != Status.connected) {
-    await _zebra123?.connect();
-  }
-
   // Start scanning
-  _zebra123?.startScanning();
+  //_zebra123?.startScanning();
 
   // Return the latest tags
-  return _latestTags;
+  return _result;
   // Add your function code here!
 }
 
 void stopRfidScan() {
   _zebra123?.stopScanning();
-  _scanTimer?.cancel();
 }
 
 void _callback(Interfaces interface, Events event, dynamic data) {
