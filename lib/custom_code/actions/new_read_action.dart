@@ -20,14 +20,34 @@ Zebra123? _zebra123;
 List<RfidTag> _latestTags = [];
 List<RFIDDateStruct> _result = [];
 
-Future<List<RFIDDateStruct>> newReadAction() async {
+Future<List<RFIDDateStruct>> newReadAction(bool? clear) async {
   _zebra123 ??= Zebra123(callback: _callback);
+  _result.clear();
 
   // Start scanning
   //_zebra123?.startScanning();
-
+  if (_latestTags.isNotEmpty) {
+    for (int i = 0; i < _latestTags.length; i++) {
+      _result.add(RFIDDateStruct(
+        epc: _latestTags[i].epc,
+        antenna: _latestTags[i].antenna,
+        rssi: _latestTags[i].rssi,
+        distance: _latestTags[i].distance,
+        memoryBankData: _latestTags[i].memoryBankData,
+        lockData: _latestTags[i].lockData,
+        size: _latestTags[i].size,
+        seen: _latestTags[i].seen,
+      ));
+    }
+  }
   // Return the latest tags
-  return _result;
+  if (clear == true) {
+    _latestTags.clear();
+    _result.clear();
+    return _result;
+  } else {
+    return _result;
+  }
   // Add your function code here!
 }
 

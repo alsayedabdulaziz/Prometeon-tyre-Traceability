@@ -1,7 +1,9 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'location_detection_widget.dart' show LocationDetectionWidget;
 import 'package:flutter/material.dart';
@@ -28,6 +30,9 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
       scanthebarcodeTextControllerValidator;
   // Stores action output result for [Custom Action - getstatus] action in ScanButton widget.
   String? getstatusResponse;
+  InstantTimer? instantTimer;
+  // Stores action output result for [Custom Action - newReadAction] action in ScanButton widget.
+  List<RFIDDateStruct>? newReadActionResponse;
 
   @override
   void initState(BuildContext context) {}
@@ -36,5 +41,7 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
   void dispose() {
     scanthebarcodeFocusNode?.dispose();
     scanthebarcodeTextController?.dispose();
+
+    instantTimer?.cancel();
   }
 }
