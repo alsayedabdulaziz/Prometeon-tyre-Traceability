@@ -24,7 +24,7 @@ class RFIDDateStruct extends BaseStruct {
         _size = size,
         _seen = seen;
 
-  // "EPC" field.
+  // "epc" field.
   String? _epc;
   String get epc => _epc ?? '';
   set epc(String? val) => _epc = val;
@@ -89,7 +89,7 @@ class RFIDDateStruct extends BaseStruct {
   bool hasSeen() => _seen != null;
 
   static RFIDDateStruct fromMap(Map<String, dynamic> data) => RFIDDateStruct(
-        epc: data['EPC'] as String?,
+        epc: data['epc'] as String?,
         antenna: castToType<int>(data['antenna']),
         rssi: castToType<int>(data['rssi']),
         distance: castToType<int>(data['distance']),
@@ -103,7 +103,7 @@ class RFIDDateStruct extends BaseStruct {
       data is Map ? RFIDDateStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
-        'EPC': _epc,
+        'epc': _epc,
         'antenna': _antenna,
         'rssi': _rssi,
         'distance': _distance,
@@ -115,7 +115,7 @@ class RFIDDateStruct extends BaseStruct {
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'EPC': serializeParam(
+        'epc': serializeParam(
           _epc,
           ParamType.String,
         ),
@@ -152,7 +152,7 @@ class RFIDDateStruct extends BaseStruct {
   static RFIDDateStruct fromSerializableMap(Map<String, dynamic> data) =>
       RFIDDateStruct(
         epc: deserializeParam(
-          data['EPC'],
+          data['epc'],
           ParamType.String,
           false,
         ),

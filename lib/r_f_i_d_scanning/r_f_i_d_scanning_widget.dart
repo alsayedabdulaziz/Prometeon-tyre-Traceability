@@ -165,28 +165,28 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                         await actions.readtagcount(
                                       false,
                                     );
-                                    FFAppState().RFIDTagsList2 = _model
+                                    FFAppState().RFIDTagsList = _model
                                         .readTagCountResponse!
                                         .toList()
-                                        .cast<RFIDTagsDataStruct>();
+                                        .cast<RFIDDateStruct>();
                                     safeSetState(() {});
                                     if (functions.isTagsListNotEmpty(
-                                        FFAppState().RFIDTagsList2.toList())) {
+                                        FFAppState().RFIDTagsList.toList())) {
                                       if (_model.listsize !=
                                           functions
                                               .tagsListToList(FFAppState()
-                                                  .RFIDTagsList2
+                                                  .RFIDTagsList
                                                   .toList())
                                               .length) {
                                         _model.tagid = functions
                                             .tagsListToList(FFAppState()
-                                                .RFIDTagsList2
+                                                .RFIDTagsList
                                                 .toList())
                                             .toList()
                                             .cast<String>();
                                         _model.listsize = functions
                                             .tagsListToList(FFAppState()
-                                                .RFIDTagsList2
+                                                .RFIDTagsList
                                                 .toList())
                                             .length;
                                         safeSetState(() {});
