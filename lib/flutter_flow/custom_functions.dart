@@ -63,7 +63,7 @@ bool isTagsListNotEmpty(List<RFIDDateStruct> listOfRFIDData) {
 }
 
 double progressBarCalculator(int rssi) {
-  return rssi / -62;
+  return (rssi + 65) / 45;
 }
 
 Color? getColor(String status) {
