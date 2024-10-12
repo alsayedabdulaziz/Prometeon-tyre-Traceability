@@ -162,8 +162,16 @@ class _RFIDMenuWidgetState extends State<RFIDMenuWidget> {
                 child: Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: FFButtonWidget(
-                    onPressed: () {
-                      print('searchRFID pressed ...');
+                    onPressed: () async {
+                      context.pushNamed(
+                        'LocationDetection',
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.bottomToTop,
+                          ),
+                        },
+                      );
                     },
                     text: 'Rfid Location Detection',
                     options: FFButtonOptions(
@@ -195,7 +203,7 @@ class _RFIDMenuWidgetState extends State<RFIDMenuWidget> {
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      context.pushNamed('RFIDScanning');
+                      context.pushNamed('RFIDScanningCopy');
                     },
                     text: 'RFID Scanning',
                     options: FFButtonOptions(
