@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -334,10 +335,14 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 70.0, 10.0, 0.0),
                             child: LinearPercentIndicator(
-                              percent: valueOrDefault<double>(
-                                FFAppState().RFIDTagsList.first.rssi.toDouble(),
-                                0.0,
-                              ),
+                              percent: functions.isTagsListNotEmpty(
+                                      FFAppState().RFIDTagsList.toList())
+                                  ? FFAppState()
+                                      .RFIDTagsList
+                                      .first
+                                      .rssi
+                                      .toDouble()
+                                  : 0.0,
                               width: 300.0,
                               lineHeight: 30.0,
                               animation: true,
