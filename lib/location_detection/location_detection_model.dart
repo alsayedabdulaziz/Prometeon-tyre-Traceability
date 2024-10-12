@@ -36,6 +36,8 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
   InstantTimer? instantTimer;
   // Stores action output result for [Custom Action - newReadAction] action in ScanButton widget.
   List<RFIDDateStruct>? newReadActionResponse;
+  // Stores action output result for [Custom Action - getFirst] action in ScanButton widget.
+  RFIDDateStruct? trackedTag;
 
   @override
   void initState(BuildContext context) {}
