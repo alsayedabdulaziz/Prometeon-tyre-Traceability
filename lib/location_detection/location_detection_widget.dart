@@ -239,12 +239,19 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                                       .toList()
                                       .cast<RFIDDateStruct>();
                                   safeSetState(() {});
-                                  _model.rssi = valueOrDefault<double>(
-                                    _model.newReadActionResponse?.first?.rssi
-                                        ?.toDouble(),
-                                    0.0,
-                                  );
-                                  safeSetState(() {});
+                                  if (functions.isTagsListNotEmpty(
+                                      FFAppState().RFIDTagsList.toList())) {
+                                    _model.trackedTag = await actions.getFirst(
+                                      FFAppState().RFIDTagsList.toList(),
+                                    );
+                                    _model.rssi =
+                                        functions.progressBarCalculator(
+                                            _model.trackedTag!.rssi);
+                                    safeSetState(() {});
+                                  } else {
+                                    _model.rssi = 0.0;
+                                    safeSetState(() {});
+                                  }
                                 },
                                 startImmediately: true,
                               );
@@ -340,14 +347,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 70.0, 10.0, 0.0),
                             child: LinearPercentIndicator(
-                              percent: functions.isTagsListNotEmpty(
-                                      FFAppState().RFIDTagsList.toList())
-                                  ? FFAppState()
-                                      .RFIDTagsList
-                                      .first
-                                      .rssi
-                                      .toDouble()
-                                  : 0.0,
+                              percent: _model.rssi,
                               width: 300.0,
                               lineHeight: 30.0,
                               animation: true,
