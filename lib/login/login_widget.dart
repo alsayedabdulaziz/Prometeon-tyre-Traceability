@@ -1,9 +1,13 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/setting_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'login_model.dart';
@@ -25,6 +29,28 @@ class _LoginWidgetState extends State<LoginWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => LoginModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.wait([
+        Future(() async {
+          _model.getStatusResponse = await actions.getstatus();
+          _model.scannerStatus = _model.getStatusResponse!;
+          safeSetState(() {});
+        }),
+        Future(() async {
+          _model.pingResponse = await PingCall.call();
+
+          if ((_model.pingResponse?.succeeded ?? true)) {
+            _model.serverStatus = 'Connected';
+            safeSetState(() {});
+          } else {
+            _model.serverStatus = 'Not Connected';
+            safeSetState(() {});
+          }
+        }),
+      ]);
+    });
 
     _model.usernameTextController ??= TextEditingController();
     _model.usernameFocusNode ??= FocusNode();
@@ -125,7 +151,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 30.0, 0.0),
-                                        color: Color(0xB809B909),
+                                        color: functions
+                                            .getColor(_model.scannerStatus),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -163,7 +190,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       onPressed: () {
                                         print('RFIDStatus pressed ...');
                                       },
-                                      text: 'RFID Active',
+                                      text: _model.getStatusResponse!,
                                       icon: Icon(
                                         Icons.refresh_sharp,
                                         size: 30.0,
@@ -175,7 +202,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 30.0, 0.0),
-                                        color: Color(0xB809B909),
+                                        color: valueOrDefault<Color>(
+                                          functions
+                                              .getColor(_model.scannerStatus),
+                                          Color(0xFFBFBDBD),
+                                        ),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -379,7 +410,91 @@ class _LoginWidgetState extends State<LoginWidget> {
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                context.goNamed('RFIDMenu');
+                                if ((_model.usernameTextController.text !=
+                                            null &&
+                                        _model.usernameTextController.text !=
+                                            '') &&
+                                    (_model.passwordTextController.text !=
+                                            null &&
+                                        _model.passwordTextController.text !=
+                                            '')) {
+                                  _model.apiResultwz0 =
+                                      await LoginDataCall.call(
+                                    username:
+                                        _model.usernameTextController.text,
+                                    password:
+                                        _model.passwordTextController.text,
+                                  );
+
+                                  if ((_model.apiResultwz0?.succeeded ??
+                                      true)) {
+                                    _model.logInRequestResponse =
+                                        await LogInRequestCall.call();
+
+                                    if ((_model
+                                            .logInRequestResponse?.succeeded ??
+                                        true)) {
+                                      _model.loginstatus =
+                                          LogInRequestCall.logInStatus(
+                                        (_model.logInRequestResponse
+                                                ?.jsonBody ??
+                                            ''),
+                                      ).toString();
+                                      safeSetState(() {});
+                                      if (_model.loginstatus == 'true') {
+                                        context.goNamed(
+                                          'RFIDMenu',
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType: PageTransitionType
+                                                  .bottomToTop,
+                                            ),
+                                          },
+                                        );
+                                      } else {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: Text('Error'),
+                                              content: Text(
+                                                  'Wrong Username Or Password'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      }
+                                    }
+                                  }
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Error'),
+                                        content: Text(
+                                            'Please Enter Username And Password'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+
+                                safeSetState(() {});
                               },
                               text: 'Login',
                               icon: Icon(

@@ -65,3 +65,16 @@ bool isTagsListNotEmpty(List<RFIDDateStruct> listOfRFIDData) {
 double progressBarCalculator(int rssi) {
   return rssi / -62;
 }
+
+Color? getColor(String status) {
+  switch (status) {
+    case 'disconnected':
+      return Colors.orange;
+    case 'Connected':
+      return Colors.green;
+    case 'Connection error':
+      return Colors.red;
+    default:
+      return null;
+  }
+}
