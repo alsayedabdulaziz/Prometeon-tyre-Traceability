@@ -234,6 +234,11 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                                       await actions.newReadAction(
                                     false,
                                   );
+                                  FFAppState().RFIDTagsList = _model
+                                      .newReadActionResponse!
+                                      .toList()
+                                      .cast<RFIDDateStruct>();
+                                  safeSetState(() {});
                                   _model.rssi = valueOrDefault<double>(
                                     _model.newReadActionResponse?.first?.rssi
                                         ?.toDouble(),
