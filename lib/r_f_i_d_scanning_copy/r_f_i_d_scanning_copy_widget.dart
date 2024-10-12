@@ -334,6 +334,9 @@ class _RFIDScanningCopyWidgetState extends State<RFIDScanningCopyWidget> {
                             safeSetState(() {});
                             _model.listsize = 0;
                             safeSetState(() {});
+                            await actions.newReadAction(
+                              true,
+                            );
                           },
                           text: 'Clear',
                           options: FFButtonOptions(
