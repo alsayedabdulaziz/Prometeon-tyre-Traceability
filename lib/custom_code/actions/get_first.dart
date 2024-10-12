@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<RFIDDateStruct> getFirst(List<RFIDDateStruct>? tagsList) async {
+Future<RFIDDateStruct?> getFirst(List<RFIDDateStruct>? tagsList) async {
   // Add your function code here!
   if (tagsList == null) {
   } else {
