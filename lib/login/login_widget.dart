@@ -139,7 +139,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       onPressed: () {
                                         print('ServerStatus pressed ...');
                                       },
-                                      text: 'Server Active',
+                                      text: _model.serverStatus,
                                       icon: Icon(
                                         Icons.refresh_sharp,
                                         size: 30.0,
@@ -190,7 +190,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       onPressed: () {
                                         print('RFIDStatus pressed ...');
                                       },
-                                      text: _model.getStatusResponse!,
+                                      text: _model.scannerStatus,
                                       icon: Icon(
                                         Icons.refresh_sharp,
                                         size: 30.0,
