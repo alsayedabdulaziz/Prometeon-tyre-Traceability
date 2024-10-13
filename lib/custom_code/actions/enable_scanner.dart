@@ -19,27 +19,5 @@ final notifierDisableKeystroke = ValueNotifier(true);
 final notifierAimType = ValueNotifier(AimType.trigger);
 
 Future enableScanner() async {
-  Scanwedge.initialize().then((scanwedge) {
-    _scanwedgePlugin = scanwedge;
-    setState(() {});
-    scanwedge.getDeviceInfo().then((devInfo) => setState(() {
-          _deviceInfo = devInfo;
-        }));
-  });
-  try {
-    log('_createProfile()-${await _scanwedgePlugin?.createScanProfile(_scanwedgePlugin?.manufacturer == 'ZEBRA' ? ZebraProfileModel(profileName: 'DemoProfile', enabledBarcodes: [
-          BarcodeConfig(barcodeType: BarcodeTypes.code39),
-          BarcodeConfig(barcodeType: BarcodeTypes.code128),
-          BarcodeConfig(barcodeType: BarcodeTypes.ean8),
-          BarcodeConfig(barcodeType: BarcodeTypes.ean13),
-          BarcodeConfig(barcodeType: BarcodeTypes.i2of5),
-        ], enableKeyStroke: !notifierDisableKeystroke.value, aimType: notifierAimType.value) : ProfileModel(profileName: 'DemoProfile', enabledBarcodes: [
-          BarcodeTypes.code128.create(minLength: 10, maxLength: 15),
-          BarcodeTypes.qrCode.create(),
-        ], keepDefaults: false))}');
-  } catch (e) {
-    log('_createProfile Exception: $e');
-  }
-  // Add your function code here!
   _scanwedgePlugin?.enableScanner();
 }

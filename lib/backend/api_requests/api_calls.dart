@@ -15,7 +15,7 @@ class LogInRequestCall {
   static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'LogInRequest',
-      apiUrl: 'http://192.168.1.13:8001/V1/LoginAction/LogInRequest',
+      apiUrl: 'http://192.168.8.122:8001/V1/LoginAction/LogInRequest',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -43,7 +43,7 @@ class LoginDataCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'LoginData',
-      apiUrl: 'http://192.168.1.13:8001/V1/loginData/UserDataFromApp',
+      apiUrl: 'http://192.168.8.122:8001/V1/loginData/UserDataFromApp',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -72,7 +72,7 @@ class GetTagsDataCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
-      apiUrl: 'http://192.168.1.13:8001/V1/GetTagsData/GetTagsData',
+      apiUrl: 'http://192.168.8.122:8001/V1/GetTagsData/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -119,7 +119,8 @@ class SendTagsListCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'SendTagsList',
-      apiUrl: 'http://192.168.1.13:8001/V1/StoreTagsInGlobal/StoreTagsInGlobal',
+      apiUrl:
+          'http://192.168.8.122:8001/V1/StoreTagsInGlobal/StoreTagsInGlobal',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -139,7 +140,7 @@ class PingCall {
   static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'Ping',
-      apiUrl: 'http://192.168.1.13:8001/V1/Ping/Ping',
+      apiUrl: 'http://192.168.8.122:8001/V1/Ping/Ping',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
