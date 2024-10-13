@@ -10,3 +10,6 @@ export 'clear_app_state.dart' show clearAppState;
 export 'new_read_action.dart' show newReadAction;
 export 'track_action.dart' show trackAction;
 export 'get_first.dart' show getFirst;
+export 'enable_scanner.dart' show enableScanner;
+export 'disable_scanner.dart' show disableScanner;
+export 'create_profile.dart' show createProfile;
