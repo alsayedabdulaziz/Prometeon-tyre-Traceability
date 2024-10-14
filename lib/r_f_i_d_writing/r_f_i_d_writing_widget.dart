@@ -39,6 +39,8 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -304,7 +306,10 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
-                                        '-',
+                                        valueOrDefault<String>(
+                                          FFAppState().ScanResult.toString(),
+                                          '-',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .headlineMedium
                                             .override(
