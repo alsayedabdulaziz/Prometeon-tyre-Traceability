@@ -214,7 +214,6 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                                   .toList()
                                                   .cast<QueriedTagDataStruct>();
                                           safeSetState(() {});
-                                          await actions.clearAppState();
                                         }
                                       }
                                     }
