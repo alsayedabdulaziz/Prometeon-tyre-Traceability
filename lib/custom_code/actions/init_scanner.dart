@@ -33,6 +33,7 @@ Future initScanner() async {
 
 void onScanResult(ScanResult event) {
   log.add(_ScanResultLogTile(event));
+  FFAppState().ScanResult = event.data;
 }
 
 class _ScanResultLogTile extends StatelessWidget {
