@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'r_f_i_d_writing_model.dart';
@@ -26,11 +25,6 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RFIDWritingModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await actions.initScanner();
-    });
 
     _model.scanthebarcodeTextController ??= TextEditingController();
     _model.scanthebarcodeFocusNode ??= FocusNode();
