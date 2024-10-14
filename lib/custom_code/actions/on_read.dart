@@ -21,6 +21,7 @@ AppState appState = AppState();
 
 Future onRead() async {
   // Add your function code here!
+  await appState.connect();
   appState.startScanning();
   await Future.delayed(Duration(milliseconds: 1000));
   appState.stopScanning();
