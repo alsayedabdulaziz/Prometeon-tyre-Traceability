@@ -29,7 +29,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await actions.enableScanner();
+      await actions.initScanner();
     });
 
     _model.scanthebarcodeTextController ??= TextEditingController();

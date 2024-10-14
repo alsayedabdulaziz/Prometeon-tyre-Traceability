@@ -8,18 +8,17 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart'; // Imports other custom actions
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter_datawedge/flutter_datawedge.dart';
 
-import 'package:zebra123/zebra123.dart';
-import 'package:zebra123/bridge.dart';
-import 'package:zebra123/classes.dart';
-import 'package:zebra123/enums.dart';
-import 'package:zebra123/helpers.dart';
-import 'package:prometeon_tyres_r_f_i_d/init_state.dart';
-
-AppState appState = AppState();
-
-Future clearAppState() async {
+late FlutterDataWedge fdw;
+Future<void>? initScannerResult;
+Future initScanner() async {
   // Add your function code here!
-  appState.tags.clear();
+  if (Platform.isAndroid) {
+    fdw = FlutterDataWedge();
+    await fdw.initialize();
+    await fdw.createDefaultProfile(profileName: 'Example app profile');
+  }
 }
