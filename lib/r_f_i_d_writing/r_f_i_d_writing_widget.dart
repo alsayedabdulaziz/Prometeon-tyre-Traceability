@@ -338,7 +338,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,
+                                              fontSize: 12.0,
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w300,
                                             ),
                                       ),
                                     ),
