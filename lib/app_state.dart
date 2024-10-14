@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'dart:convert';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -136,6 +137,12 @@ class FFAppState extends ChangeNotifier {
   set IPConfig(String value) {
     _IPConfig = value;
     prefs.setString('ff_IPConfig', value);
+  }
+
+  dynamic _ScanResult;
+  dynamic get ScanResult => _ScanResult;
+  set ScanResult(dynamic value) {
+    _ScanResult = value;
   }
 }
 
