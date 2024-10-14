@@ -49,6 +49,9 @@ class _LoginWidgetState extends State<LoginWidget> {
             safeSetState(() {});
           }
         }),
+        Future(() async {
+          await actions.initScanner();
+        }),
       ]);
     });
 
