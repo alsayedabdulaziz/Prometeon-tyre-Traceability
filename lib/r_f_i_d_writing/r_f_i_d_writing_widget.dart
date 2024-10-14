@@ -180,9 +180,11 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         decoration: InputDecoration(
                           labelText: 'scan the barcode',
                           labelStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
+                              FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
+                                    fontSize: 12.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w300,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
@@ -338,7 +340,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,
+                                              fontSize: 12.0,
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w300,
                                             ),
                                       ),
                                     ),

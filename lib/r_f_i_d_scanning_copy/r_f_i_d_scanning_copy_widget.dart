@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -158,72 +157,64 @@ class _RFIDScanningCopyWidgetState extends State<RFIDScanningCopyWidget> {
                               if (_model.readingstatus == 'Scanning Stopped') {
                                 _model.readingstatus = 'Scanning Started';
                                 safeSetState(() {});
-                                _model.instantTimer = InstantTimer.periodic(
-                                  duration: Duration(milliseconds: 500),
-                                  callback: (timer) async {
-                                    _model.readTagCountResponse =
-                                        await actions.newReadAction(
-                                      false,
-                                    );
-                                    FFAppState().RFIDTagsList = _model
-                                        .readTagCountResponse!
-                                        .toList()
-                                        .cast<RFIDDateStruct>();
-                                    safeSetState(() {});
-                                    if (functions.isTagsListNotEmpty(
-                                        FFAppState().RFIDTagsList.toList())) {
-                                      if (_model.listsize !=
-                                          functions
-                                              .tagsListToList(FFAppState()
-                                                  .RFIDTagsList
-                                                  .toList())
-                                              .length) {
-                                        _model.tagid = functions
-                                            .tagsListToList(FFAppState()
-                                                .RFIDTagsList
-                                                .toList())
-                                            .toList()
-                                            .cast<String>();
-                                        _model.listsize = functions
-                                            .tagsListToList(FFAppState()
-                                                .RFIDTagsList
-                                                .toList())
-                                            .length;
-                                        safeSetState(() {});
-                                        _model.getTagsDataResponse =
-                                            await GetTagsDataCall.call(
-                                          tagsListList: _model.tagid,
-                                        );
-
-                                        if ((_model.getTagsDataResponse
-                                                ?.succeeded ??
-                                            true)) {
-                                          FFAppState().QueriedTagDataList =
-                                              functions
-                                                  .buildTagsDataList(
-                                                      GetTagsDataCall.epc(
-                                                        (_model.getTagsDataResponse
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      )?.toList(),
-                                                      GetTagsDataCall.barcode(
-                                                        (_model.getTagsDataResponse
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      )?.toList())!
-                                                  .toList()
-                                                  .cast<QueriedTagDataStruct>();
-                                          safeSetState(() {});
-                                        }
-                                      }
-                                    }
-                                  },
-                                  startImmediately: true,
+                                await actions.onRead();
+                                _model.readTagCountResponse =
+                                    await actions.newReadAction(
+                                  false,
                                 );
+                                FFAppState().RFIDTagsList = _model
+                                    .readTagCountResponse!
+                                    .toList()
+                                    .cast<RFIDDateStruct>();
+                                safeSetState(() {});
+                                if (functions.isTagsListNotEmpty(
+                                    FFAppState().RFIDTagsList.toList())) {
+                                  if (_model.listsize !=
+                                      functions
+                                          .tagsListToList(FFAppState()
+                                              .RFIDTagsList
+                                              .toList())
+                                          .length) {
+                                    _model.tagid = functions
+                                        .tagsListToList(
+                                            FFAppState().RFIDTagsList.toList())
+                                        .toList()
+                                        .cast<String>();
+                                    _model.listsize = functions
+                                        .tagsListToList(
+                                            FFAppState().RFIDTagsList.toList())
+                                        .length;
+                                    safeSetState(() {});
+                                    _model.getTagsDataResponse =
+                                        await GetTagsDataCall.call(
+                                      tagsListList: _model.tagid,
+                                    );
+
+                                    if ((_model
+                                            .getTagsDataResponse?.succeeded ??
+                                        true)) {
+                                      FFAppState().QueriedTagDataList =
+                                          functions
+                                              .buildTagsDataList(
+                                                  GetTagsDataCall.epc(
+                                                    (_model.getTagsDataResponse
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  )?.toList(),
+                                                  GetTagsDataCall.barcode(
+                                                    (_model.getTagsDataResponse
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  )?.toList())!
+                                              .toList()
+                                              .cast<QueriedTagDataStruct>();
+                                      safeSetState(() {});
+                                    }
+                                  }
+                                }
                               } else {
                                 _model.readingstatus = 'Scanning Stopped';
                                 safeSetState(() {});
-                                _model.instantTimer?.cancel();
                               }
                             } else {
                               await actions.rFIDConnectAction();

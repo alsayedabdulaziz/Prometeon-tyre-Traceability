@@ -16,14 +16,13 @@ import 'package:zebra123/enums.dart';
 import 'package:zebra123/helpers.dart';
 import 'package:prometeon_tyres_r_f_i_d/init_state.dart';
 
-Zebra123? _zebra123;
 List<RfidTag> _latestTags = [];
 List<RFIDDateStruct> _result = [];
+AppState appState = AppState();
 
 Future<List<RFIDDateStruct>> newReadAction(bool? clear) async {
-  _zebra123 ??= Zebra123(callback: _callback);
   _result.clear();
-
+  _latestTags = appState.tags;
   // Start scanning
   //_zebra123?.startScanning();
   if (_latestTags.isNotEmpty) {
@@ -49,19 +48,4 @@ Future<List<RFIDDateStruct>> newReadAction(bool? clear) async {
     return _result;
   }
   // Add your function code here!
-}
-
-void stopRfidScan() {
-  _zebra123?.stopScanning();
-}
-
-void _callback(Interfaces interface, Events event, dynamic data) {
-  if (event == Events.readRfid && data is List<RfidTag>) {
-    _latestTags = data;
-  }
-}
-
-// Action to get latest tags
-List<RfidTag> getLatestTags() {
-  return _latestTags;
 }
