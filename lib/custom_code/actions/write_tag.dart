@@ -20,5 +20,5 @@ import 'package:prometeon_tyres_r_f_i_d/init_state.dart';
 AppState appState = AppState();
 Future writeTag(String epc) async {
   // Add your function code here!
-  appState.writeTag('E28069950000401400000003', epcNew: epc, password: 0);
+  appState.writeTag('E28069950000401400000003', epc, 0);
 }
