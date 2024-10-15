@@ -47,8 +47,8 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
       ]);
     });
 
-    _model.scanthebarcodeTextController ??= TextEditingController();
-    _model.scanthebarcodeFocusNode ??= FocusNode();
+    _model.textFieldTextController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -173,9 +173,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                       child: TextFormField(
-                        controller: _model.scanthebarcodeTextController,
-                        focusNode: _model.scanthebarcodeFocusNode,
-                        autofocus: true,
+                        controller: _model.textFieldTextController,
+                        focusNode: _model.textFieldFocusNode,
+                        autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'scan the barcode',
@@ -230,7 +230,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w300,
                             ),
-                        validator: _model.scanthebarcodeTextControllerValidator
+                        validator: _model.textFieldTextControllerValidator
                             .asValidator(context),
                       ),
                     ),
@@ -241,7 +241,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         safeSetState(() {
-                          _model.scanthebarcodeTextController?.clear();
+                          _model.textFieldTextController?.clear();
                         });
                       },
                       text: 'Clear',
@@ -577,7 +577,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                 child: FFButtonWidget(
                   onPressed: () async {
                     await actions.writeTag(
-                      _model.scanthebarcodeTextController.text,
+                      _model.textFieldTextController.text,
                     );
                   },
                   text: 'RFID Write',

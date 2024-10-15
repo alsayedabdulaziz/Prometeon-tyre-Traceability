@@ -18,11 +18,10 @@ class RFIDWritingModel extends FlutterFlowModel<RFIDWritingWidget> {
   ///  State fields for stateful widgets in this page.
 
   InstantTimer? instantTimer;
-  // State field(s) for scanthebarcode widget.
-  FocusNode? scanthebarcodeFocusNode;
-  TextEditingController? scanthebarcodeTextController;
-  String? Function(BuildContext, String?)?
-      scanthebarcodeTextControllerValidator;
+  // State field(s) for textField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textFieldTextController;
+  String? Function(BuildContext, String?)? textFieldTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -30,7 +29,7 @@ class RFIDWritingModel extends FlutterFlowModel<RFIDWritingWidget> {
   @override
   void dispose() {
     instantTimer?.cancel();
-    scanthebarcodeFocusNode?.dispose();
-    scanthebarcodeTextController?.dispose();
+    textFieldFocusNode?.dispose();
+    textFieldTextController?.dispose();
   }
 }

@@ -26,11 +26,11 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
 
   // Stores action output result for [Custom Action - getstatus] action in LocationDetection widget.
   String? getstatusresponse2;
-  // State field(s) for scanthebarcode widget.
-  FocusNode? scanthebarcodeFocusNode;
-  TextEditingController? scanthebarcodeTextController;
+  // State field(s) for TagIDInputField widget.
+  FocusNode? tagIDInputFieldFocusNode;
+  TextEditingController? tagIDInputFieldTextController;
   String? Function(BuildContext, String?)?
-      scanthebarcodeTextControllerValidator;
+      tagIDInputFieldTextControllerValidator;
   // Stores action output result for [Custom Action - getstatus] action in ScanButton widget.
   String? getstatusResponse;
   InstantTimer? instantTimer;
@@ -44,8 +44,8 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
 
   @override
   void dispose() {
-    scanthebarcodeFocusNode?.dispose();
-    scanthebarcodeTextController?.dispose();
+    tagIDInputFieldFocusNode?.dispose();
+    tagIDInputFieldTextController?.dispose();
 
     instantTimer?.cancel();
   }

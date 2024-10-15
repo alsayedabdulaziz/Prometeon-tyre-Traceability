@@ -40,8 +40,8 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
       safeSetState(() {});
     });
 
-    _model.scanthebarcodeTextController ??= TextEditingController();
-    _model.scanthebarcodeFocusNode ??= FocusNode();
+    _model.tagIDInputFieldTextController ??= TextEditingController();
+    _model.tagIDInputFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -148,8 +148,8 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: TextFormField(
-                  controller: _model.scanthebarcodeTextController,
-                  focusNode: _model.scanthebarcodeFocusNode,
+                  controller: _model.tagIDInputFieldTextController,
+                  focusNode: _model.tagIDInputFieldFocusNode,
                   autofocus: true,
                   obscureText: false,
                   decoration: InputDecoration(
@@ -203,7 +203,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w300,
                       ),
-                  validator: _model.scanthebarcodeTextControllerValidator
+                  validator: _model.tagIDInputFieldTextControllerValidator
                       .asValidator(context),
                 ),
               ),
@@ -225,7 +225,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                               safeSetState(() {});
                               await actions.trackAction(
                                 true,
-                                _model.scanthebarcodeTextController.text,
+                                _model.tagIDInputFieldTextController.text,
                               );
                               _model.instantTimer = InstantTimer.periodic(
                                 duration: Duration(milliseconds: 10),
