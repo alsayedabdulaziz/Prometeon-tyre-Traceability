@@ -147,7 +147,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           _model.serverStatus = 'Connected';
                                           safeSetState(() {});
                                         } else {
-                                          _model.scannerStatus = 'disconnected';
+                                          _model.serverStatus = 'disconnected';
                                           safeSetState(() {});
                                         }
 
