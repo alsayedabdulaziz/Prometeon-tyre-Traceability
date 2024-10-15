@@ -17,9 +17,9 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
   String loginstatus = 'false';
 
-  String scannerStatus = 'not connected';
+  String scannerStatus = 'disconnected';
 
-  String serverStatus = 'Not Connected';
+  String serverStatus = 'disconnected';
 
   ///  State fields for stateful widgets in this page.
 
@@ -27,6 +27,10 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   String? getStatusResponse;
   // Stores action output result for [Backend Call - API (Ping)] action in Login widget.
   ApiCallResponse? pingResponse;
+  // Stores action output result for [Backend Call - API (Ping)] action in ServerStatus widget.
+  ApiCallResponse? pingResponse2;
+  // Stores action output result for [Custom Action - getstatus] action in RFIDStatus widget.
+  String? getStatusResponse2;
   // State field(s) for Username widget.
   FocusNode? usernameFocusNode;
   TextEditingController? usernameTextController;
