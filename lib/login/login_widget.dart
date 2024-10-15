@@ -45,7 +45,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             _model.serverStatus = 'Connected';
             safeSetState(() {});
           } else {
-            _model.serverStatus = 'Not Connected';
+            _model.serverStatus = 'disconnected';
             safeSetState(() {});
           }
         }),
@@ -101,7 +101,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
           actions: [],
           centerTitle: false,
-          toolbarHeight: 100.0,
+          toolbarHeight: 80.0,
           elevation: 2.0,
         ),
         body: SafeArea(
@@ -113,7 +113,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 0.0),
                   child: Container(
-                    height: 320.0,
+                    height: 330.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: BorderRadius.circular(5.0),
@@ -138,10 +138,22 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   child: Align(
                                     alignment: AlignmentDirectional(0.0, 0.0),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('ServerStatus pressed ...');
+                                      onPressed: () async {
+                                        _model.pingResponse2 =
+                                            await PingCall.call();
+
+                                        if ((_model.pingResponse2?.succeeded ??
+                                            true)) {
+                                          _model.serverStatus = 'Connected';
+                                          safeSetState(() {});
+                                        } else {
+                                          _model.scannerStatus = 'disconnected';
+                                          safeSetState(() {});
+                                        }
+
+                                        safeSetState(() {});
                                       },
-                                      text: _model.serverStatus,
+                                      text: 'Server ${_model.serverStatus}',
                                       icon: Icon(
                                         Icons.refresh_sharp,
                                         size: 30.0,
@@ -153,8 +165,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 30.0, 0.0),
-                                        color: functions
-                                            .getColor(_model.scannerStatus),
+                                        color: valueOrDefault<Color>(
+                                          functions
+                                              .getColor(_model.scannerStatus),
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                        ),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -189,10 +205,16 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   child: Align(
                                     alignment: AlignmentDirectional(0.0, 0.0),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('RFIDStatus pressed ...');
+                                      onPressed: () async {
+                                        _model.getStatusResponse2 =
+                                            await actions.getstatus();
+                                        _model.serverStatus =
+                                            _model.getStatusResponse2!;
+                                        safeSetState(() {});
+
+                                        safeSetState(() {});
                                       },
-                                      text: _model.scannerStatus,
+                                      text: 'RFID ${_model.scannerStatus}',
                                       icon: Icon(
                                         Icons.refresh_sharp,
                                         size: 30.0,
@@ -207,7 +229,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         color: valueOrDefault<Color>(
                                           functions
                                               .getColor(_model.scannerStatus),
-                                          Color(0xFFBFBDBD),
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryText,
                                         ),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
@@ -536,7 +559,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(1.0, 1.0),
                                 child: FlutterFlowIconButton(
                                   borderRadius: 20.0,
                                   borderWidth: 1.0,
