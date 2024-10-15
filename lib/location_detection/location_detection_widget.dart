@@ -343,20 +343,24 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                                   letterSpacing: 0.0,
                                 ),
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 70.0, 10.0, 0.0),
-                            child: LinearPercentIndicator(
-                              percent: _model.rssi,
-                              width: 300.0,
-                              lineHeight: 30.0,
-                              animation: true,
-                              animateFromLastPercent: true,
-                              progressColor:
-                                  FlutterFlowTheme.of(context).primary,
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).accent4,
-                              padding: EdgeInsets.zero,
+                          Container(
+                            width: 320.0,
+                            decoration: BoxDecoration(),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 30.0, 0.0, 0.0),
+                              child: LinearPercentIndicator(
+                                percent: _model.rssi,
+                                width: 300.0,
+                                lineHeight: 30.0,
+                                animation: true,
+                                animateFromLastPercent: true,
+                                progressColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).accent4,
+                                padding: EdgeInsets.zero,
+                              ),
                             ),
                           ),
                         ],
