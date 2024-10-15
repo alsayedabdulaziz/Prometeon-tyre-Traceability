@@ -19,7 +19,6 @@ late final StreamSubscription<ScanResult> scanResultSubscription;
 late final StreamSubscription<ActionResult> scannerEventSubscription;
 late final StreamSubscription<ScannerStatus> scannerStatusSubscription;
 Future<void>? initScannerResult;
-List<Widget> log = [];
 
 Future initScanner() async {
   // Add your function code here!
@@ -32,20 +31,6 @@ Future initScanner() async {
 }
 
 void onScanResult(ScanResult event) {
-  log.add(_ScanResultLogTile(event));
+  //log.add(_ScanResultLogTile(event));
   FFAppState().ScanResult = event.data;
-}
-
-class _ScanResultLogTile extends StatelessWidget {
-  const _ScanResultLogTile(this.scanResult);
-
-  final ScanResult scanResult;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(scanResult.labelType),
-      subtitle: Text(scanResult.data),
-    );
-  }
 }
