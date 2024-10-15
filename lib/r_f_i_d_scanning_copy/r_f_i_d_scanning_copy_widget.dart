@@ -32,9 +32,6 @@ class _RFIDScanningCopyWidgetState extends State<RFIDScanningCopyWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await actions.dissconnect(
-        context,
-      );
       await actions.rFIDConnectAction();
       _model.getstatusresponse2 = await actions.getstatus();
       _model.readerstatus = _model.getstatusresponse2!;
