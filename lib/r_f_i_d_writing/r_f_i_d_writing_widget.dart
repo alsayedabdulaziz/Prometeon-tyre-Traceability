@@ -51,7 +51,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   _model.currentState =
                       'More Than One Tag Found, Change Rssi Value';
                   safeSetState(() {});
-                  await actions.readtagcount(
+                  await actions.newReadAction(
                     true,
                   );
                   FFAppState().RFIDTagsList = [];
@@ -646,20 +646,26 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Text(
-                          _model.currentState,
-                          textAlign: TextAlign.center,
-                          style: FlutterFlowTheme.of(context)
-                              .displayMedium
-                              .override(
-                                fontFamily: 'Outfit',
-                                color: FlutterFlowTheme.of(context).alternate,
-                                fontSize: 18.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w300,
-                              ),
+                      Expanded(
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Container(
+                            decoration: BoxDecoration(),
+                            child: Text(
+                              _model.currentState,
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .displayMedium
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                            ),
+                          ),
                         ),
                       ),
                     ],
