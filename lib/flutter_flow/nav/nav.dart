@@ -87,11 +87,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => RFIDWritingWidget(),
         ),
         FFRoute(
-          name: 'RFIDScanning',
-          path: '/rFIDScanning',
-          builder: (context, params) => RFIDScanningWidget(),
-        ),
-        FFRoute(
           name: 'RFIDTransaction',
           path: '/rFIDTransaction',
           builder: (context, params) => RFIDTransactionWidget(),
@@ -102,9 +97,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => RAndDWidget(),
         ),
         FFRoute(
-          name: 'RFIDScanningCopy',
-          path: '/rFIDScanningCopy',
-          builder: (context, params) => RFIDScanningCopyWidget(),
+          name: 'RFIDScanning',
+          path: '/rFIDScanning',
+          builder: (context, params) => RFIDScanningWidget(),
         ),
         FFRoute(
           name: 'LocationDetection',

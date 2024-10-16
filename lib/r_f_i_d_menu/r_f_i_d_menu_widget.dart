@@ -203,7 +203,7 @@ class _RFIDMenuWidgetState extends State<RFIDMenuWidget> {
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      context.pushNamed('RFIDScanningCopy');
+                      context.pushNamed('RFIDScanning');
                     },
                     text: 'RFID Scanning',
                     options: FFButtonOptions(
