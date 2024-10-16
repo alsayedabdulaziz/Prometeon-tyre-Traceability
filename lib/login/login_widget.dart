@@ -164,7 +164,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                 0.0, 0.0, 30.0, 0.0),
                                         color: valueOrDefault<Color>(
                                           functions
-                                              .getColor(_model.scannerStatus),
+                                              .getColor(_model.serverStatus),
                                           FlutterFlowTheme.of(context)
                                               .secondaryText,
                                         ),
