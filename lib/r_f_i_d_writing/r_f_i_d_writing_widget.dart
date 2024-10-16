@@ -48,27 +48,13 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
               if (functions
                   .isTagsListNotEmpty(FFAppState().RFIDTagsList.toList())) {
                 if (FFAppState().RFIDTagsList.length > 1) {
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: Text('Alarm'),
-                        content: Text(
-                            'More Than One Tag Detected, Please Change Rssi Value'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: Text('Ok'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
+                  safeSetState(() {});
                   await actions.readtagcount(
                     true,
                   );
                   FFAppState().RFIDTagsList = [];
                   safeSetState(() {});
+                  await actions.stopRead();
                 } else {
                   _model.firstReadTag = await actions.getFirst(
                     FFAppState().RFIDTagsList.toList(),
