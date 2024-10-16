@@ -109,6 +109,12 @@ class FFAppState extends ChangeNotifier {
   set ScanResult(dynamic value) {
     _ScanResult = value;
   }
+
+  double _RssiFilter = -52.0;
+  double get RssiFilter => _RssiFilter;
+  set RssiFilter(double value) {
+    _RssiFilter = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
