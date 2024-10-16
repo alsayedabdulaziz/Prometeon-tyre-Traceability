@@ -701,7 +701,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   child: FFButtonWidget(
                     onPressed: () async {
                       await actions.writeTag(
-                        _model.textFieldTextController.text,
+                        _model.epc,
                         _model.epc,
                       );
                     },
