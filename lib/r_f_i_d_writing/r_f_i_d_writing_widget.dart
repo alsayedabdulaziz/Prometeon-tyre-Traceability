@@ -48,13 +48,14 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
               if (functions
                   .isTagsListNotEmpty(FFAppState().RFIDTagsList.toList())) {
                 if (FFAppState().RFIDTagsList.length > 1) {
+                  _model.currentState =
+                      'More Than One Tag Found, Change Rssi Value';
                   safeSetState(() {});
                   await actions.readtagcount(
                     true,
                   );
                   FFAppState().RFIDTagsList = [];
                   safeSetState(() {});
-                  await actions.stopRead();
                 } else {
                   _model.firstReadTag = await actions.getFirst(
                     FFAppState().RFIDTagsList.toList(),
