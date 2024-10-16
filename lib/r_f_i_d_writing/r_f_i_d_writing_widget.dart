@@ -322,6 +322,8 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         _model.epc = '-';
                         _model.currentState = 'Scan Barcode';
                         safeSetState(() {});
+                        FFAppState().RFIDTagsList = [];
+                        safeSetState(() {});
                       },
                       text: 'Clear',
                       options: FFButtonOptions(
