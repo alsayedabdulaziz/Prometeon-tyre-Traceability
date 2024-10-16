@@ -324,6 +324,10 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         safeSetState(() {});
                         FFAppState().RFIDTagsList = [];
                         safeSetState(() {});
+                        await actions.newReadAction(
+                          true,
+                        );
+                        await actions.stopRead();
                       },
                       text: 'Clear',
                       options: FFButtonOptions(
