@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'r_f_i_d_scanning_widget.dart' show RFIDScanningWidget;
@@ -39,8 +38,7 @@ class RFIDScanningModel extends FlutterFlowModel<RFIDScanningWidget> {
   String? getstatusresponse2;
   // Stores action output result for [Custom Action - getstatus] action in ScanButton widget.
   String? getstatusResponse;
-  InstantTimer? instantTimer;
-  // Stores action output result for [Custom Action - readtagcount] action in ScanButton widget.
+  // Stores action output result for [Custom Action - newReadAction] action in ScanButton widget.
   List<RFIDDateStruct>? readTagCountResponse;
   // Stores action output result for [Backend Call - API (GetTagsData)] action in ScanButton widget.
   ApiCallResponse? getTagsDataResponse;
@@ -49,7 +47,5 @@ class RFIDScanningModel extends FlutterFlowModel<RFIDScanningWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    instantTimer?.cancel();
-  }
+  void dispose() {}
 }

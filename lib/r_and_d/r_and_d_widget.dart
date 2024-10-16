@@ -130,8 +130,8 @@ class _RAndDWidgetState extends State<RAndDWidget> {
                 child: Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: FFButtonWidget(
-                    onPressed: () async {
-                      context.pushNamed('RFIDWriting');
+                    onPressed: () {
+                      print('RFIDWrite pressed ...');
                     },
                     text: 'RFID Transactions',
                     options: FFButtonOptions(
@@ -195,7 +195,7 @@ class _RAndDWidgetState extends State<RAndDWidget> {
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      context.pushNamed('RFIDScanning');
+                      context.pushNamed('RFIDWriting');
                     },
                     text: 'RFID Write',
                     options: FFButtonOptions(
