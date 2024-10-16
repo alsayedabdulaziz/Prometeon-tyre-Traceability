@@ -9,3 +9,5 @@ export 'write_tag.dart' show writeTag;
 export 'new_read_action.dart' show newReadAction;
 export 'track_action.dart' show trackAction;
 export 'get_first.dart' show getFirst;
+export 'get_writing_status.dart' show getWritingStatus;
+export 'scanner_return_status.dart' show scannerReturnStatus;

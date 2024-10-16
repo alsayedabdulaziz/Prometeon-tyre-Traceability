@@ -160,6 +160,46 @@ class PingCall {
       ));
 }
 
+class GetBarcodeDataCall {
+  static Future<ApiCallResponse> call({
+    String? barcode = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "Barcode": "${barcode}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetBarcodeData',
+      apiUrl:
+          'https://f708-154-183-233-15.ngrok-free.app/V1/GetBarcodeData/GetBarcodeData',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? iPCode(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.IPCode''',
+      ));
+  static String? data(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.data''',
+      ));
+  static String? epc(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.EPC''',
+      ));
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

@@ -9,16 +9,21 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'index.dart'; // Imports other custom actions
+import 'package:flutter/foundation.dart' as foundation;
 
+import 'package:flutter/services.dart';
 import 'package:zebra123/zebra123.dart';
 import 'package:zebra123/bridge.dart';
 import 'package:zebra123/classes.dart';
 import 'package:zebra123/enums.dart';
 import 'package:zebra123/helpers.dart';
 import 'package:prometeon_tyres_r_f_i_d/init_state.dart';
+import 'dart:developer' as developer;
 
 AppState appState = AppState();
-Future writeTag(String epcNew, String epc) async {
+bool result = false;
+Future<bool> getWritingStatus() async {
   // Add your function code here!
-  appState.writeTag(epc, epcNew, 0);
+  result = appState.writeStatus;
+  return result;
 }

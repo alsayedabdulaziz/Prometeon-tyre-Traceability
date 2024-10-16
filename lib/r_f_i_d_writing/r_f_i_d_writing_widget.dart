@@ -1,9 +1,13 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
+import '/components/rssi_settings_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,11 +39,44 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
           _model.instantTimer = InstantTimer.periodic(
             duration: Duration(milliseconds: 500),
             callback: (timer) async {
-              _model.scannedbarcode = valueOrDefault<String>(
-                FFAppState().ScanResult.toString(),
-                '-',
+              _model.newReadActionResponse = await actions.newReadAction(
+                false,
               );
+              FFAppState().RFIDTagsList =
+                  _model.newReadActionResponse!.toList().cast<RFIDDateStruct>();
               safeSetState(() {});
+              if (functions
+                  .isTagsListNotEmpty(FFAppState().RFIDTagsList.toList())) {
+                if (FFAppState().RFIDTagsList.length > 1) {
+                  await showDialog(
+                    context: context,
+                    builder: (alertDialogContext) {
+                      return AlertDialog(
+                        title: Text('Alarm'),
+                        content: Text(
+                            'More Than One Tag Detected, Please Change Rssi Value'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(alertDialogContext),
+                            child: Text('Ok'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                  await actions.readtagcount(
+                    true,
+                  );
+                  FFAppState().RFIDTagsList = [];
+                  safeSetState(() {});
+                } else {
+                  _model.firstReadTag = await actions.getFirst(
+                    FFAppState().RFIDTagsList.toList(),
+                  );
+                  _model.scannedTag = _model.firstReadTag;
+                  safeSetState(() {});
+                }
+              }
             },
             startImmediately: true,
           );
@@ -122,16 +159,34 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                               145.0, 0.0, 0.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
-                            borderRadius: 30.0,
-                            borderWidth: 1.0,
-                            buttonSize: 70.0,
+                            borderRadius: 0.0,
+                            borderWidth: 0.0,
+                            buttonSize: 40.0,
                             icon: Icon(
                               Icons.settings_suggest,
                               color: Colors.white,
-                              size: 45.0,
+                              size: 40.0,
                             ),
                             onPressed: () async {
-                              context.pop();
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                context: context,
+                                builder: (context) {
+                                  return GestureDetector(
+                                    onTap: () =>
+                                        FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: Container(
+                                        height: 120.0,
+                                        child: RssiSettingsWidget(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => safeSetState(() {}));
                             },
                           ),
                         ),
@@ -175,10 +230,39 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                       child: TextFormField(
                         controller: _model.textFieldTextController,
                         focusNode: _model.textFieldFocusNode,
+                        onFieldSubmitted: (_) async {
+                          await Future.wait([
+                            Future(() async {
+                              _model.gEtBarcodeDataResponse =
+                                  await GetBarcodeDataCall.call(
+                                barcode: _model.textFieldTextController.text,
+                              );
+
+                              if ((_model.gEtBarcodeDataResponse?.succeeded ??
+                                  true)) {
+                                _model.ipcode = GetBarcodeDataCall.iPCode(
+                                  (_model.gEtBarcodeDataResponse?.jsonBody ??
+                                      ''),
+                                )!;
+                                _model.data = GetBarcodeDataCall.data(
+                                  (_model.gEtBarcodeDataResponse?.jsonBody ??
+                                      ''),
+                                )!;
+                                _model.epc = GetBarcodeDataCall.epc(
+                                  (_model.gEtBarcodeDataResponse?.jsonBody ??
+                                      ''),
+                                )!;
+                                safeSetState(() {});
+                              }
+                            }),
+                          ]);
+
+                          safeSetState(() {});
+                        },
                         autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'scan the barcode',
+                          labelText: 'Enter Barcode',
                           labelStyle:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -332,7 +416,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          _model.scannedbarcode,
+                                          _model.textFieldTextController.text,
                                           '-',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -348,6 +432,19 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                             ),
                                       ),
                                     ),
+                                  ),
+                                  Text(
+                                    _model.data,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w300,
+                                        ),
                                   ),
                                 ],
                               ),
@@ -384,7 +481,10 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: Text(
-                                          '-',
+                                          valueOrDefault<String>(
+                                            _model.ipcode,
+                                            '-',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .headlineMedium
                                               .override(
@@ -392,7 +492,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryBackground,
+                                                fontSize: 12.0,
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w300,
                                               ),
                                         ),
                                       ),
@@ -489,15 +591,16 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                             Align(
                               alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
-                                '-',
+                                _model.epc,
                                 style: FlutterFlowTheme.of(context)
                                     .headlineMedium
                                     .override(
                                       fontFamily: 'Outfit',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
-                                      fontSize: 14.0,
+                                      fontSize: 12.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w300,
                                     ),
                               ),
                             ),
@@ -520,7 +623,10 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
-                                  '-',
+                                  valueOrDefault<String>(
+                                    _model.scannedTag?.epc,
+                                    '-',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .headlineMedium
                                       .override(
@@ -556,15 +662,16 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                       Align(
                         alignment: AlignmentDirectional(0.0, 0.0),
                         child: Text(
-                          'Scan Barcode',
+                          _model.currentState,
                           textAlign: TextAlign.center,
                           style: FlutterFlowTheme.of(context)
                               .displayMedium
                               .override(
                                 fontFamily: 'Outfit',
                                 color: FlutterFlowTheme.of(context).alternate,
-                                fontSize: 30.0,
+                                fontSize: 18.0,
                                 letterSpacing: 0.0,
+                                fontWeight: FontWeight.w300,
                               ),
                         ),
                       ),
@@ -578,6 +685,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   onPressed: () async {
                     await actions.writeTag(
                       _model.textFieldTextController.text,
+                      _model.epc,
                     );
                   },
                   text: 'RFID Write',
