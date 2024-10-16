@@ -702,7 +702,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                     onPressed: () async {
                       await actions.writeTag(
                         _model.epc,
-                        _model.epc,
+                        _model.scannedTag!.epc,
                       );
                     },
                     text: 'RFID Write',
