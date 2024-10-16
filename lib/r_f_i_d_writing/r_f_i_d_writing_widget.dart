@@ -34,6 +34,8 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().RFIDTagsList = [];
+      safeSetState(() {});
       await Future.wait([
         Future(() async {
           _model.instantTimer = InstantTimer.periodic(
@@ -314,6 +316,12 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         safeSetState(() {
                           _model.textFieldTextController?.clear();
                         });
+                        _model.scannedTag = null;
+                        _model.ipcode = '-';
+                        _model.data = '-';
+                        _model.epc = '-';
+                        _model.currentState = 'Scan Barcode';
+                        safeSetState(() {});
                       },
                       text: 'Clear',
                       options: FFButtonOptions(
