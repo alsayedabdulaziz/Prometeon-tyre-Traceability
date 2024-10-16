@@ -9,4 +9,3 @@ export 'write_tag.dart' show writeTag;
 export 'new_read_action.dart' show newReadAction;
 export 'track_action.dart' show trackAction;
 export 'get_first.dart' show getFirst;
-export 'init_scanner.dart' show initScanner;
