@@ -17,6 +17,8 @@ class AppState extends foundation.ChangeNotifier {
   RfidTag? tag;
   bool isScanning = false;
   bool isTracking = false;
+  bool writeStatus = false;
+  bool noTagsFound = false;
 
   AppState._internal() {
     _initialize();
@@ -99,6 +101,11 @@ class AppState extends foundation.ChangeNotifier {
       case Events.readRfid:
         tags.clear();
         if (data is List<RfidTag>) {
+          if (data.isEmpty){
+            noTagsFound = true;
+          }else{
+            noTagsFound = false;
+          }
           for (RfidTag tag in data) {
             developer.log("Tag detected: EPC = ${tag.epc}, RSSI = ${tag.rssi}");
 
@@ -131,6 +138,16 @@ class AppState extends foundation.ChangeNotifier {
         if (data is Error && foundation.kDebugMode) {
           print("Interface: $interface Error: ${data.message}");
         }
+        break;
+
+      case Events.writeFail:
+        print("Interface: $interface Error: ${data.message}");
+        writeStatus = false;
+        break;
+
+      case Events.writeSuccess:
+        print("Interface: $interface, tag Written Successfullly");
+        writeStatus = true;
         break;
 
       default:
