@@ -150,7 +150,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                 child: TextFormField(
                   controller: _model.tagIDInputFieldTextController,
                   focusNode: _model.tagIDInputFieldFocusNode,
-                  autofocus: true,
+                  autofocus: false,
                   obscureText: false,
                   decoration: InputDecoration(
                     labelText: 'Enter Tag ID',
@@ -221,40 +221,64 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                             _model.getstatusResponse =
                                 await actions.getstatus();
                             if (_model.getstatusResponse == 'Connected') {
-                              _model.trackingstatus = 'Tracking Started';
-                              safeSetState(() {});
-                              await actions.trackAction(
-                                true,
-                                _model.tagIDInputFieldTextController.text,
-                              );
-                              _model.instantTimer = InstantTimer.periodic(
-                                duration: Duration(milliseconds: 10),
-                                callback: (timer) async {
-                                  _model.newReadActionResponse =
-                                      await actions.newReadAction(
-                                    false,
-                                  );
-                                  FFAppState().RFIDTagsList = _model
-                                      .newReadActionResponse!
-                                      .toList()
-                                      .cast<RFIDDateStruct>();
-                                  safeSetState(() {});
-                                  if (functions.isTagsListNotEmpty(
-                                      FFAppState().RFIDTagsList.toList())) {
-                                    _model.trackedTag = await actions.getFirst(
-                                      FFAppState().RFIDTagsList.toList(),
+                              if (_model.tagIDInputFieldTextController.text !=
+                                      null &&
+                                  _model.tagIDInputFieldTextController.text !=
+                                      '') {
+                                _model.trackingstatus = 'Tracking Started';
+                                safeSetState(() {});
+                                await actions.trackAction(
+                                  true,
+                                  _model.tagIDInputFieldTextController.text,
+                                );
+                                _model.instantTimer = InstantTimer.periodic(
+                                  duration: Duration(milliseconds: 10),
+                                  callback: (timer) async {
+                                    _model.newReadActionResponse =
+                                        await actions.newReadAction(
+                                      false,
                                     );
-                                    _model.rssi =
-                                        functions.progressBarCalculator(
-                                            _model.trackedTag!.rssi);
+                                    FFAppState().RFIDTagsList = _model
+                                        .newReadActionResponse!
+                                        .toList()
+                                        .cast<RFIDDateStruct>();
                                     safeSetState(() {});
-                                  } else {
-                                    _model.rssi = 0.0;
-                                    safeSetState(() {});
-                                  }
-                                },
-                                startImmediately: true,
-                              );
+                                    if (functions.isTagsListNotEmpty(
+                                        FFAppState().RFIDTagsList.toList())) {
+                                      _model.trackedTag =
+                                          await actions.getFirst(
+                                        FFAppState().RFIDTagsList.toList(),
+                                      );
+                                      _model.rssi =
+                                          functions.progressBarCalculator(
+                                              _model.trackedTag!.rssi);
+                                      safeSetState(() {});
+                                    } else {
+                                      _model.rssi = 0.0;
+                                      safeSetState(() {});
+                                    }
+                                  },
+                                  startImmediately: true,
+                                );
+                              } else {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: Text('Error'),
+                                      content:
+                                          Text('Please Enter Tag ID To Track'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
                             } else {
                               await actions.rFIDConnectAction();
                             }
@@ -331,39 +355,43 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            _model.trackingstatus,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
+                      child: Align(
+                        alignment: AlignmentDirectional(0.0, -1.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              _model.trackingstatus,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                            Container(
+                              width: 320.0,
+                              height: 100.0,
+                              decoration: BoxDecoration(),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 30.0, 0.0, 0.0),
+                                child: LinearPercentIndicator(
+                                  percent: _model.rssi,
+                                  width: 300.0,
+                                  lineHeight: 30.0,
+                                  animation: true,
+                                  animateFromLastPercent: true,
+                                  progressColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).accent4,
+                                  padding: EdgeInsets.zero,
                                 ),
-                          ),
-                          Container(
-                            width: 320.0,
-                            decoration: BoxDecoration(),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 30.0, 0.0, 0.0),
-                              child: LinearPercentIndicator(
-                                percent: _model.rssi,
-                                width: 300.0,
-                                lineHeight: 30.0,
-                                animation: true,
-                                animateFromLastPercent: true,
-                                progressColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).accent4,
-                                padding: EdgeInsets.zero,
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
