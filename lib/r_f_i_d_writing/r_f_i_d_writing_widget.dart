@@ -537,7 +537,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                               15.0, 5.0, 25.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
@@ -552,23 +552,6 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                     fit: BoxFit.cover,
                                     alignment: Alignment(0.0, -1.0),
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 5.0, 0.0, 0.0),
-                                child: Text(
-                                  '0',
-                                  style: FlutterFlowTheme.of(context)
-                                      .displayMedium
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w300,
-                                      ),
                                 ),
                               ),
                             ],

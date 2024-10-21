@@ -426,22 +426,6 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                                  Align(
-                                    alignment: AlignmentDirectional(1.0, 0.0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          130.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        'Barcode',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
                                 ],
                               ),
                             ),
@@ -520,7 +504,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Readex Pro',
-                                                                fontSize: 10.0,
+                                                                fontSize: 16.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -528,33 +512,6 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                                       ],
                                                     ),
                                                   ),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                ),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      listOfDataItem.barCode,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            fontSize: 10.0,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ],
                                                 ),
                                               ),
                                             ),
