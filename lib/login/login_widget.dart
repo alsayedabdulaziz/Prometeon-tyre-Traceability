@@ -549,52 +549,57 @@ class _LoginWidgetState extends State<LoginWidget> {
                           ],
                         ),
                         Align(
-                          alignment: AlignmentDirectional(1.0, 1.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(1.0, 1.0),
-                                child: FlutterFlowIconButton(
-                                  borderRadius: 19.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 35.0,
-                                  fillColor: Color(0x4CFFFFFF),
-                                  icon: Icon(
-                                    Icons.settings_sharp,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
-                                  ),
-                                  onPressed: () async {
-                                    await showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      backgroundColor: Color(0xE5FFFFFF),
-                                      barrierColor: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      enableDrag: false,
-                                      context: context,
-                                      builder: (context) {
-                                        return GestureDetector(
-                                          onTap: () =>
-                                              FocusScope.of(context).unfocus(),
-                                          child: Padding(
-                                            padding: MediaQuery.viewInsetsOf(
-                                                context),
-                                            child: Container(
-                                              height: 500.0,
-                                              child: SettingWidget(),
+                          alignment: AlignmentDirectional(0.0, 1.0),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 5.0, 0.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(1.0, 1.0),
+                                  child: FlutterFlowIconButton(
+                                    borderRadius: 19.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 48.0,
+                                    fillColor: Color(0x4CFFFFFF),
+                                    icon: Icon(
+                                      Icons.settings_sharp,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () async {
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Color(0xE5FFFFFF),
+                                        barrierColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                        enableDrag: false,
+                                        context: context,
+                                        builder: (context) {
+                                          return GestureDetector(
+                                            onTap: () => FocusScope.of(context)
+                                                .unfocus(),
+                                            child: Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: Container(
+                                                height: 500.0,
+                                                child: SettingWidget(),
+                                              ),
                                             ),
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => safeSetState(() {}));
-                                  },
+                                          );
+                                        },
+                                      ).then((value) => safeSetState(() {}));
+                                    },
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ].addToStart(SizedBox(height: 0.0)),
