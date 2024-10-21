@@ -563,13 +563,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   child: FlutterFlowIconButton(
                                     borderRadius: 19.0,
                                     borderWidth: 1.0,
-                                    buttonSize: 48.0,
+                                    buttonSize: 30.0,
                                     fillColor: Color(0x4CFFFFFF),
                                     icon: Icon(
                                       Icons.settings_sharp,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      size: 24.0,
+                                      size: 30.0,
                                     ),
                                     onPressed: () async {
                                       await showModalBottomSheet(
