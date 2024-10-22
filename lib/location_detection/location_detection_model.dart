@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -22,6 +23,8 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
 
   double rssi = 0.0;
 
+  String tagID = '--';
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getstatus] action in LocationDetection widget.
@@ -31,6 +34,8 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
   TextEditingController? tagIDInputFieldTextController;
   String? Function(BuildContext, String?)?
       tagIDInputFieldTextControllerValidator;
+  // Stores action output result for [Backend Call - API (GetEPC)] action in TagIDInputField widget.
+  ApiCallResponse? getEPCDataResponse;
   // Stores action output result for [Custom Action - getstatus] action in ScanButton widget.
   String? getstatusResponse;
   InstantTimer? instantTimer;

@@ -200,6 +200,37 @@ class GetBarcodeDataCall {
       ));
 }
 
+class GetEPCCall {
+  static Future<ApiCallResponse> call({
+    String? barcode = '--',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "Barcode": "${barcode}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetEPC',
+      apiUrl: 'https://2327-154-183-233-24.ngrok-free.app/V1/GetEPC/GetEPC',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? epc(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.EPC''',
+      ));
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

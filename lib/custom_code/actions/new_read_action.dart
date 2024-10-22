@@ -24,7 +24,8 @@ List<RfidTag> _latestTags = [];
 List<RFIDDateStruct> _result = [];
 AppState appState = AppState();
 
-Future<List<RFIDDateStruct>> newReadAction(bool? clear) async {
+Future<List<RFIDDateStruct>> newReadAction(
+    bool? clear, double distancelimit) async {
   developer.log("New read action started. Clear: $clear");
   _result.clear();
   _latestTags = appState.tags;
@@ -35,16 +36,18 @@ Future<List<RFIDDateStruct>> newReadAction(bool? clear) async {
     developer.log("Number of tags detected: ${_latestTags.length}");
     for (int i = 0; i < _latestTags.length; i++) {
       developer.log("Processing tag ${i + 1}: EPC = ${_latestTags[i].epc}");
-      _result.add(RFIDDateStruct(
-        epc: _latestTags[i].epc,
-        antenna: _latestTags[i].antenna,
-        rssi: _latestTags[i].rssi,
-        distance: _latestTags[i].distance,
-        memoryBankData: _latestTags[i].memoryBankData,
-        lockData: _latestTags[i].lockData,
-        size: _latestTags[i].size,
-        seen: _latestTags[i].seen,
-      ));
+      if (_latestTags[i].rssi >= distancelimit) {
+        _result.add(RFIDDateStruct(
+          epc: _latestTags[i].epc,
+          antenna: _latestTags[i].antenna,
+          rssi: _latestTags[i].rssi,
+          distance: _latestTags[i].distance,
+          memoryBankData: _latestTags[i].memoryBankData,
+          lockData: _latestTags[i].lockData,
+          size: _latestTags[i].size,
+          seen: _latestTags[i].seen,
+        ));
+      }
     }
   }
   // Return the latest tags
