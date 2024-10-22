@@ -164,7 +164,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                 _model.readTagCountResponse =
                                     await actions.newReadAction(
                                   false,
-                                  -52.0,
+                                  -70.0,
                                 );
                                 FFAppState().RFIDTagsList = _model
                                     .readTagCountResponse!
