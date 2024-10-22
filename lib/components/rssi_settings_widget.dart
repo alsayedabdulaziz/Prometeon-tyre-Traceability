@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'rssi_settings_model.dart';
 export 'rssi_settings_model.dart';
 
@@ -44,9 +42,9 @@ class _RssiSettingsWidgetState extends State<RssiSettingsWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Align(
-          alignment: AlignmentDirectional(-1.0, 0.0),
+          alignment: const AlignmentDirectional(-1.0, 0.0),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
             child: Text(
               'RSSI',
               style: FlutterFlowTheme.of(context).bodyMedium.override(

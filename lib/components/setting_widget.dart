@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'setting_model.dart';
 export 'setting_model.dart';
 
@@ -50,7 +48,7 @@ class _SettingWidgetState extends State<SettingWidget> {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8.0, 35.0, 8.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 35.0, 8.0, 0.0),
                 child: TextFormField(
                   controller: _model.textController,
                   focusNode: _model.textFieldFocusNode,
@@ -106,7 +104,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                         _model.passwordVisibility
                             ? Icons.visibility_outlined
                             : Icons.visibility_off_outlined,
-                        color: Color(0xFF9C9797),
+                        color: const Color(0xFF9C9797),
                         size: 15.0,
                       ),
                     ),
@@ -123,11 +121,10 @@ class _SettingWidgetState extends State<SettingWidget> {
           ],
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
           child: FFButtonWidget(
             onPressed: () async {
-              if (_model.textController.text != null &&
-                  _model.textController.text != '') {
+              if (_model.textController.text != '') {
                 if (_model.textController.text == 'Manex@dmin010') {
                   Navigator.pop(context);
                   await showModalBottomSheet(
@@ -138,7 +135,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                     builder: (context) {
                       return Padding(
                         padding: MediaQuery.viewInsetsOf(context),
-                        child: IPConfigWidget(),
+                        child: const IPConfigWidget(),
                       );
                     },
                   ).then((value) => safeSetState(() {}));
@@ -147,12 +144,12 @@ class _SettingWidgetState extends State<SettingWidget> {
                     context: context,
                     builder: (alertDialogContext) {
                       return AlertDialog(
-                        title: Text('Error'),
-                        content: Text('Wrong Password'),
+                        title: const Text('Error'),
+                        content: const Text('Wrong Password'),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(alertDialogContext),
-                            child: Text('Ok'),
+                            child: const Text('Ok'),
                           ),
                         ],
                       );
@@ -164,8 +161,8 @@ class _SettingWidgetState extends State<SettingWidget> {
             text: 'submit',
             options: FFButtonOptions(
               height: 40.0,
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).tertiary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: 'Readex Pro',
@@ -173,7 +170,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                     letterSpacing: 0.0,
                   ),
               elevation: 3.0,
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.transparent,
                 width: 1.0,
               ),
