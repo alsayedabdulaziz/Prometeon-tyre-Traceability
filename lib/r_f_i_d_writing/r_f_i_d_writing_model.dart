@@ -30,6 +30,10 @@ class RFIDWritingModel extends FlutterFlowModel<RFIDWritingWidget> {
 
   String currentState = 'Scan Barcode';
 
+  bool writingstatus = true;
+
+  bool waitingforwrite = false;
+
   ///  State fields for stateful widgets in this page.
 
   InstantTimer? instantTimer;
@@ -43,6 +47,8 @@ class RFIDWritingModel extends FlutterFlowModel<RFIDWritingWidget> {
   String? Function(BuildContext, String?)? textFieldTextControllerValidator;
   // Stores action output result for [Backend Call - API (GetBarcodeData)] action in textField widget.
   ApiCallResponse? gEtBarcodeDataResponse;
+  // Stores action output result for [Custom Action - getWritingStatus] action in Button widget.
+  bool? writingStatus;
 
   @override
   void initState(BuildContext context) {}

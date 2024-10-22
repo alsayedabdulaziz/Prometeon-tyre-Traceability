@@ -267,7 +267,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                                     _model.newReadActionResponse =
                                         await actions.newReadAction(
                                       false,
-                                      -52.0,
+                                      -70.0,
                                     );
                                     FFAppState().RFIDTagsList = _model
                                         .newReadActionResponse!

@@ -43,7 +43,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
             callback: (timer) async {
               _model.newReadActionResponse = await actions.newReadAction(
                 false,
-                -52.0,
+                FFAppState().RssiFilter,
               );
               FFAppState().RFIDTagsList =
                   _model.newReadActionResponse!.toList().cast<RFIDDateStruct>();
@@ -327,6 +327,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           _model.data = '-';
                           _model.epc = '-';
                           _model.currentState = 'Scan Barcode';
+                          _model.waitingforwrite = false;
                           safeSetState(() {});
                           FFAppState().RFIDTagsList = [];
                           safeSetState(() {});
@@ -660,7 +661,13 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           child: Align(
                             alignment: AlignmentDirectional(0.0, 0.0),
                             child: Container(
-                              decoration: BoxDecoration(),
+                              decoration: BoxDecoration(
+                                color: _model.waitingforwrite
+                                    ? (_model.writingstatus
+                                        ? Color(0xFF23F023)
+                                        : Color(0xFFFF0202))
+                                    : Color(0xFF21196B),
+                              ),
                               child: Text(
                                 _model.currentState,
                                 textAlign: TextAlign.center,
@@ -690,6 +697,13 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         _model.epc,
                         _model.scannedTag!.epc,
                       );
+                      await Future.delayed(const Duration(milliseconds: 2000));
+                      _model.writingStatus = await actions.getWritingStatus();
+                      _model.writingstatus = _model.writingStatus!;
+                      _model.waitingforwrite = true;
+                      safeSetState(() {});
+
+                      safeSetState(() {});
                     },
                     text: 'RFID Write',
                     options: FFButtonOptions(
