@@ -43,6 +43,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
             callback: (timer) async {
               _model.newReadActionResponse = await actions.newReadAction(
                 false,
+                -52.0,
               );
               FFAppState().RFIDTagsList =
                   _model.newReadActionResponse!.toList().cast<RFIDDateStruct>();
@@ -55,6 +56,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   safeSetState(() {});
                   await actions.newReadAction(
                     true,
+                    -52.0,
                   );
                   FFAppState().RFIDTagsList = [];
                   safeSetState(() {});
@@ -330,6 +332,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           safeSetState(() {});
                           await actions.newReadAction(
                             true,
+                            -52.0,
                           );
                           await actions.stopRead();
                         },

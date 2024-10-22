@@ -164,6 +164,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                                 _model.readTagCountResponse =
                                     await actions.newReadAction(
                                   false,
+                                  -52.0,
                                 );
                                 FFAppState().RFIDTagsList = _model
                                     .readTagCountResponse!
@@ -330,6 +331,7 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                             safeSetState(() {});
                             await actions.newReadAction(
                               true,
+                              -52.0,
                             );
                           },
                           text: 'Clear',

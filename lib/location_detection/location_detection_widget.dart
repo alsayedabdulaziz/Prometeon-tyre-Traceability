@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -150,6 +151,35 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                 child: TextFormField(
                   controller: _model.tagIDInputFieldTextController,
                   focusNode: _model.tagIDInputFieldFocusNode,
+                  onFieldSubmitted: (_) async {
+                    _model.getEPCDataResponse = await GetEPCCall.call();
+
+                    if ((_model.getEPCDataResponse?.succeeded ?? true)) {
+                      _model.tagID = GetEPCCall.epc(
+                        (_model.getEPCDataResponse?.jsonBody ?? ''),
+                      )!;
+                      safeSetState(() {});
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: Text('Success'),
+                            content:
+                                Text('Please Press Start to Begin Tracking'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+
+                    safeSetState(() {});
+                  },
                   autofocus: false,
                   obscureText: false,
                   decoration: InputDecoration(
@@ -229,7 +259,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                                 safeSetState(() {});
                                 await actions.trackAction(
                                   true,
-                                  _model.tagIDInputFieldTextController.text,
+                                  _model.tagID,
                                 );
                                 _model.instantTimer = InstantTimer.periodic(
                                   duration: Duration(milliseconds: 10),
@@ -237,6 +267,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                                     _model.newReadActionResponse =
                                         await actions.newReadAction(
                                       false,
+                                      -52.0,
                                     );
                                     FFAppState().RFIDTagsList = _model
                                         .newReadActionResponse!
