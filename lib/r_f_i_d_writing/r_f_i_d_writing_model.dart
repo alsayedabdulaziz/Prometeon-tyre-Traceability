@@ -47,6 +47,8 @@ class RFIDWritingModel extends FlutterFlowModel<RFIDWritingWidget> {
   String? Function(BuildContext, String?)? textFieldTextControllerValidator;
   // Stores action output result for [Backend Call - API (GetBarcodeData)] action in textField widget.
   ApiCallResponse? gEtBarcodeDataResponse;
+  // Stores action output result for [Custom Action - newReadAction] action in Button widget.
+  List<RFIDDateStruct>? newReadActionResponse2;
   // Stores action output result for [Custom Action - getWritingStatus] action in Button widget.
   bool? writingStatus;
 
