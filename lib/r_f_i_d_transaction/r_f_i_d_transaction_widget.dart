@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'r_f_i_d_transaction_model.dart';
 export 'r_f_i_d_transaction_model.dart';
 
@@ -44,11 +42,11 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100.0),
+          preferredSize: const Size.fromHeight(100.0),
           child: AppBar(
-            backgroundColor: Color(0xFF21196B),
+            backgroundColor: const Color(0xFF21196B),
             automaticallyImplyLeading: false,
-            actions: [],
+            actions: const [],
             flexibleSpace: FlexibleSpaceBar(
               title: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -60,13 +58,13 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(6.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(6.0, 0.0, 0.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderColor: Colors.transparent,
                           borderRadius: 30.0,
                           borderWidth: 1.0,
                           buttonSize: 50.0,
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.arrow_back_rounded,
                             color: Colors.white,
                             size: 30.0,
@@ -78,7 +76,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Back',
                           style: FlutterFlowTheme.of(context)
@@ -92,16 +90,16 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(1.0, 0.0),
+                        alignment: const AlignmentDirectional(1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               170.0, 0.0, 0.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
                             borderRadius: 30.0,
                             borderWidth: 1.0,
                             buttonSize: 75.0,
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.settings_suggest,
                               color: Colors.white,
                               size: 50.0,
@@ -116,7 +114,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'RFID Writing',
                       style:
@@ -147,7 +145,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             10.0, 5.0, 10.0, 5.0),
                         child: TextFormField(
                           controller: _model.scanthebarcodeTextController,
@@ -197,7 +195,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             filled: true,
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.barcode_reader,
                             ),
                           ),
@@ -215,7 +213,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () {
                           print('Button pressed ...');
@@ -223,11 +221,11 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                         text: 'Clear',
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFF21196B),
+                          color: const Color(0xFF21196B),
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
@@ -235,7 +233,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -255,9 +253,9 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               15.0, 0.0, 0.0, 0.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
@@ -272,7 +270,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -284,7 +282,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Barcode',
@@ -301,9 +299,9 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                                     ),
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: Text(
                                           '-',
@@ -322,17 +320,17 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       50.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             'IP Code',
@@ -350,10 +348,10 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             '-',
@@ -381,7 +379,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Container(
                     width: 400.0,
                     height: 120.0,
@@ -392,7 +390,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               15.0, 5.0, 25.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -400,7 +398,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
@@ -413,7 +411,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   '0',
@@ -432,7 +430,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               30.0, 0.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -440,7 +438,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'RFID will be written',
@@ -455,7 +453,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   '-',
                                   style: FlutterFlowTheme.of(context)
@@ -481,9 +479,9 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                                     ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     '-',
@@ -506,11 +504,11 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: Container(
                     width: 400.0,
                     height: 75.0,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color(0xFF21196B),
                     ),
                     child: Row(
@@ -518,16 +516,16 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               30.0, 0.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'Scan Barcode',
@@ -551,7 +549,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () {
                       print('Button pressed ...');
@@ -561,10 +559,10 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                       width: 300.0,
                       height: 70.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF21196B),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF21196B),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',

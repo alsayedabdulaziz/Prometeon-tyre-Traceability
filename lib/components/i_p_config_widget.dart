@@ -2,8 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'i_p_config_model.dart';
 export 'i_p_config_model.dart';
 
@@ -49,7 +47,7 @@ class _IPConfigWidgetState extends State<IPConfigWidget> {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8.0, 35.0, 8.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 35.0, 8.0, 0.0),
                 child: TextFormField(
                   controller: _model.textController,
                   focusNode: _model.textFieldFocusNode,
@@ -105,7 +103,7 @@ class _IPConfigWidgetState extends State<IPConfigWidget> {
                         _model.passwordVisibility
                             ? Icons.visibility_outlined
                             : Icons.visibility_off_outlined,
-                        color: Color(0xFF9C9797),
+                        color: const Color(0xFF9C9797),
                         size: 15.0,
                       ),
                     ),
@@ -122,23 +120,22 @@ class _IPConfigWidgetState extends State<IPConfigWidget> {
           ],
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
           child: FFButtonWidget(
             onPressed: () async {
-              if (_model.textController.text != null &&
-                  _model.textController.text != '') {
+              if (_model.textController.text != '') {
                 FFAppState().IPConfig = _model.textController.text;
                 safeSetState(() {});
                 await showDialog(
                   context: context,
                   builder: (alertDialogContext) {
                     return AlertDialog(
-                      title: Text('Success'),
-                      content: Text('IP updated Successfully'),
+                      title: const Text('Success'),
+                      content: const Text('IP updated Successfully'),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(alertDialogContext),
-                          child: Text('Ok'),
+                          child: const Text('Ok'),
                         ),
                       ],
                     );
@@ -150,12 +147,12 @@ class _IPConfigWidgetState extends State<IPConfigWidget> {
                   context: context,
                   builder: (alertDialogContext) {
                     return AlertDialog(
-                      title: Text('Error'),
-                      content: Text('Please Enter An IP'),
+                      title: const Text('Error'),
+                      content: const Text('Please Enter An IP'),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(alertDialogContext),
-                          child: Text('Ok'),
+                          child: const Text('Ok'),
                         ),
                       ],
                     );
@@ -166,8 +163,8 @@ class _IPConfigWidgetState extends State<IPConfigWidget> {
             text: 'submit',
             options: FFButtonOptions(
               height: 40.0,
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).tertiary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: 'Readex Pro',
@@ -175,7 +172,7 @@ class _IPConfigWidgetState extends State<IPConfigWidget> {
                     letterSpacing: 0.0,
                   ),
               elevation: 3.0,
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.transparent,
                 width: 1.0,
               ),

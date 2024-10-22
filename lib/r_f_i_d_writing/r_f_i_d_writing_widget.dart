@@ -10,7 +10,6 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'r_f_i_d_writing_model.dart';
 export 'r_f_i_d_writing_model.dart';
@@ -39,7 +38,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
       await Future.wait([
         Future(() async {
           _model.instantTimer = InstantTimer.periodic(
-            duration: Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 500),
             callback: (timer) async {
               _model.newReadActionResponse = await actions.newReadAction(
                 false,
@@ -96,11 +95,11 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100.0),
+          preferredSize: const Size.fromHeight(100.0),
           child: AppBar(
-            backgroundColor: Color(0xFF21196B),
+            backgroundColor: const Color(0xFF21196B),
             automaticallyImplyLeading: false,
-            actions: [],
+            actions: const [],
             flexibleSpace: FlexibleSpaceBar(
               title: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -112,13 +111,13 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(6.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(6.0, 0.0, 0.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderColor: Colors.transparent,
                           borderRadius: 30.0,
                           borderWidth: 1.0,
                           buttonSize: 50.0,
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.arrow_back_rounded,
                             color: Colors.white,
                             size: 30.0,
@@ -130,7 +129,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Back',
                           style: FlutterFlowTheme.of(context)
@@ -144,16 +143,16 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(1.0, 0.0),
+                        alignment: const AlignmentDirectional(1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               145.0, 0.0, 0.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
                             borderRadius: 0.0,
                             borderWidth: 0.0,
                             buttonSize: 40.0,
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.settings_suggest,
                               color: Colors.white,
                               size: 40.0,
@@ -170,7 +169,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                         FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
-                                      child: Container(
+                                      child: const SizedBox(
                                         height: 120.0,
                                         child: RssiSettingsWidget(),
                                       ),
@@ -186,7 +185,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'RFID Writing',
                       style:
@@ -217,7 +216,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             10.0, 5.0, 10.0, 5.0),
                         child: TextFormField(
                           controller: _model.textFieldTextController,
@@ -298,7 +297,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             filled: true,
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.barcode_reader,
                             ),
                           ),
@@ -316,7 +315,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           safeSetState(() {
@@ -340,11 +339,11 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         text: 'Clear',
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFF21196B),
+                          color: const Color(0xFF21196B),
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
@@ -352,7 +351,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -372,9 +371,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               15.0, 0.0, 0.0, 0.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
@@ -383,14 +382,14 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                               width: 30.0,
                               height: 40.0,
                               fit: BoxFit.cover,
-                              alignment: Alignment(0.0, -1.0),
+                              alignment: const Alignment(0.0, -1.0),
                             ),
                           ),
                         ),
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -402,7 +401,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Barcode',
@@ -421,9 +420,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                     ),
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -460,17 +459,17 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       50.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             'IP Code',
@@ -490,10 +489,10 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
@@ -526,7 +525,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Container(
                     width: 340.0,
                     height: 80.0,
@@ -537,7 +536,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               15.0, 5.0, 25.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -545,7 +544,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
@@ -554,7 +553,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                     width: 30.0,
                                     height: 30.0,
                                     fit: BoxFit.cover,
-                                    alignment: Alignment(0.0, -1.0),
+                                    alignment: const Alignment(0.0, -1.0),
                                   ),
                                 ),
                               ),
@@ -562,7 +561,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               30.0, 0.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -570,7 +569,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'RFID will be written',
@@ -587,7 +586,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   _model.epc,
                                   style: FlutterFlowTheme.of(context)
@@ -596,7 +595,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                         fontFamily: 'Outfit',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
-                                        fontSize: 12.0,
+                                        fontSize: 14.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w300,
                                       ),
@@ -616,9 +615,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                     ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -646,12 +645,16 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Container(
                     width: 350.0,
                     height: 50.0,
                     decoration: BoxDecoration(
-                      color: Color(0xFF21196B),
+                      color: _model.waitingforwrite
+                          ? (_model.writingstatus
+                              ? const Color(0xFF23F023)
+                              : const Color(0xFFFF0202))
+                          : const Color(0xFF21196B),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -659,15 +662,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                       children: [
                         Expanded(
                           child: Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Container(
-                              decoration: BoxDecoration(
-                                color: _model.waitingforwrite
-                                    ? (_model.writingstatus
-                                        ? Color(0xFF23F023)
-                                        : Color(0xFFFF0202))
-                                    : Color(0xFF21196B),
-                              ),
+                              decoration: const BoxDecoration(),
                               child: Text(
                                 _model.currentState,
                                 textAlign: TextAlign.center,
@@ -690,25 +687,44 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      await actions.writeTag(
-                        _model.epc,
-                        _model.scannedTag!.epc,
-                      );
-                      await actions.onRead();
-                      _model.newReadActionResponse2 =
-                          await actions.newReadAction(
-                        false,
-                        -52.0,
-                      );
-                      _model.writingStatus = await actions.getWritingStatus(
-                        _model.data,
-                      );
-                      _model.writingstatus = _model.writingStatus!;
-                      _model.waitingforwrite = true;
-                      safeSetState(() {});
+                      if (_model.textFieldTextController.text != '') {
+                        await actions.writeTag(
+                          _model.epc,
+                          _model.scannedTag!.epc,
+                        );
+                        await actions.onRead();
+                        _model.newReadActionResponse2 =
+                            await actions.newReadAction(
+                          false,
+                          -52.0,
+                        );
+                        _model.writingStatus = await actions.getWritingStatus(
+                          _model.epc,
+                        );
+                        _model.writingstatus = _model.writingStatus!;
+                        _model.waitingforwrite = true;
+                        safeSetState(() {});
+                      } else {
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: const Text('E'),
+                              content: const Text('Please Enter Barcode Value'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: const Text('Ok'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
 
                       safeSetState(() {});
                     },
@@ -717,10 +733,10 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                       width: 300.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF21196B),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF21196B),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',

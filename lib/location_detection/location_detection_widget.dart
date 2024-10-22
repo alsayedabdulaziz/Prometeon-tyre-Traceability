@@ -9,7 +9,6 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'location_detection_model.dart';
@@ -60,16 +59,16 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFFFBFBFB),
+        backgroundColor: const Color(0xFFFBFBFB),
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100.0),
+          preferredSize: const Size.fromHeight(100.0),
           child: AppBar(
-            backgroundColor: Color(0xFF21196B),
+            backgroundColor: const Color(0xFF21196B),
             automaticallyImplyLeading: false,
-            actions: [],
+            actions: const [],
             flexibleSpace: FlexibleSpaceBar(
               title: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -77,19 +76,19 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 0.0),
                             child: FlutterFlowIconButton(
                               borderColor: Colors.transparent,
                               borderRadius: 30.0,
                               borderWidth: 1.0,
                               buttonSize: 50.0,
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.arrow_back_rounded,
                                 color: Colors.white,
                                 size: 30.0,
@@ -100,7 +99,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 4.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Back',
@@ -119,7 +118,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'RFID Tracking',
                         style: FlutterFlowTheme.of(context)
@@ -147,7 +146,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: TextFormField(
                   controller: _model.tagIDInputFieldTextController,
                   focusNode: _model.tagIDInputFieldFocusNode,
@@ -163,14 +162,14 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                         context: context,
                         builder: (alertDialogContext) {
                           return AlertDialog(
-                            title: Text('Success'),
+                            title: const Text('Success'),
                             content:
-                                Text('Please Press Start to Begin Tracking'),
+                                const Text('Please Press Start to Begin Tracking'),
                             actions: [
                               TextButton(
                                 onPressed: () =>
                                     Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
+                                child: const Text('Ok'),
                               ),
                             ],
                           );
@@ -223,7 +222,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     filled: true,
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.barcode_reader,
                     ),
                   ),
@@ -238,7 +237,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -252,8 +251,6 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                                 await actions.getstatus();
                             if (_model.getstatusResponse == 'Connected') {
                               if (_model.tagIDInputFieldTextController.text !=
-                                      null &&
-                                  _model.tagIDInputFieldTextController.text !=
                                       '') {
                                 _model.trackingstatus = 'Tracking Started';
                                 safeSetState(() {});
@@ -262,7 +259,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                                   _model.tagID,
                                 );
                                 _model.instantTimer = InstantTimer.periodic(
-                                  duration: Duration(milliseconds: 10),
+                                  duration: const Duration(milliseconds: 10),
                                   callback: (timer) async {
                                     _model.newReadActionResponse =
                                         await actions.newReadAction(
@@ -296,14 +293,14 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                                   context: context,
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
-                                      title: Text('Error'),
+                                      title: const Text('Error'),
                                       content:
-                                          Text('Please Enter Tag ID To Track'),
+                                          const Text('Please Enter Tag ID To Track'),
                                       actions: [
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
+                                          child: const Text('Ok'),
                                         ),
                                       ],
                                     );
@@ -320,9 +317,9 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                           options: FFButtonOptions(
                             width: 75.0,
                             height: 70.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).alternate,
                             textStyle: FlutterFlowTheme.of(context)
@@ -357,9 +354,9 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                           options: FFButtonOptions(
                             width: 75.0,
                             height: 70.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).alternate,
                             textStyle: FlutterFlowTheme.of(context)
@@ -375,10 +372,10 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                           ),
                         ),
                       ]
-                          .divide(SizedBox(height: 10.0))
-                          .around(SizedBox(height: 10.0)),
+                          .divide(const SizedBox(height: 10.0))
+                          .around(const SizedBox(height: 10.0)),
                     ),
-                  ].divide(SizedBox(width: 5.0)),
+                  ].divide(const SizedBox(width: 5.0)),
                 ),
               ),
               Expanded(
@@ -387,7 +384,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                   children: [
                     Expanded(
                       child: Align(
-                        alignment: AlignmentDirectional(0.0, -1.0),
+                        alignment: const AlignmentDirectional(0.0, -1.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -403,9 +400,9 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                             Container(
                               width: 320.0,
                               height: 100.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 30.0, 0.0, 0.0),
                                 child: LinearPercentIndicator(
                                   percent: _model.rssi,
