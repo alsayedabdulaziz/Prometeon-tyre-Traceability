@@ -21,9 +21,15 @@ import 'package:prometeon_tyres_r_f_i_d/init_state.dart';
 import 'dart:developer' as developer;
 
 AppState appState = AppState();
+List<RfidTag> ReadTags = [];
 bool result = false;
-Future<bool> getWritingStatus() async {
+Future<bool> getWritingStatus(String writtenEPC) async {
   // Add your function code here!
-  result = appState.writeStatus;
-  return result;
+  ReadTags = appState.tags;
+  for (int i = 0; i < ReadTags.length; i++) {
+    if (ReadTags[i].epc == writtenEPC) {
+      return true;
+    }
+  }
+  return false;
 }
