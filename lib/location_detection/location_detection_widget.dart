@@ -151,7 +151,9 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                   controller: _model.tagIDInputFieldTextController,
                   focusNode: _model.tagIDInputFieldFocusNode,
                   onFieldSubmitted: (_) async {
-                    _model.getEPCDataResponse = await GetEPCCall.call();
+                    _model.getEPCDataResponse = await GetEPCCall.call(
+                      barcode: _model.tagIDInputFieldTextController.text,
+                    );
 
                     if ((_model.getEPCDataResponse?.succeeded ?? true)) {
                       _model.tagID = GetEPCCall.epc(
@@ -182,7 +184,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                   autofocus: false,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Enter Tag ID',
+                    labelText: 'Enter Barcode',
                     labelStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
                               fontFamily: 'Readex Pro',

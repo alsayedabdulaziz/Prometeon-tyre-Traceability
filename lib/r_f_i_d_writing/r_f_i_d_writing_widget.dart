@@ -249,10 +249,13 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                         ''),
                                   )!) {
                                     _model.currentState = 'Write Tag';
+                                    _model.writingstatus = false;
+                                    _model.waitingforwrite = false;
                                     safeSetState(() {});
                                   } else {
                                     _model.currentState = 'RFID With No Tire';
                                     _model.writingstatus = false;
+                                    _model.waitingforwrite = true;
                                     safeSetState(() {});
                                   }
                                 }
