@@ -244,6 +244,17 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                         ''),
                                   )!;
                                   safeSetState(() {});
+                                  if (GetBarcodeDataCall.presented(
+                                    (_model.gEtBarcodeDataResponse?.jsonBody ??
+                                        ''),
+                                  )!) {
+                                    _model.currentState = 'Write Tag';
+                                    safeSetState(() {});
+                                  } else {
+                                    _model.currentState = 'RFID With No Tire';
+                                    _model.writingstatus = false;
+                                    safeSetState(() {});
+                                  }
                                 }
                               }),
                             ]);
