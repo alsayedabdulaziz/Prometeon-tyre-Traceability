@@ -63,9 +63,22 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   _model.firstReadTag = await actions.getFirst(
                     FFAppState().RFIDTagsList.toList(),
                   );
-                  _model.scannedTag = _model.firstReadTag;
-                  _model.currentState = 'Press RFID Write to Write Tag';
-                  safeSetState(() {});
+                  if (!_model.haltwritemessage) {
+                    if ((_model.epc != '') &&
+                        (_model.scannedTag?.epc != null &&
+                            _model.scannedTag?.epc != '')) {
+                      if (_model.epc == _model.scannedTag?.epc) {
+                        _model.currentState = 'Tag ';
+                        safeSetState(() {});
+                      } else {
+                        _model.scannedTag = _model.firstReadTag;
+                        _model.currentState = 'Press RFID Write to Write Tag';
+                        safeSetState(() {});
+                        _model.haltwritemessage = true;
+                        safeSetState(() {});
+                      }
+                    }
+                  }
                 }
               }
             },
