@@ -16,24 +16,15 @@ import 'package:zebra123/enums.dart';
 import 'package:zebra123/helpers.dart';
 import 'package:prometeon_tyres_r_f_i_d/init_state.dart';
 
-Zebra123? _zebra123;
-List<RfidTag> _latestTags = [];
+AppState appState = AppState();
 
 Future trackAction(bool action, String tagID) async {
-  _zebra123 ??= Zebra123(callback: _callback);
-
   if (action) {
     List<String> tags = [];
     tags.add(tagID);
-    _zebra123?.startTracking(tags);
+    appState.startTracking(tags);
   } else {
-    _zebra123?.stopTracking();
+    appState.stopTracking();
   }
   // Add your function code here!
-}
-
-void _callback(Interfaces interface, Events event, dynamic data) {
-  if (event == Events.readRfid && data is List<RfidTag>) {
-    _latestTags = data;
-  }
 }
