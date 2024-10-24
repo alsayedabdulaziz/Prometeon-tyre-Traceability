@@ -25,7 +25,7 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
   TextEditingController? tagIDInputFieldTextController;
   String? Function(BuildContext, String?)?
       tagIDInputFieldTextControllerValidator;
-  // Stores action output result for [Backend Call - API (GetEPC)] action in TagIDInputField widget.
+  // Stores action output result for [Backend Call - API (GetBarcodeData)] action in TagIDInputField widget.
   ApiCallResponse? getEPCDataResponse;
   // Stores action output result for [Custom Action - getstatus] action in ScanButton widget.
   String? getstatusResponse;
