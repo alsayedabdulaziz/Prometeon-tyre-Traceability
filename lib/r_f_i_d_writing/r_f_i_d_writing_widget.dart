@@ -35,6 +35,8 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().RFIDTagsList = [];
       safeSetState(() {});
+      _model.scannedTag = null;
+      safeSetState(() {});
       await Future.wait([
         Future(() async {
           _model.instantTimer = InstantTimer.periodic(
@@ -742,6 +744,29 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         } else {
                           _model.currentState = 'Writing On Tag Failed';
                           safeSetState(() {});
+                        }
+
+                        _model.verifyInsertionResponse =
+                            await VerifyEPCInsertionCall.call(
+                          readEPC: _model.epc,
+                          writtenEPC: _model.scannedTag?.epc,
+                          iPCode: _model.ipcode,
+                          machineCode: 'TestGun',
+                          barcode: _model.textFieldTextController.text,
+                        );
+
+                        if ((_model.verifyInsertionResponse?.succeeded ??
+                            true)) {
+                          if (VerifyEPCInsertionCall.response(
+                            (_model.verifyInsertionResponse?.jsonBody ?? ''),
+                          )!) {
+                            _model.currentState = 'Write Success';
+                            safeSetState(() {});
+                          } else {
+                            _model.currentState = 'Wr';
+                            _model.writingstatus = false;
+                            safeSetState(() {});
+                          }
                         }
                       } else {
                         await showDialog(

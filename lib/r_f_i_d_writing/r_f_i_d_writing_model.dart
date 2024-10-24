@@ -44,6 +44,8 @@ class RFIDWritingModel extends FlutterFlowModel<RFIDWritingWidget> {
   List<RFIDDateStruct>? newReadActionResponse2;
   // Stores action output result for [Custom Action - getWritingStatus] action in Button widget.
   bool? writingStatus;
+  // Stores action output result for [Backend Call - API (VerifyEPCInsertion)] action in Button widget.
+  ApiCallResponse? verifyInsertionResponse;
 
   @override
   void initState(BuildContext context) {}
