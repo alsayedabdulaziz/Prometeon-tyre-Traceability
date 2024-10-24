@@ -732,7 +732,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         _model.newReadActionResponse2 =
                             await actions.newReadAction(
                           false,
-                          FFAppState().RssiFilter,
+                          -70.0,
                         );
                         _model.writingStatus = await actions.getWritingStatus(
                           _model.epc,
