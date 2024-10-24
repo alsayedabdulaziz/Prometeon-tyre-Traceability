@@ -64,6 +64,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                     FFAppState().RFIDTagsList.toList(),
                   );
                   _model.scannedTag = _model.firstReadTag;
+                  _model.currentState = 'Press RFID Write to Write Tag';
                   safeSetState(() {});
                 }
               }
@@ -713,7 +714,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         _model.newReadActionResponse2 =
                             await actions.newReadAction(
                           false,
-                          -52.0,
+                          FFAppState().RssiFilter,
                         );
                         _model.writingStatus = await actions.getWritingStatus(
                           _model.epc,
@@ -721,6 +722,13 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         _model.writingstatus = _model.writingStatus!;
                         _model.waitingforwrite = true;
                         safeSetState(() {});
+                        if (_model.writingstatus) {
+                          _model.currentState = 'Writing On Tag Success';
+                          safeSetState(() {});
+                        } else {
+                          _model.currentState = 'Writing On Tag Failed';
+                          safeSetState(() {});
+                        }
                       } else {
                         await showDialog(
                           context: context,
