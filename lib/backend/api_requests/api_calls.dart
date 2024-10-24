@@ -167,7 +167,8 @@ class GetBarcodeDataCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetBarcodeData',
-      apiUrl: 'http://192.168.1.13:8001/V1/GetBarcodeData/GetBarcodeData',
+      apiUrl:
+          'https://d8b9-41-232-222-57.ngrok-free.app/V1/GetBarcodeData/GetBarcodeData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
