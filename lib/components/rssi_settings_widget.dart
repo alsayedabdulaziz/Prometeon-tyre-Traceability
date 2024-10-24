@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'rssi_settings_model.dart';
 export 'rssi_settings_model.dart';
 
@@ -37,6 +38,8 @@ class _RssiSettingsWidgetState extends State<RssiSettingsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +62,7 @@ class _RssiSettingsWidgetState extends State<RssiSettingsWidget> {
           inactiveColor: FlutterFlowTheme.of(context).alternate,
           min: -100.0,
           max: 0.0,
-          value: _model.sliderValue ??= -52.0,
+          value: _model.sliderValue ??= FFAppState().RssiFilter,
           label: _model.sliderValue?.toString(),
           divisions: 100,
           onChanged: (newValue) {
