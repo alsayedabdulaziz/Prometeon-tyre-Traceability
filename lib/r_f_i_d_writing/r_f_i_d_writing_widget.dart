@@ -726,9 +726,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           _model.epc,
                           _model.scannedTag!.epc,
                         );
-                        await actions.onRead();
                         await Future.delayed(
                             const Duration(milliseconds: 2000));
+                        await actions.onRead();
                         _model.newReadActionResponse2 =
                             await actions.newReadAction(
                           false,
@@ -736,6 +736,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         );
                         _model.writingStatus = await actions.getWritingStatus(
                           _model.epc,
+                          _model.newReadActionResponse2!.toList(),
                         );
                         _model.writingstatus = _model.writingStatus!;
                         _model.waitingforwrite = true;

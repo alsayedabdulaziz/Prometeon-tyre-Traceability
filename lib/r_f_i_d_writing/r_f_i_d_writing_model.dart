@@ -27,6 +27,8 @@ class RFIDWritingModel extends FlutterFlowModel<RFIDWritingWidget> {
 
   bool haltwritemessage = false;
 
+  String oldepc = '-';
+
   ///  State fields for stateful widgets in this page.
 
   InstantTimer? instantTimer;

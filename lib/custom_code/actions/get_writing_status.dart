@@ -23,11 +23,11 @@ import 'dart:developer' as developer;
 AppState appState = AppState();
 List<RfidTag> ReadTags = [];
 bool result = false;
-Future<bool> getWritingStatus(String writtenEPC) async {
+Future<bool> getWritingStatus(
+    String writtenEPC, List<RFIDDateStruct> tagsList) async {
   // Add your function code here!
-  ReadTags = appState.tags;
-  for (int i = 0; i < ReadTags.length; i++) {
-    if (ReadTags[i].epc == writtenEPC) {
+  for (int i = 0; i < tagsList.length; i++) {
+    if (tagsList[i].epc == writtenEPC) {
       return true;
     }
   }
