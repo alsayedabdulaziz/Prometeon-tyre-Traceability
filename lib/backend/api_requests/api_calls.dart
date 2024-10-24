@@ -231,6 +231,46 @@ class GetEPCCall {
       ));
 }
 
+class VerifyEPCInsertionCall {
+  static Future<ApiCallResponse> call({
+    String? readEPC = '',
+    String? writtenEPC = '',
+    String? iPCode = '',
+    String? machineCode = '',
+    String? barcode = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "ReadEPC": "$readEPC",
+  "WrittenEPC": "$writtenEPC",
+  "IPCode": "$iPCode",
+  "MachineCode": "$machineCode",
+  "Barcode": "$barcode"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'VerifyEPCInsertion',
+      apiUrl:
+          'https://d8b9-41-232-222-57.ngrok-free.app/V1/VerifyEPCIntertion/VerifyEPCInsertion',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static bool? response(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.Response''',
+      ));
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
