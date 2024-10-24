@@ -1,6 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/components/setting_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -541,60 +539,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                               ),
                             ),
                           ],
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 1.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 5.0, 0.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Align(
-                                  alignment: const AlignmentDirectional(1.0, 1.0),
-                                  child: FlutterFlowIconButton(
-                                    borderRadius: 19.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 30.0,
-                                    fillColor: const Color(0x4CFFFFFF),
-                                    icon: Icon(
-                                      Icons.settings_sharp,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 30.0,
-                                    ),
-                                    onPressed: () async {
-                                      await showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: const Color(0xE5FFFFFF),
-                                        barrierColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                        enableDrag: false,
-                                        context: context,
-                                        builder: (context) {
-                                          return GestureDetector(
-                                            onTap: () => FocusScope.of(context)
-                                                .unfocus(),
-                                            child: Padding(
-                                              padding: MediaQuery.viewInsetsOf(
-                                                  context),
-                                              child: const SizedBox(
-                                                height: 500.0,
-                                                child: SettingWidget(),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ).then((value) => safeSetState(() {}));
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                         ),
                       ].addToStart(const SizedBox(height: 0.0)),
                     ),
