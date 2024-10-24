@@ -741,9 +741,14 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           false,
                           -70.0,
                         );
+                        FFAppState().RFIDTagsList = _model
+                            .newReadActionResponse2!
+                            .toList()
+                            .cast<RFIDDateStruct>();
+                        safeSetState(() {});
                         _model.writingStatus = await actions.getWritingStatus(
                           _model.epc,
-                          _model.newReadActionResponse2!.toList(),
+                          FFAppState().RFIDTagsList.toList(),
                         );
                         _model.writingstatus = _model.writingStatus!;
                         _model.waitingforwrite = true;
