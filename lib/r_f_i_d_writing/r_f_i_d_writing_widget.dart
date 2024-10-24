@@ -474,18 +474,23 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                         ),
                                       ),
                                     ),
-                                    Text(
-                                      _model.data,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w300,
-                                          ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 5.0, 0.0, 0.0),
+                                      child: Text(
+                                        _model.data,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w300,
+                                            ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -726,6 +731,8 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           _model.epc,
                           _model.scannedTag!.epc,
                         );
+                        _model.oldepc = _model.scannedTag!.epc;
+                        safeSetState(() {});
                         await Future.delayed(
                             const Duration(milliseconds: 2000));
                         await actions.onRead();
@@ -735,7 +742,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           -70.0,
                         );
                         _model.writingStatus = await actions.getWritingStatus(
-                          _model.epc,
+                          _model.oldepc,
                           _model.newReadActionResponse2!.toList(),
                         );
                         _model.writingstatus = _model.writingStatus!;
