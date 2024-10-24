@@ -742,7 +742,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           -70.0,
                         );
                         _model.writingStatus = await actions.getWritingStatus(
-                          _model.oldepc,
+                          _model.epc,
                           _model.newReadActionResponse2!.toList(),
                         );
                         _model.writingstatus = _model.writingStatus!;
@@ -753,8 +753,8 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           safeSetState(() {});
                           _model.verifyInsertionResponse =
                               await VerifyEPCInsertionCall.call(
-                            readEPC: _model.epc,
-                            writtenEPC: _model.scannedTag?.epc,
+                            readEPC: _model.oldepc,
+                            writtenEPC: _model.epc,
                             iPCode: _model.ipcode,
                             machineCode: 'TestGun',
                             barcode: _model.textFieldTextController.text,
