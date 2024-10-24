@@ -741,32 +741,31 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         if (_model.writingstatus) {
                           _model.currentState = 'Writing On Tag Success';
                           safeSetState(() {});
+                          _model.verifyInsertionResponse =
+                              await VerifyEPCInsertionCall.call(
+                            readEPC: _model.epc,
+                            writtenEPC: _model.scannedTag?.epc,
+                            iPCode: _model.ipcode,
+                            machineCode: 'TestGun',
+                            barcode: _model.textFieldTextController.text,
+                          );
+
+                          if ((_model.verifyInsertionResponse?.succeeded ??
+                              true)) {
+                            if (VerifyEPCInsertionCall.response(
+                              (_model.verifyInsertionResponse?.jsonBody ?? ''),
+                            )!) {
+                              _model.currentState = 'Write Success';
+                              safeSetState(() {});
+                            } else {
+                              _model.currentState = 'Wr';
+                              _model.writingstatus = false;
+                              safeSetState(() {});
+                            }
+                          }
                         } else {
                           _model.currentState = 'Writing On Tag Failed';
                           safeSetState(() {});
-                        }
-
-                        _model.verifyInsertionResponse =
-                            await VerifyEPCInsertionCall.call(
-                          readEPC: _model.epc,
-                          writtenEPC: _model.scannedTag?.epc,
-                          iPCode: _model.ipcode,
-                          machineCode: 'TestGun',
-                          barcode: _model.textFieldTextController.text,
-                        );
-
-                        if ((_model.verifyInsertionResponse?.succeeded ??
-                            true)) {
-                          if (VerifyEPCInsertionCall.response(
-                            (_model.verifyInsertionResponse?.jsonBody ?? ''),
-                          )!) {
-                            _model.currentState = 'Write Success';
-                            safeSetState(() {});
-                          } else {
-                            _model.currentState = 'Wr';
-                            _model.writingstatus = false;
-                            safeSetState(() {});
-                          }
                         }
                       } else {
                         await showDialog(
