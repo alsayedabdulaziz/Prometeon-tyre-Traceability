@@ -70,7 +70,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         (_model.scannedTag?.epc != null &&
                             _model.scannedTag?.epc != '')) {
                       if (_model.epc == _model.scannedTag?.epc) {
-                        _model.currentState = 'Tag ';
+                        _model.currentState = 'Tag Already Encoded';
                         safeSetState(() {});
                       } else {
                         _model.currentState = 'Press RFID Write to Write Tag';

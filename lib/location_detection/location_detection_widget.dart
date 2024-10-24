@@ -151,12 +151,12 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                   controller: _model.tagIDInputFieldTextController,
                   focusNode: _model.tagIDInputFieldFocusNode,
                   onFieldSubmitted: (_) async {
-                    _model.getEPCDataResponse = await GetEPCCall.call(
+                    _model.getEPCDataResponse = await GetBarcodeDataCall.call(
                       barcode: _model.tagIDInputFieldTextController.text,
                     );
 
                     if ((_model.getEPCDataResponse?.succeeded ?? true)) {
-                      _model.tagID = GetEPCCall.epc(
+                      _model.tagID = GetBarcodeDataCall.epc(
                         (_model.getEPCDataResponse?.jsonBody ?? ''),
                       )!;
                       safeSetState(() {});
