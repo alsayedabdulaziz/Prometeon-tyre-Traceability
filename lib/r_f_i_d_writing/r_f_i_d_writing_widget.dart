@@ -246,39 +246,47 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                 safeSetState(() {});
                               }),
                               Future(() async {
-                                _model.gEtBarcodeDataResponse =
-                                    await GetBarcodeDataCall.call(
-                                  barcode: _model.textFieldTextController.text,
-                                );
+                                if (_model.textFieldTextController.text != '') {
+                                  _model.gEtBarcodeDataResponse =
+                                      await GetBarcodeDataCall.call(
+                                    barcode:
+                                        _model.textFieldTextController.text,
+                                  );
 
-                                if ((_model.gEtBarcodeDataResponse?.succeeded ??
-                                    true)) {
-                                  _model.ipcode = GetBarcodeDataCall.iPCode(
-                                    (_model.gEtBarcodeDataResponse?.jsonBody ??
-                                        ''),
-                                  )!;
-                                  _model.data = GetBarcodeDataCall.data(
-                                    (_model.gEtBarcodeDataResponse?.jsonBody ??
-                                        ''),
-                                  )!;
-                                  _model.epc = GetBarcodeDataCall.epc(
-                                    (_model.gEtBarcodeDataResponse?.jsonBody ??
-                                        ''),
-                                  )!;
-                                  safeSetState(() {});
-                                  if (GetBarcodeDataCall.presented(
-                                    (_model.gEtBarcodeDataResponse?.jsonBody ??
-                                        ''),
-                                  )!) {
-                                    _model.currentState = 'Write Tag';
-                                    _model.writingstatus = false;
-                                    _model.waitingforwrite = false;
+                                  if ((_model
+                                          .gEtBarcodeDataResponse?.succeeded ??
+                                      true)) {
+                                    _model.ipcode = GetBarcodeDataCall.iPCode(
+                                      (_model.gEtBarcodeDataResponse
+                                              ?.jsonBody ??
+                                          ''),
+                                    )!;
+                                    _model.data = GetBarcodeDataCall.data(
+                                      (_model.gEtBarcodeDataResponse
+                                              ?.jsonBody ??
+                                          ''),
+                                    )!;
+                                    _model.epc = GetBarcodeDataCall.epc(
+                                      (_model.gEtBarcodeDataResponse
+                                              ?.jsonBody ??
+                                          ''),
+                                    )!;
                                     safeSetState(() {});
-                                  } else {
-                                    _model.currentState = 'RFID With No Tire';
-                                    _model.writingstatus = false;
-                                    _model.waitingforwrite = true;
-                                    safeSetState(() {});
+                                    if (GetBarcodeDataCall.presented(
+                                      (_model.gEtBarcodeDataResponse
+                                              ?.jsonBody ??
+                                          ''),
+                                    )!) {
+                                      _model.currentState = 'Write Tag';
+                                      _model.writingstatus = false;
+                                      _model.waitingforwrite = false;
+                                      safeSetState(() {});
+                                    } else {
+                                      _model.currentState = 'RFID With No Tire';
+                                      _model.writingstatus = false;
+                                      _model.waitingforwrite = true;
+                                      safeSetState(() {});
+                                    }
                                   }
                                 }
                               }),
