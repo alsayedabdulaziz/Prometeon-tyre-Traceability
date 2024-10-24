@@ -29,6 +29,8 @@ class RFIDWritingModel extends FlutterFlowModel<RFIDWritingWidget> {
 
   String oldepc = '-';
 
+  String barcode = '-';
+
   ///  State fields for stateful widgets in this page.
 
   InstantTimer? instantTimer;

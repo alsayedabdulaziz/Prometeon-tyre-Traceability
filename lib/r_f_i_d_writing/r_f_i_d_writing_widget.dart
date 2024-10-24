@@ -241,6 +241,11 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           onFieldSubmitted: (_) async {
                             await Future.wait([
                               Future(() async {
+                                _model.barcode =
+                                    _model.textFieldTextController.text;
+                                safeSetState(() {});
+                              }),
+                              Future(() async {
                                 _model.gEtBarcodeDataResponse =
                                     await GetBarcodeDataCall.call(
                                   barcode: _model.textFieldTextController.text,
@@ -762,7 +767,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                             writtenEPC: _model.epc,
                             iPCode: _model.ipcode,
                             machineCode: 'TestGun',
-                            barcode: _model.textFieldTextController.text,
+                            barcode: _model.barcode,
                           );
 
                           if ((_model.verifyInsertionResponse?.succeeded ??
