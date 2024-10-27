@@ -10,15 +10,23 @@ export 'api_manager.dart' show ApiCallResponse;
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 class LogInRequestCall {
-  static Future<ApiCallResponse> call() async {
+  static Future<ApiCallResponse> call({
+    String? username = '',
+    String? password = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "username": "$username",
+  "password": "$password"
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'LogInRequest',
-      apiUrl: 'http://192.168.1.13:8001/V1/LoginAction/LogInRequest',
-      callType: ApiCallType.GET,
+      apiUrl: 'http://192.168.8.105:8001/V1/LogInRequest',
+      callType: ApiCallType.POST,
       headers: {},
-      params: {
-        'LogIn': 1,
-      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -28,34 +36,10 @@ class LogInRequestCall {
     );
   }
 
-  static dynamic logInStatus(dynamic response) => getJsonField(
+  static bool? logInStatus(dynamic response) => castToType<bool>(getJsonField(
         response,
         r'''$.status''',
-      );
-}
-
-class LoginDataCall {
-  static Future<ApiCallResponse> call({
-    String? password = 'non',
-    String? username = 'non',
-  }) async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'LoginData',
-      apiUrl: 'http://192.168.1.13:8001/V1/loginData/UserDataFromApp',
-      callType: ApiCallType.GET,
-      headers: {},
-      params: {
-        'password': password,
-        'username': username,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
+      ));
 }
 
 class GetTagsDataCall {
@@ -70,7 +54,7 @@ class GetTagsDataCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
-      apiUrl: 'http://192.168.1.13:8001/V1/GetTagsData/GetTagsData',
+      apiUrl: 'http://192.168.8.105:8001/V1/GetTagsData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -117,7 +101,7 @@ class SendTagsListCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'SendTagsList',
-      apiUrl: 'http://192.168.1.13:8001/V1/StoreTagsInGlobal/StoreTagsInGlobal',
+      apiUrl: 'http://192.168.8.105:8001/V1/StoreTagsInGlobal',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -137,7 +121,7 @@ class PingCall {
   static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'Ping',
-      apiUrl: 'http://192.168.1.13:8001/V1/Ping/Ping',
+      apiUrl: 'http://192.168.8.105:8001/V1/Ping',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -167,8 +151,7 @@ class GetBarcodeDataCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetBarcodeData',
-      apiUrl:
-          'https://d8b9-41-232-222-57.ngrok-free.app/V1/GetBarcodeData/GetBarcodeData',
+      apiUrl: 'http://192.168.8.105:8001/V1/GetBarcodeData',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -211,7 +194,7 @@ class GetEPCCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetEPC',
-      apiUrl: 'http://192.168.1.13:8001/V1/GetEPC/GetEPC',
+      apiUrl: 'http://192.168.8.105:8001/V1/GetEPC',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -250,8 +233,7 @@ class VerifyEPCInsertionCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'VerifyEPCInsertion',
-      apiUrl:
-          'https://d8b9-41-232-222-57.ngrok-free.app/V1/VerifyEPCIntertion/VerifyEPCInsertion',
+      apiUrl: 'http://192.168.8.105:8001/V1/VerifyEPCInsertion',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

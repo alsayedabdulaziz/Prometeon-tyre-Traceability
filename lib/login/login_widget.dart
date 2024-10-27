@@ -432,60 +432,52 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             '') &&
                                     (_model.passwordTextController.text !=
                                             '')) {
-                                  _model.apiResultwz0 =
-                                      await LoginDataCall.call(
+                                  _model.logInRequestResponse =
+                                      await LogInRequestCall.call(
                                     username:
                                         _model.usernameTextController.text,
                                     password:
                                         _model.passwordTextController.text,
                                   );
 
-                                  if ((_model.apiResultwz0?.succeeded ??
+                                  if ((_model.logInRequestResponse?.succeeded ??
                                       true)) {
-                                    _model.logInRequestResponse =
-                                        await LogInRequestCall.call();
-
-                                    if ((_model
-                                            .logInRequestResponse?.succeeded ??
-                                        true)) {
-                                      _model.loginstatus =
-                                          LogInRequestCall.logInStatus(
-                                        (_model.logInRequestResponse
-                                                ?.jsonBody ??
-                                            ''),
-                                      ).toString();
-                                      safeSetState(() {});
-                                      if (_model.loginstatus == 'true') {
-                                        context.goNamed(
-                                          'RFIDMenu',
-                                          extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
-                                              hasTransition: true,
-                                              transitionType: PageTransitionType
-                                                  .bottomToTop,
-                                            ),
-                                          },
-                                        );
-                                      } else {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: const Text('Error'),
-                                              content: const Text(
-                                                  'Wrong Username Or Password'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: const Text('Ok'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      }
+                                    _model.loginstatus =
+                                        LogInRequestCall.logInStatus(
+                                      (_model.logInRequestResponse?.jsonBody ??
+                                          ''),
+                                    )!
+                                            .toString();
+                                    safeSetState(() {});
+                                    if (_model.loginstatus == 'true') {
+                                      context.goNamed(
+                                        'RFIDMenu',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.bottomToTop,
+                                          ),
+                                        },
+                                      );
+                                    } else {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: const Text('Error'),
+                                            content: const Text(
+                                                'Wrong Username Or Password'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: const Text('Ok'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
                                     }
                                   }
                                 } else {
