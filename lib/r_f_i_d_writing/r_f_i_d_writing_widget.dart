@@ -703,8 +703,8 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                     decoration: BoxDecoration(
                       color: _model.waitingforwrite
                           ? (_model.writingstatus
-                              ? const Color(0xFF23F023)
-                              : const Color(0xFFFF0202))
+                              ? const Color(0xFF159F15)
+                              : const Color(0xFFA30202))
                           : const Color(0xFF21196B),
                     ),
                     child: Row(
@@ -727,7 +727,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                           .alternate,
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w300,
+                                      fontWeight: FontWeight.bold,
                                     ),
                               ),
                             ),
