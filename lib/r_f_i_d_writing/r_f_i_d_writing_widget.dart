@@ -745,6 +745,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           _model.scannedTag!.epc,
                         );
                         _model.oldepc = _model.scannedTag!.epc;
+                        _model.newepc = _model.epc;
                         safeSetState(() {});
                         await Future.delayed(
                             const Duration(milliseconds: 2000));
@@ -760,7 +761,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                             .cast<RFIDDateStruct>();
                         safeSetState(() {});
                         _model.writingStatus = await actions.getWritingStatus(
-                          _model.epc,
+                          _model.newepc,
                           FFAppState().RFIDTagsList.toList(),
                         );
                         _model.writingstatus = _model.writingStatus!;
@@ -772,7 +773,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           _model.verifyInsertionResponse =
                               await VerifyEPCInsertionCall.call(
                             readEPC: _model.oldepc,
-                            writtenEPC: _model.epc,
+                            writtenEPC: _model.newepc,
                             iPCode: _model.ipcode,
                             machineCode: 'TestGun',
                             barcode: _model.barcode,
