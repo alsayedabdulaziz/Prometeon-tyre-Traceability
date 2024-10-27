@@ -40,7 +40,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
       await Future.wait([
         Future(() async {
           _model.instantTimer = InstantTimer.periodic(
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 1000),
             callback: (timer) async {
               _model.newReadActionResponse = await actions.newReadAction(
                 false,
@@ -72,7 +72,9 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                         (_model.scannedTag?.epc != null &&
                             _model.scannedTag?.epc != '')) {
                       if (_model.epc == _model.scannedTag?.epc) {
-                        _model.currentState = 'Tag Already Encoded';
+                        _model.currentState = 'Check Successful';
+                        _model.writingstatus = true;
+                        _model.waitingforwrite = true;
                         safeSetState(() {});
                       } else {
                         _model.currentState = 'Press RFID Write to Write Tag';
