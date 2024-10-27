@@ -31,8 +31,6 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   TextEditingController? passwordTextController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
-  // Stores action output result for [Backend Call - API (LoginData)] action in Button widget.
-  ApiCallResponse? apiResultwz0;
   // Stores action output result for [Backend Call - API (LogInRequest)] action in Button widget.
   ApiCallResponse? logInRequestResponse;
 
