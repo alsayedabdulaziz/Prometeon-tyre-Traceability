@@ -443,7 +443,11 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                           _model.waitingforwrite = false;
                           safeSetState(() {});
                           FFAppState().RFIDTagsList = [];
+                          FFAppState().ScannedBarcode = BarcodeDataStruct();
                           safeSetState(() {});
+                          await actions.readBarcodeAction(
+                            true,
+                          );
                           await actions.newReadAction(
                             true,
                             -52.0,
