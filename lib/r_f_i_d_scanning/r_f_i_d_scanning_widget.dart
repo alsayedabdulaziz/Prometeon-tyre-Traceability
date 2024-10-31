@@ -39,6 +39,9 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
       FFAppState().RFIDTagsList = [];
       safeSetState(() {});
       await actions.stopRead();
+      await actions.setMode(
+        true,
+      );
     });
   }
 
