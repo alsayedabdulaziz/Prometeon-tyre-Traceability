@@ -112,6 +112,16 @@ class FFAppState extends ChangeNotifier {
   set RssiFilter(double value) {
     _RssiFilter = value;
   }
+
+  BarcodeDataStruct _ScannedBarcode = BarcodeDataStruct();
+  BarcodeDataStruct get ScannedBarcode => _ScannedBarcode;
+  set ScannedBarcode(BarcodeDataStruct value) {
+    _ScannedBarcode = value;
+  }
+
+  void updateScannedBarcodeStruct(Function(BarcodeDataStruct) updateFn) {
+    updateFn(_ScannedBarcode);
+  }
 }
 
 void _safeInit(Function() initializeField) {

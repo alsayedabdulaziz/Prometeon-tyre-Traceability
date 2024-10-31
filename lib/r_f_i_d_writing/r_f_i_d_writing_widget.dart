@@ -37,54 +37,75 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
       safeSetState(() {});
       _model.scannedTag = null;
       safeSetState(() {});
+      await actions.setMode(
+        false,
+      );
       await Future.wait([
         Future(() async {
           _model.instantTimer = InstantTimer.periodic(
             duration: const Duration(milliseconds: 1000),
             callback: (timer) async {
-              _model.newReadActionResponse = await actions.newReadAction(
-                false,
-                FFAppState().RssiFilter,
-              );
-              FFAppState().RFIDTagsList =
-                  _model.newReadActionResponse!.toList().cast<RFIDDateStruct>();
-              safeSetState(() {});
-              if (functions
-                  .isTagsListNotEmpty(FFAppState().RFIDTagsList.toList())) {
-                if (FFAppState().RFIDTagsList.length > 1) {
-                  _model.currentState =
-                      'More Than One Tag Found, Change Rssi Value';
-                  safeSetState(() {});
-                  await actions.newReadAction(
-                    true,
-                    -52.0,
-                  );
-                  FFAppState().RFIDTagsList = [];
-                  safeSetState(() {});
-                } else {
-                  _model.firstReadTag = await actions.getFirst(
-                    FFAppState().RFIDTagsList.toList(),
-                  );
-                  _model.scannedTag = _model.firstReadTag;
-                  safeSetState(() {});
-                  if (!_model.haltwritemessage) {
-                    if ((_model.epc != '') &&
-                        (_model.scannedTag?.epc != null &&
-                            _model.scannedTag?.epc != '')) {
-                      if (_model.epc == _model.scannedTag?.epc) {
-                        _model.currentState = 'Check Successful';
-                        _model.writingstatus = true;
-                        _model.waitingforwrite = true;
-                        safeSetState(() {});
-                      } else {
-                        _model.currentState = 'Press RFID Write to Write Tag';
-                        safeSetState(() {});
-                        _model.haltwritemessage = true;
-                        safeSetState(() {});
+              if (_model.epc != '') {
+                await actions.setMode(
+                  true,
+                );
+                _model.newReadActionResponse = await actions.newReadAction(
+                  false,
+                  FFAppState().RssiFilter,
+                );
+                FFAppState().RFIDTagsList = _model.newReadActionResponse!
+                    .toList()
+                    .cast<RFIDDateStruct>();
+                safeSetState(() {});
+                if (functions
+                    .isTagsListNotEmpty(FFAppState().RFIDTagsList.toList())) {
+                  if (FFAppState().RFIDTagsList.length > 1) {
+                    _model.currentState =
+                        'More Than One Tag Found, Change Rssi Value';
+                    safeSetState(() {});
+                    await actions.newReadAction(
+                      true,
+                      -52.0,
+                    );
+                    FFAppState().RFIDTagsList = [];
+                    safeSetState(() {});
+                  } else {
+                    _model.firstReadTag = await actions.getFirst(
+                      FFAppState().RFIDTagsList.toList(),
+                    );
+                    _model.scannedTag = _model.firstReadTag;
+                    safeSetState(() {});
+                    if (!_model.haltwritemessage) {
+                      if ((_model.epc != '') &&
+                          (_model.scannedTag?.epc != null &&
+                              _model.scannedTag?.epc != '')) {
+                        if (_model.epc == _model.scannedTag?.epc) {
+                          _model.currentState = 'Check Successful';
+                          _model.writingstatus = true;
+                          _model.waitingforwrite = true;
+                          safeSetState(() {});
+                        } else {
+                          _model.currentState = 'Press RFID Write to Write Tag';
+                          safeSetState(() {});
+                          _model.haltwritemessage = true;
+                          safeSetState(() {});
+                        }
                       }
                     }
                   }
                 }
+              } else {
+                await actions.setMode(
+                  false,
+                );
+                _model.readBarcodeActionResponse =
+                    await actions.readBarcodeAction(
+                  false,
+                );
+                FFAppState().ScannedBarcode = _model.readBarcodeActionResponse!;
+                safeSetState(() {});
+                _model.barcode = FFAppState().ScannedBarcode.barcode;
+                safeSetState(() {});
               }
             },
             startImmediately: true,

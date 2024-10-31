@@ -40,6 +40,8 @@ class RFIDWritingModel extends FlutterFlowModel<RFIDWritingWidget> {
   List<RFIDDateStruct>? newReadActionResponse;
   // Stores action output result for [Custom Action - getFirst] action in RFIDWriting widget.
   RFIDDateStruct? firstReadTag;
+  // Stores action output result for [Custom Action - readBarcodeAction] action in RFIDWriting widget.
+  BarcodeDataStruct? readBarcodeActionResponse;
   // State field(s) for textField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textFieldTextController;
