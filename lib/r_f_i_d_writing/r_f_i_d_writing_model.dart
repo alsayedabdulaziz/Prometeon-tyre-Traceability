@@ -33,6 +33,10 @@ class RFIDWritingModel extends FlutterFlowModel<RFIDWritingWidget> {
 
   String newepc = '-';
 
+  bool barcodemodeset = false;
+
+  bool rfidmodeset = false;
+
   ///  State fields for stateful widgets in this page.
 
   InstantTimer? instantTimer;
