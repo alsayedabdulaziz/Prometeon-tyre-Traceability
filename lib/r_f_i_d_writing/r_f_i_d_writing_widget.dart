@@ -114,6 +114,38 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                 safeSetState(() {});
                 _model.barcode = FFAppState().ScannedBarcode.barcode;
                 safeSetState(() {});
+                _model.getBarcodeDataReponse = await GetBarcodeDataCall.call(
+                  barcode: _model.barcode,
+                );
+
+                if ((_model.getBarcodeDataReponse?.succeeded ?? true)) {
+                  _model.ipcode = GetBarcodeDataCall.iPCode(
+                    (_model.gEtBarcodeDataResponse?.jsonBody ?? ''),
+                  )!;
+                  _model.data = GetBarcodeDataCall.data(
+                    (_model.gEtBarcodeDataResponse?.jsonBody ?? ''),
+                  )!;
+                  _model.epc = GetBarcodeDataCall.epc(
+                    (_model.gEtBarcodeDataResponse?.jsonBody ?? ''),
+                  )!;
+                  _model.newepc = GetBarcodeDataCall.epc(
+                    (_model.gEtBarcodeDataResponse?.jsonBody ?? ''),
+                  )!;
+                  safeSetState(() {});
+                  if (GetBarcodeDataCall.presented(
+                    (_model.getBarcodeDataReponse?.jsonBody ?? ''),
+                  )!) {
+                    _model.currentState = 'Write Tag';
+                    _model.writingstatus = false;
+                    _model.waitingforwrite = false;
+                    safeSetState(() {});
+                  } else {
+                    _model.currentState = 'RFID With No Tire';
+                    _model.writingstatus = false;
+                    _model.waitingforwrite = true;
+                    safeSetState(() {});
+                  }
+                }
               }
             },
             startImmediately: true,
