@@ -23,15 +23,21 @@ import 'dart:developer' as developer;
 AppState appState = AppState();
 
 BarcodeDataStruct result = BarcodeDataStruct();
+List<Barcode> _latestBarcodes = [];
+List<BarcodeDataStruct> _result = [];
+
 Future<BarcodeDataStruct> readBarcodeAction(bool clear) async {
   // Add your function code here!
+  _result.clear();
+  _latestBarcodes = appState.barcodes;
   if (clear) {
     return result;
   } else {
-    result(BarcodeDataStruct(
-        barcode: appState.barcodes[0].data,
-        format: appState.barcodes[0].format,
-        seen: appState.barcodes[0].seen));
-    return result;
+    if (_latestBarcodes.isNotEmpty) {
+      result.barcode = _latestBarcodes[0].barcode;
+      return result;
+    } else {
+      return result;
+    }
   }
 }
