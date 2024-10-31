@@ -39,6 +39,9 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
       FFAppState().RFIDTagsList = [];
       safeSetState(() {});
       await actions.stopRead();
+      await actions.setMode(
+        true,
+      );
     });
   }
 
@@ -369,12 +372,20 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    _model.readingstatus,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: _model.readingstatus == 'Scanning Started'
+                          ? const Color(0xFF32B033)
+                          : const Color(0x00000000),
+                    ),
+                    child: Text(
+                      _model.readingstatus,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
                   ),
                 ],
               ),
