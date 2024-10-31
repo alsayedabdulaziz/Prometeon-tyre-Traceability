@@ -128,9 +128,6 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   _model.epc = GetBarcodeDataCall.epc(
                     (_model.gEtBarcodeDataResponse?.jsonBody ?? ''),
                   )!;
-                  _model.newepc = GetBarcodeDataCall.epc(
-                    (_model.gEtBarcodeDataResponse?.jsonBody ?? ''),
-                  )!;
                   safeSetState(() {});
                   if (GetBarcodeDataCall.presented(
                     (_model.getBarcodeDataReponse?.jsonBody ?? ''),
