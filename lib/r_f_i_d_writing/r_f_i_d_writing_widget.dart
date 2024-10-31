@@ -121,15 +121,23 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
 
                   if ((_model.getBarcodeDataReponse?.succeeded ?? true)) {
                     _model.ipcode = GetBarcodeDataCall.iPCode(
-                      (_model.gEtBarcodeDataResponse?.jsonBody ?? ''),
+                      (_model.getBarcodeDataReponse?.jsonBody ?? ''),
                     )!;
                     _model.data = GetBarcodeDataCall.data(
-                      (_model.gEtBarcodeDataResponse?.jsonBody ?? ''),
+                      (_model.getBarcodeDataReponse?.jsonBody ?? ''),
                     )!;
                     _model.epc = GetBarcodeDataCall.epc(
-                      (_model.gEtBarcodeDataResponse?.jsonBody ?? ''),
+                      (_model.getBarcodeDataReponse?.jsonBody ?? ''),
                     )!;
                     safeSetState(() {});
+                    safeSetState(() {
+                      _model.textFieldTextController?.text =
+                          FFAppState().ScannedBarcode.barcode;
+                      _model.textFieldTextController?.selection =
+                          TextSelection.collapsed(
+                              offset:
+                                  _model.textFieldTextController!.text.length);
+                    });
                     if (GetBarcodeDataCall.presented(
                       (_model.getBarcodeDataReponse?.jsonBody ?? ''),
                     )!) {
