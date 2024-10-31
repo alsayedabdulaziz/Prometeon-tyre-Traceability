@@ -160,6 +160,8 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               if (_model.readingstatus == 'Scanning Stopped') {
                                 _model.readingstatus = 'Scanning Started';
                                 safeSetState(() {});
+                                FFAppState().RFIDTagsList = [];
+                                safeSetState(() {});
                                 _model.instantTimer = InstantTimer.periodic(
                                   duration: const Duration(milliseconds: 1000),
                                   callback: (timer) async {
