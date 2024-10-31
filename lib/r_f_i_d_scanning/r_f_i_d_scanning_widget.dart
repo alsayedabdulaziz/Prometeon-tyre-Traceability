@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -159,62 +160,63 @@ class _RFIDScanningWidgetState extends State<RFIDScanningWidget> {
                               if (_model.readingstatus == 'Scanning Stopped') {
                                 _model.readingstatus = 'Scanning Started';
                                 safeSetState(() {});
-                                await actions.onRead();
-                                _model.readTagCountResponse =
-                                    await actions.newReadAction(
-                                  false,
-                                  -70.0,
-                                );
-                                FFAppState().RFIDTagsList = _model
-                                    .readTagCountResponse!
-                                    .toList()
-                                    .cast<RFIDDateStruct>();
-                                safeSetState(() {});
-                                if (functions.isTagsListNotEmpty(
-                                    FFAppState().RFIDTagsList.toList())) {
-                                  if (_model.listsize !=
-                                      functions
-                                          .tagsListToList(FFAppState()
-                                              .RFIDTagsList
-                                              .toList())
-                                          .length) {
-                                    _model.tagid = functions
-                                        .tagsListToList(
-                                            FFAppState().RFIDTagsList.toList())
-                                        .toList()
-                                        .cast<String>();
-                                    _model.listsize = functions
-                                        .tagsListToList(
-                                            FFAppState().RFIDTagsList.toList())
-                                        .length;
-                                    safeSetState(() {});
-                                    _model.getTagsDataResponse =
-                                        await GetTagsDataCall.call(
-                                      tagsListList: _model.tagid,
+                                _model.instantTimer = InstantTimer.periodic(
+                                  duration: const Duration(milliseconds: 1000),
+                                  callback: (timer) async {
+                                    _model.newReadActionResponse =
+                                        await actions.newReadAction(
+                                      false,
+                                      -72.0,
                                     );
+                                    FFAppState().RFIDTagsList = _model
+                                        .newReadActionResponse!
+                                        .toList()
+                                        .cast<RFIDDateStruct>();
+                                    safeSetState(() {});
+                                    if (functions.isTagsListNotEmpty(
+                                        FFAppState().RFIDTagsList.toList())) {
+                                      if (_model.listsize !=
+                                          FFAppState().RFIDTagsList.length) {
+                                        _model.listsize =
+                                            FFAppState().RFIDTagsList.length;
+                                        safeSetState(() {});
+                                        _model.getTagsDataResponse1 =
+                                            await GetTagsDataCall.call(
+                                          tagsListList: functions
+                                              .tagsListToList(FFAppState()
+                                                  .RFIDTagsList
+                                                  .toList()),
+                                        );
 
-                                    if ((_model
-                                            .getTagsDataResponse?.succeeded ??
-                                        true)) {
-                                      FFAppState().QueriedTagDataList =
-                                          functions
-                                              .buildTagsDataList(
-                                                  GetTagsDataCall.epc(
-                                                    (_model.getTagsDataResponse
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  )?.toList(),
-                                                  GetTagsDataCall.barcode(
-                                                    (_model.getTagsDataResponse
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  )?.toList())!
-                                              .toList()
-                                              .cast<QueriedTagDataStruct>();
-                                      safeSetState(() {});
+                                        if ((_model.getTagsDataResponse1
+                                                ?.succeeded ??
+                                            true)) {
+                                          FFAppState().QueriedTagDataList =
+                                              functions
+                                                  .buildTagsDataList(
+                                                      GetTagsDataCall.epc(
+                                                        (_model.getTagsDataResponse1
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                      )?.toList(),
+                                                      GetTagsDataCall.barcode(
+                                                        (_model.getTagsDataResponse1
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                      )?.toList())!
+                                                  .toList()
+                                                  .cast<QueriedTagDataStruct>();
+                                          safeSetState(() {});
+                                          _model.readingstatus =
+                                              'Scanning Stopped';
+                                          safeSetState(() {});
+                                          _model.instantTimer?.cancel();
+                                        }
+                                      }
                                     }
-                                  }
-                                }
+                                  },
+                                  startImmediately: true,
+                                );
                               } else {
                                 _model.readingstatus = 'Scanning Stopped';
                                 safeSetState(() {});
