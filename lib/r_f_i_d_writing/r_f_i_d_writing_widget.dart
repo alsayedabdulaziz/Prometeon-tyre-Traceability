@@ -45,10 +45,14 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
           _model.instantTimer = InstantTimer.periodic(
             duration: const Duration(milliseconds: 1000),
             callback: (timer) async {
-              if (_model.epc != '') {
-                await actions.setMode(
-                  true,
-                );
+              if (_model.epc != '-') {
+                if (!_model.rfidmodeset) {
+                  _model.rfidmodeset = true;
+                  safeSetState(() {});
+                  await actions.setMode(
+                    true,
+                  );
+                }
                 _model.newReadActionResponse = await actions.newReadAction(
                   false,
                   FFAppState().RssiFilter,
@@ -95,9 +99,13 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                   }
                 }
               } else {
-                await actions.setMode(
-                  false,
-                );
+                if (!_model.barcodemodeset) {
+                  _model.barcodemodeset = true;
+                  safeSetState(() {});
+                  await actions.setMode(
+                    false,
+                  );
+                }
                 _model.readBarcodeActionResponse =
                     await actions.readBarcodeAction(
                   false,

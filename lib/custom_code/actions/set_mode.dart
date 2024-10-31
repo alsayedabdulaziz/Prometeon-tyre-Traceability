@@ -23,9 +23,9 @@ import 'dart:developer' as developer;
 AppState appState = AppState();
 Future setMode(bool rfid) async {
   if (rfid) {
-    appState.SetMode(Modes: RFID);
+    appState.setMode(Modes.rfid);
   } else {
-    appState.SetMode(Modes: Barcode);
+    appState.setMode(Modes.barcode);
   }
   // Add your function code here!
 }
