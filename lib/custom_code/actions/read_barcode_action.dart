@@ -31,6 +31,8 @@ Future<BarcodeDataStruct> readBarcodeAction(bool clear) async {
   _result.clear();
   _latestBarcodes = appState.barcodes;
   if (clear) {
+    result.barcode = '';
+    appState.barcodes.clear();
     return result;
   } else {
     if (_latestBarcodes.isNotEmpty) {

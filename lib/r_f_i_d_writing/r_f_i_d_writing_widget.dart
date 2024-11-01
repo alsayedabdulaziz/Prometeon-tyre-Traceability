@@ -868,7 +868,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                               _model.currentState = 'Write Success';
                               safeSetState(() {});
                             } else {
-                              _model.currentState = 'Wr';
+                              _model.currentState = 'Write Fail';
                               _model.writingstatus = false;
                               safeSetState(() {});
                             }
