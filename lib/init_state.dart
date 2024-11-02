@@ -35,11 +35,16 @@ class AppState extends foundation.ChangeNotifier {
   }
   void writeTag(String epc, String epcNew,double password) {
     double? adjustedPassword = password == 0 ? null : password;
-
     _zebra123?.writeTag(epc,
       epcNew: epcNew,
-      password: adjustedPassword,);
+      password: adjustedPassword);
   }
+
+  void lockTag(String epc, double password){
+    double? adjustedPassword = password == 0 ? null : password;
+    _zebra123?.lockTag(epc, password: adjustedPassword);
+  }
+
   void stopScanning() {
     _zebra123?.stopScanning();
     isScanning = false;
@@ -74,8 +79,8 @@ class AppState extends foundation.ChangeNotifier {
     _zebra123?.disconnect();
   }
 
-  void setMode(){
-    _zebra123?.setMode(Modes.rfid);
+  void setMode(Modes mode){
+    _zebra123?.setMode(mode);
   }
 
   void _callback(Interfaces interface, Events event, dynamic data) {
@@ -149,6 +154,15 @@ class AppState extends foundation.ChangeNotifier {
         print("Interface: $interface, tag Written Successfullly");
         writeStatus = true;
         break;
+
+      case Events.lockSuccess:
+        print("Interface: $interface Error: ${data.message}");
+        break;
+
+      case Events.lockFail:
+        print("Interface: $interface Error: ${data.message}");
+        break;
+
 
       default:
         if (foundation.kDebugMode) {
