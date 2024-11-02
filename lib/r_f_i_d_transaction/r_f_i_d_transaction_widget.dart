@@ -491,7 +491,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: Text(
-                                          '-',
+                                          _model.ipcode,
                                           style: FlutterFlowTheme.of(context)
                                               .headlineMedium
                                               .override(
@@ -662,7 +662,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                                   FormFieldController<String>(
                             _model.operationDropDownValue ??= 'Lock',
                           ),
-                          options: const ['RFID Write', 'Lock', 'RFID Reset Fill'],
+                          options: const ['Write', 'Lock', ' Reset Fill'],
                           onChanged: (val) async {
                             safeSetState(
                                 () => _model.operationDropDownValue = val);
