@@ -13,3 +13,4 @@ export 'get_writing_status.dart' show getWritingStatus;
 export 'scanner_return_status.dart' show scannerReturnStatus;
 export 'set_mode.dart' show setMode;
 export 'read_barcode_action.dart' show readBarcodeAction;
+export 'lock_tag_action.dart' show lockTagAction;
