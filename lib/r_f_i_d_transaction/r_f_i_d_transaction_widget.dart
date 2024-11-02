@@ -194,7 +194,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                         alignment: const AlignmentDirectional(1.0, 0.0),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              170.0, 0.0, 0.0, 0.0),
+                              130.0, 0.0, 0.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
                             borderRadius: 30.0,
@@ -314,8 +314,29 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        safeSetState(() {
+                          _model.scanthebarcodeTextController?.clear();
+                        });
+                        _model.scannedTag = null;
+                        _model.ipcode = '-';
+                        _model.data = '-';
+                        _model.epc = '-';
+                        _model.barcode = '-';
+                        _model.barcodemodeset = false;
+                        _model.rfidmodeset = false;
+                        safeSetState(() {});
+                        FFAppState().RFIDTagsList = [];
+                        FFAppState().ScannedBarcode = BarcodeDataStruct();
+                        safeSetState(() {});
+                        await actions.readBarcodeAction(
+                          true,
+                        );
+                        await actions.newReadAction(
+                          true,
+                          -52.0,
+                        );
+                        await actions.stopRead();
                       },
                       text: 'Clear',
                       options: FFButtonOptions(
@@ -559,7 +580,10 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                             Align(
                               alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Text(
-                                '-',
+                                valueOrDefault<String>(
+                                  _model.epc,
+                                  '-',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineMedium
                                     .override(
@@ -591,7 +615,10 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
-                                  '-',
+                                  valueOrDefault<String>(
+                                    _model.scannedTag?.epc,
+                                    '-',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .headlineMedium
                                       .override(
@@ -733,7 +760,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                   text: 'RFID ${_model.operation}',
                   options: FFButtonOptions(
                     width: 300.0,
-                    height: 35.0,
+                    height: 30.0,
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
