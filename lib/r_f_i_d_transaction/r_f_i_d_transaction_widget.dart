@@ -217,7 +217,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'RFID Writing',
+                      'RFID Transaction',
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
                                 fontFamily: 'Outfit',
@@ -253,7 +253,7 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                         autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'scan the barcode',
+                          labelText: 'Enter barcode',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -369,138 +369,123 @@ class _RFIDTransactionWidgetState extends State<RFIDTransactionWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Expanded(
-                                child: Container(
-                                  decoration: const BoxDecoration(),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 5.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Barcode',
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineMedium
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 5.0, 0.0, 0.0),
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                          _model.scanthebarcodeTextController
+                                              .text,
+                                          '-',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineMedium
+                                            .override(
+                                              fontFamily: 'Outfit',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w300,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    _model.data,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Colors.white,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    50.0, 0.0, 0.0, 0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Align(
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: Text(
-                                          'Barcode',
+                                          'IP Code',
                                           style: FlutterFlowTheme.of(context)
                                               .headlineMedium
                                               .override(
                                                 fontFamily: 'Outfit',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primaryBackground,
                                                 fontSize: 14.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w300,
                                               ),
                                         ),
                                       ),
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 5.0, 0.0, 0.0),
-                                          child: Text(
-                                            '-',
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineMedium
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryBackground,
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w300,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        '-',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color: Colors.white,
-                                              fontSize: 12.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w300,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  decoration: const BoxDecoration(),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        50.0, 0.0, 0.0, 0.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 5.0, 0.0, 0.0),
-                                            child: Text(
-                                              'IP Code',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .headlineMedium
-                                                  .override(
-                                                    fontFamily: 'Outfit',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w300,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 5.0, 0.0, 0.0),
-                                            child: Text(
-                                              '-',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .headlineMedium
-                                                  .override(
-                                                    fontFamily: 'Outfit',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    fontSize: 12.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w300,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
                                     ),
-                                  ),
+                                    Align(
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 5.0, 0.0, 0.0),
+                                        child: Text(
+                                          '-',
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineMedium
+                                              .override(
+                                                fontFamily: 'Outfit',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                fontSize: 12.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w300,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
