@@ -128,8 +128,16 @@ class _RAndDWidgetState extends State<RAndDWidget> {
                 child: Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   child: FFButtonWidget(
-                    onPressed: () {
-                      print('RFIDWrite pressed ...');
+                    onPressed: () async {
+                      context.pushNamed(
+                        'RFIDTransaction',
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: const TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.bottomToTop,
+                          ),
+                        },
+                      );
                     },
                     text: 'RFID Transactions',
                     options: FFButtonOptions(
