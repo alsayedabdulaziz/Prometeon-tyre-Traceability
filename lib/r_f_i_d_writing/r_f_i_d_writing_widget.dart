@@ -347,7 +347,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                               ?.jsonBody ??
                                           ''),
                                     )!) {
-                                      _model.currentState = 'Write Tag';
+                                      _model.currentState = 'Scan RFID TAG';
                                       _model.writingstatus = false;
                                       _model.waitingforwrite = false;
                                       safeSetState(() {});
@@ -681,7 +681,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                                   child: Image.asset(
                                     'assets/images/rfid-chip_(1).png',
                                     width: 30.0,
-                                    height: 30.0,
+                                    height: 40.0,
                                     fit: BoxFit.cover,
                                     alignment: const Alignment(0.0, -1.0),
                                   ),
@@ -868,7 +868,7 @@ class _RFIDWritingWidgetState extends State<RFIDWritingWidget> {
                               _model.currentState = 'Write Success';
                               safeSetState(() {});
                             } else {
-                              _model.currentState = 'Wr';
+                              _model.currentState = 'Write Fail';
                               _model.writingstatus = false;
                               safeSetState(() {});
                             }

@@ -22,24 +22,7 @@ import 'dart:developer' as developer;
 
 AppState appState = AppState();
 
-BarcodeDataStruct result = BarcodeDataStruct();
-List<Barcode> _latestBarcodes = [];
-List<BarcodeDataStruct> _result = [];
-
-Future<BarcodeDataStruct> readBarcodeAction(bool clear) async {
+Future lockTagAction(String epc) async {
   // Add your function code here!
-  _result.clear();
-  _latestBarcodes = appState.barcodes;
-  if (clear) {
-    result.barcode = '';
-    appState.barcodes.clear();
-    return result;
-  } else {
-    if (_latestBarcodes.isNotEmpty) {
-      result.barcode = _latestBarcodes[0].barcode;
-      return result;
-    } else {
-      return result;
-    }
-  }
+  appState.lockTag(epc, password: 0);
 }
