@@ -240,8 +240,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                           builder: (alertDialogContext) {
                             return AlertDialog(
                               title: const Text('Success'),
-                              content:
-                                  const Text('Please Press Start to Begin Tracking'),
+                              content: const Text(' Press Start to Begin Tracking'),
                               actions: [
                                 TextButton(
                                   onPressed: () =>
