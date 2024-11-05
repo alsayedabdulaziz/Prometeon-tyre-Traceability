@@ -423,7 +423,10 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                               _model.barcodemodeset = false;
                               _model.rfidmodeset = false;
                               _model.barcode = '-';
-                              _model.tagID = '--';
+                              _model.tagID = '-';
+                              safeSetState(() {});
+                              FFAppState().ScannedBarcode = BarcodeDataStruct();
+                              FFAppState().RFIDTagsList = [];
                               safeSetState(() {});
                               safeSetState(() {
                                 _model.tagIDInputFieldTextController?.clear();

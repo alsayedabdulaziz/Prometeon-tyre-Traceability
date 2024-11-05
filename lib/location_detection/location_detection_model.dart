@@ -14,7 +14,7 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
 
   double rssi = 0.0;
 
-  String tagID = '--';
+  String tagID = '-';
 
   bool barcodemodeset = false;
 
