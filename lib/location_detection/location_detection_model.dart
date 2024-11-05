@@ -16,10 +16,21 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
 
   String tagID = '--';
 
+  bool barcodemodeset = false;
+
+  bool rfidmodeset = false;
+
+  String? barcode = '-';
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getstatus] action in LocationDetection widget.
   String? getstatusresponse2;
+  InstantTimer? instantTimer;
+  // Stores action output result for [Custom Action - readBarcodeAction] action in LocationDetection widget.
+  BarcodeDataStruct? readBarcodeActionResponse;
+  // Stores action output result for [Backend Call - API (GetBarcodeData)] action in LocationDetection widget.
+  ApiCallResponse? getBarcodeDataReponse;
   // State field(s) for TagIDInputField widget.
   FocusNode? tagIDInputFieldFocusNode;
   TextEditingController? tagIDInputFieldTextController;
@@ -29,7 +40,7 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
   ApiCallResponse? getEPCDataResponse;
   // Stores action output result for [Custom Action - getstatus] action in ScanButton widget.
   String? getstatusResponse;
-  InstantTimer? instantTimer;
+  InstantTimer? instantTimer2;
   // Stores action output result for [Custom Action - newReadAction] action in ScanButton widget.
   List<RFIDDateStruct>? newReadActionResponse;
   // Stores action output result for [Custom Action - getFirst] action in ScanButton widget.
@@ -40,9 +51,10 @@ class LocationDetectionModel extends FlutterFlowModel<LocationDetectionWidget> {
 
   @override
   void dispose() {
+    instantTimer?.cancel();
     tagIDInputFieldFocusNode?.dispose();
     tagIDInputFieldTextController?.dispose();
 
-    instantTimer?.cancel();
+    instantTimer2?.cancel();
   }
 }
