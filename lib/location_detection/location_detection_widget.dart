@@ -240,8 +240,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                           builder: (alertDialogContext) {
                             return AlertDialog(
                               title: const Text('Success'),
-                              content:
-                                  const Text('Please Press Start to Begin Tracking'),
+                              content: const Text(' Press Start to Begin Tracking'),
                               actions: [
                                 TextButton(
                                   onPressed: () =>
@@ -423,7 +422,10 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                               _model.barcodemodeset = false;
                               _model.rfidmodeset = false;
                               _model.barcode = '-';
-                              _model.tagID = '--';
+                              _model.tagID = '-';
+                              safeSetState(() {});
+                              FFAppState().ScannedBarcode = BarcodeDataStruct();
+                              FFAppState().RFIDTagsList = [];
                               safeSetState(() {});
                               safeSetState(() {
                                 _model.tagIDInputFieldTextController?.clear();
