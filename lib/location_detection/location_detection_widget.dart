@@ -434,6 +434,10 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                                 false,
                                 '--',
                               );
+                              await actions.newReadAction(
+                                true,
+                                0.0,
+                              );
                               _model.instantTimer2?.cancel();
                             },
                             text: 'Stop',
