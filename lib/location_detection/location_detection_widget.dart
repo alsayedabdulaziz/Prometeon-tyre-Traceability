@@ -474,7 +474,6 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                         ),
                         Container(
                           width: 320.0,
-                          height: 100.0,
                           decoration: const BoxDecoration(),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
