@@ -46,7 +46,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
           _model.instantTimer = InstantTimer.periodic(
             duration: const Duration(milliseconds: 1000),
             callback: (timer) async {
-              if (_model.tagID != '') {
+              if (_model.tagID != '-') {
                 if (!_model.rfidmodeset) {
                   _model.rfidmodeset = true;
                   safeSetState(() {});
@@ -423,7 +423,11 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                               _model.barcodemodeset = false;
                               _model.rfidmodeset = false;
                               _model.barcode = '-';
+                              _model.tagID = '--';
                               safeSetState(() {});
+                              safeSetState(() {
+                                _model.tagIDInputFieldTextController?.clear();
+                              });
                               await actions.trackAction(
                                 false,
                                 '--',
