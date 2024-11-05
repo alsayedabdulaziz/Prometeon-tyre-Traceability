@@ -320,7 +320,7 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Column(
-                        mainAxisSize: MainAxisSize.max,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
@@ -458,42 +458,38 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
                     ].divide(const SizedBox(width: 5.0)),
                   ),
                 ),
-                Expanded(
-                  child: Align(
-                    alignment: const AlignmentDirectional(0.0, -1.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          _model.trackingstatus,
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                        Container(
-                          width: 320.0,
-                          decoration: const BoxDecoration(),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 30.0, 0.0, 0.0),
-                            child: LinearPercentIndicator(
-                              percent: _model.rssi,
-                              width: 300.0,
-                              lineHeight: 30.0,
-                              animation: true,
-                              animateFromLastPercent: true,
-                              progressColor:
-                                  FlutterFlowTheme.of(context).primary,
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).accent4,
-                              padding: EdgeInsets.zero,
+                Align(
+                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        _model.trackingstatus,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
                             ),
+                      ),
+                      Container(
+                        width: 320.0,
+                        decoration: const BoxDecoration(),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 30.0, 0.0, 0.0),
+                          child: LinearPercentIndicator(
+                            percent: _model.rssi,
+                            width: 300.0,
+                            lineHeight: 30.0,
+                            animation: true,
+                            animateFromLastPercent: true,
+                            progressColor: FlutterFlowTheme.of(context).primary,
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).accent4,
+                            padding: EdgeInsets.zero,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],
