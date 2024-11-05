@@ -38,6 +38,80 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
       _model.getstatusresponse2 = await actions.getstatus();
       _model.readerstatus = _model.getstatusresponse2!;
       safeSetState(() {});
+      await actions.setMode(
+        false,
+      );
+      await Future.wait([
+        Future(() async {
+          _model.instantTimer = InstantTimer.periodic(
+            duration: const Duration(milliseconds: 1000),
+            callback: (timer) async {
+              if (_model.tagID != '') {
+                if (!_model.rfidmodeset) {
+                  _model.rfidmodeset = true;
+                  safeSetState(() {});
+                  await actions.setMode(
+                    true,
+                  );
+                }
+              } else {
+                if (!_model.barcodemodeset) {
+                  _model.barcodemodeset = true;
+                  safeSetState(() {});
+                  await actions.setMode(
+                    false,
+                  );
+                }
+                _model.readBarcodeActionResponse =
+                    await actions.readBarcodeAction(
+                  false,
+                );
+                FFAppState().ScannedBarcode = _model.readBarcodeActionResponse!;
+                safeSetState(() {});
+                _model.barcode = FFAppState().ScannedBarcode.barcode;
+                safeSetState(() {});
+                if (_model.barcode != null && _model.barcode != '') {
+                  _model.getBarcodeDataReponse = await GetBarcodeDataCall.call(
+                    barcode: _model.barcode,
+                  );
+
+                  if ((_model.getBarcodeDataReponse?.succeeded ?? true)) {
+                    _model.tagID = GetBarcodeDataCall.epc(
+                      (_model.getBarcodeDataReponse?.jsonBody ?? ''),
+                    )!;
+                    safeSetState(() {});
+                    safeSetState(() {
+                      _model.tagIDInputFieldTextController?.text =
+                          _model.barcode!;
+                      _model.tagIDInputFieldTextController?.selection =
+                          TextSelection.collapsed(
+                              offset: _model
+                                  .tagIDInputFieldTextController!.text.length);
+                    });
+                    await showDialog(
+                      context: context,
+                      builder: (alertDialogContext) {
+                        return AlertDialog(
+                          title: const Text('Success'),
+                          content: const Text('Press Start To Track'),
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.pop(alertDialogContext),
+                              child: const Text('Ok'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                }
+              }
+            },
+            startImmediately: true,
+          );
+        }),
+      ]);
     });
 
     _model.tagIDInputFieldTextController ??= TextEditingController();
@@ -142,292 +216,297 @@ class _LocationDetectionWidgetState extends State<LocationDetectionWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
-                child: TextFormField(
-                  controller: _model.tagIDInputFieldTextController,
-                  focusNode: _model.tagIDInputFieldFocusNode,
-                  onFieldSubmitted: (_) async {
-                    _model.getEPCDataResponse = await GetBarcodeDataCall.call(
-                      barcode: _model.tagIDInputFieldTextController.text,
-                    );
-
-                    if ((_model.getEPCDataResponse?.succeeded ?? true)) {
-                      _model.tagID = GetBarcodeDataCall.epc(
-                        (_model.getEPCDataResponse?.jsonBody ?? ''),
-                      )!;
-                      safeSetState(() {});
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: const Text('Success'),
-                            content:
-                                const Text('Please Press Start to Begin Tracking'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                  child: TextFormField(
+                    controller: _model.tagIDInputFieldTextController,
+                    focusNode: _model.tagIDInputFieldFocusNode,
+                    onFieldSubmitted: (_) async {
+                      _model.getEPCDataResponse = await GetBarcodeDataCall.call(
+                        barcode: _model.tagIDInputFieldTextController.text,
                       );
-                    }
 
-                    safeSetState(() {});
-                  },
-                  autofocus: false,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    labelText: 'Enter Barcode',
-                    labelStyle:
-                        FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                    hintStyle:
-                        FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).primary,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    filled: true,
-                    prefixIcon: const Icon(
-                      Icons.barcode_reader,
-                    ),
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        fontSize: 12.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w300,
-                      ),
-                  validator: _model.tagIDInputFieldTextControllerValidator
-                      .asValidator(context),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        FFButtonWidget(
-                          onPressed: () async {
-                            _model.getstatusResponse =
-                                await actions.getstatus();
-                            if (_model.getstatusResponse == 'Connected') {
-                              if (_model.tagIDInputFieldTextController.text !=
-                                      '') {
-                                _model.trackingstatus = 'Tracking Started';
-                                safeSetState(() {});
-                                await actions.trackAction(
-                                  true,
-                                  _model.tagID,
-                                );
-                                _model.instantTimer = InstantTimer.periodic(
-                                  duration: const Duration(milliseconds: 10),
-                                  callback: (timer) async {
-                                    _model.newReadActionResponse =
-                                        await actions.newReadAction(
-                                      false,
-                                      -70.0,
-                                    );
-                                    FFAppState().RFIDTagsList = _model
-                                        .newReadActionResponse!
-                                        .toList()
-                                        .cast<RFIDDateStruct>();
-                                    safeSetState(() {});
-                                    if (functions.isTagsListNotEmpty(
-                                        FFAppState().RFIDTagsList.toList())) {
-                                      _model.trackedTag =
-                                          await actions.getFirst(
-                                        FFAppState().RFIDTagsList.toList(),
-                                      );
-                                      _model.rssi =
-                                          functions.progressBarCalculator(
-                                              _model.trackedTag!.rssi);
-                                      safeSetState(() {});
-                                    } else {
-                                      _model.rssi = 0.0;
-                                      safeSetState(() {});
-                                    }
-                                  },
-                                  startImmediately: true,
-                                );
-                              } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Error'),
-                                      content:
-                                          const Text('Please Enter Tag ID To Track'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
-                            } else {
-                              await actions.rFIDConnectAction();
-                            }
-
-                            safeSetState(() {});
-                          },
-                          text: 'Start',
-                          options: FFButtonOptions(
-                            width: 75.0,
-                            height: 70.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).alternate,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  letterSpacing: 0.0,
+                      if ((_model.getEPCDataResponse?.succeeded ?? true)) {
+                        _model.tagID = GetBarcodeDataCall.epc(
+                          (_model.getEPCDataResponse?.jsonBody ?? ''),
+                        )!;
+                        safeSetState(() {});
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: const Text('Success'),
+                              content:
+                                  const Text('Please Press Start to Begin Tracking'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: const Text('Ok'),
                                 ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        FFButtonWidget(
-                          onPressed: () async {
-                            _model.trackingstatus = 'Tracking Stopped';
-                            safeSetState(() {});
-                            await actions.trackAction(
-                              false,
-                              '--',
+                              ],
                             );
-                            _model.instantTimer?.cancel();
                           },
-                          text: 'Stop',
-                          options: FFButtonOptions(
-                            width: 75.0,
-                            height: 70.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).alternate,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
+                        );
+                      }
+
+                      safeSetState(() {});
+                    },
+                    autofocus: false,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: 'Scan Barcode',
+                      labelStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0.0,
+                              ),
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0.0,
+                              ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 2.0,
                         ),
-                      ]
-                          .divide(const SizedBox(height: 10.0))
-                          .around(const SizedBox(height: 10.0)),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      filled: true,
+                      prefixIcon: const Icon(
+                        Icons.barcode_reader,
+                      ),
                     ),
-                  ].divide(const SizedBox(width: 5.0)),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 12.0,
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w300,
+                        ),
+                    validator: _model.tagIDInputFieldTextControllerValidator
+                        .asValidator(context),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.0, -1.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              _model.trackingstatus,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          FFButtonWidget(
+                            onPressed: () async {
+                              _model.getstatusResponse =
+                                  await actions.getstatus();
+                              if (_model.getstatusResponse == 'Connected') {
+                                if (_model.tagIDInputFieldTextController.text !=
+                                        '') {
+                                  _model.trackingstatus = 'Tracking Started';
+                                  safeSetState(() {});
+                                  await actions.trackAction(
+                                    true,
+                                    _model.tagID,
+                                  );
+                                  _model.instantTimer2 = InstantTimer.periodic(
+                                    duration: const Duration(milliseconds: 10),
+                                    callback: (timer) async {
+                                      _model.newReadActionResponse =
+                                          await actions.newReadAction(
+                                        false,
+                                        -70.0,
+                                      );
+                                      FFAppState().RFIDTagsList = _model
+                                          .newReadActionResponse!
+                                          .toList()
+                                          .cast<RFIDDateStruct>();
+                                      safeSetState(() {});
+                                      if (functions.isTagsListNotEmpty(
+                                          FFAppState().RFIDTagsList.toList())) {
+                                        _model.trackedTag =
+                                            await actions.getFirst(
+                                          FFAppState().RFIDTagsList.toList(),
+                                        );
+                                        _model.rssi =
+                                            functions.progressBarCalculator(
+                                                _model.trackedTag!.rssi);
+                                        safeSetState(() {});
+                                      } else {
+                                        _model.rssi = 0.0;
+                                        safeSetState(() {});
+                                      }
+                                    },
+                                    startImmediately: true,
+                                  );
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Error'),
+                                        content: const Text(
+                                            'Please Scan Barcode First To Track'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              } else {
+                                await actions.rFIDConnectAction();
+                              }
+
+                              safeSetState(() {});
+                            },
+                            text: 'Start',
+                            options: FFButtonOptions(
+                              width: 75.0,
+                              height: 70.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).alternate,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
                                   .override(
                                     fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     letterSpacing: 0.0,
                                   ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                            Container(
-                              width: 320.0,
-                              height: 100.0,
-                              decoration: const BoxDecoration(),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 30.0, 0.0, 0.0),
-                                child: LinearPercentIndicator(
-                                  percent: _model.rssi,
-                                  width: 300.0,
-                                  lineHeight: 30.0,
-                                  animation: true,
-                                  animateFromLastPercent: true,
-                                  progressColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).accent4,
-                                  padding: EdgeInsets.zero,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          FFButtonWidget(
+                            onPressed: () async {
+                              _model.trackingstatus = 'Tracking Stopped';
+                              _model.barcodemodeset = false;
+                              _model.rfidmodeset = false;
+                              _model.barcode = '-';
+                              safeSetState(() {});
+                              await actions.trackAction(
+                                false,
+                                '--',
+                              );
+                              _model.instantTimer2?.cancel();
+                            },
+                            text: 'Stop',
+                            options: FFButtonOptions(
+                              width: 75.0,
+                              height: 70.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).alternate,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ]
+                            .divide(const SizedBox(height: 10.0))
+                            .around(const SizedBox(height: 10.0)),
+                      ),
+                    ].divide(const SizedBox(width: 5.0)),
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Align(
+                          alignment: const AlignmentDirectional(0.0, -1.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                _model.trackingstatus,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Container(
+                                width: 320.0,
+                                height: 100.0,
+                                decoration: const BoxDecoration(),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 30.0, 0.0, 0.0),
+                                  child: LinearPercentIndicator(
+                                    percent: _model.rssi,
+                                    width: 300.0,
+                                    lineHeight: 30.0,
+                                    animation: true,
+                                    animateFromLastPercent: true,
+                                    progressColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).accent4,
+                                    padding: EdgeInsets.zero,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
