@@ -5,13 +5,16 @@ import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
-import '/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
 
 const kTransitionInfoKey = '__transition_info__';
+
+GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
 class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
@@ -31,6 +34,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
+      navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) => appStateNotifier.showSplashImage
           ? Builder(
               builder: (context) => Container(
@@ -44,7 +48,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : const LoginWidget(),
+          : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -62,42 +66,42 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : const LoginWidget(),
+              : LoginWidget(),
         ),
         FFRoute(
-          name: 'Login',
-          path: '/login',
-          builder: (context, params) => const LoginWidget(),
+          name: LoginWidget.routeName,
+          path: LoginWidget.routePath,
+          builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: 'RFIDMenu',
-          path: '/rFIDMenu',
-          builder: (context, params) => const RFIDMenuWidget(),
+          name: RFIDMenuWidget.routeName,
+          path: RFIDMenuWidget.routePath,
+          builder: (context, params) => RFIDMenuWidget(),
         ),
         FFRoute(
-          name: 'RFIDWriting',
-          path: '/rFIDWriting',
-          builder: (context, params) => const RFIDWritingWidget(),
+          name: RFIDWritingWidget.routeName,
+          path: RFIDWritingWidget.routePath,
+          builder: (context, params) => RFIDWritingWidget(),
         ),
         FFRoute(
-          name: 'RFIDTransaction',
-          path: '/rFIDTransaction',
-          builder: (context, params) => const RFIDTransactionWidget(),
+          name: RFIDTransactionWidget.routeName,
+          path: RFIDTransactionWidget.routePath,
+          builder: (context, params) => RFIDTransactionWidget(),
         ),
         FFRoute(
-          name: 'RAndD',
-          path: '/rAndD',
-          builder: (context, params) => const RAndDWidget(),
+          name: RAndDWidget.routeName,
+          path: RAndDWidget.routePath,
+          builder: (context, params) => RAndDWidget(),
         ),
         FFRoute(
-          name: 'RFIDScanning',
-          path: '/rFIDScanning',
-          builder: (context, params) => const RFIDScanningWidget(),
+          name: RFIDScanningWidget.routeName,
+          path: RFIDScanningWidget.routePath,
+          builder: (context, params) => RFIDScanningWidget(),
         ),
         FFRoute(
-          name: 'LocationDetection',
-          path: '/locationDetection',
-          builder: (context, params) => const LocationDetectionWidget(),
+          name: LocationDetectionWidget.routeName,
+          path: LocationDetectionWidget.routePath,
+          builder: (context, params) => LocationDetectionWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -263,7 +267,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

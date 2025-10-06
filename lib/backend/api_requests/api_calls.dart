@@ -16,8 +16,8 @@ class LogInRequestCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "username": "$username",
-  "password": "$password"
+  "username": "${username}",
+  "password": "${password}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'LogInRequest',
@@ -50,7 +50,7 @@ class GetTagsDataCall {
 
     final ffApiRequestBody = '''
 {
-  "TagList": $tagsList
+  "TagList": ${tagsList}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetTagsData',
@@ -97,7 +97,7 @@ class SendTagsListCall {
 
     final ffApiRequestBody = '''
 {
-  "TagList": $tagsList
+  "TagList": ${tagsList}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'SendTagsList',
@@ -147,7 +147,7 @@ class GetBarcodeDataCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "Barcode": "$barcode"
+  "Barcode": "${barcode}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetBarcodeData',
@@ -190,7 +190,7 @@ class GetEPCCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "Barcode": "$barcode"
+  "Barcode": "${barcode}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GetEPC',
@@ -225,11 +225,11 @@ class VerifyEPCInsertionCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "ReadEPC": "$readEPC",
-  "WrittenEPC": "$writtenEPC",
-  "IPCode": "$iPCode",
-  "MachineCode": "$machineCode",
-  "Barcode": "$barcode"
+  "ReadEPC": "${readEPC}",
+  "WrittenEPC": "${writtenEPC}",
+  "IPCode": "${iPCode}",
+  "MachineCode": "${machineCode}",
+  "Barcode": "${barcode}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'VerifyEPCInsertion',
