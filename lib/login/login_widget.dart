@@ -231,7 +231,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       onPressed: () async {
                                         _model.getStatusResponse2 =
                                             await actions.getstatus();
-                                        _model.serverStatus =
+                                        _model.scannerStatus =
                                             _model.getStatusResponse2!;
                                         safeSetState(() {});
 
